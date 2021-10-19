@@ -2,6 +2,7 @@ package de.tudresden.geo.gitseminar.geoserver;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import de.tudresden.geo.gitseminar.geoserver.Workspaces.Workspace.WorkspaceEntry;
 
 /**
  * Value object matching the GeoServer workspace data.
@@ -24,6 +25,15 @@ public class Workspaces {
 	public void setWorkspaces(Workspace workspaces) {
 		this.workspaces = workspaces;
 	}
+
+	public List<WorkspaceEntry> flatten() {
+		return workspaces.workspace;
+	}
+
+	public WorkspaceEntry flattenOne() {
+		return workspaces.workspace.get(0);
+	}
+
 
 	@Override
 	public String toString() {

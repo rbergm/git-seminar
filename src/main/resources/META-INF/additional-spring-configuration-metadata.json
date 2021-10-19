@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "geoserver.root",
+    "type": "java.lang.String",
+    "description": "Root URL under which the GeoServer REST interface is available."
+  },
+  {
+    "name": "geoserver.auth.password",
+    "type": "java.lang.String",
+    "description": "Authentication password for the GeoServer instance."
+  },
+  {
+    "name": "geoserver.auth.username",
+    "type": "java.lang.String",
+    "description": "User to authenticate on the GeoServer intstance."
+  },
+  {
+    "name": "geoserver.workspace",
+    "type": "java.lang.String",
+    "description": "Name of the GeoServer workspace used to store shapefiles, layers, etc."
+  }
+]}
