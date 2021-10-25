@@ -26,13 +26,14 @@
 <body>
     <div id='map'></div>
 
-    <script src="api_request.js"></script>
+    
 
 
     
 </body>
 </html>
 
+<script src="api_request.js" type="text/javascript"></script>
 <script>
     
     function print_eva(eva) {
@@ -90,7 +91,7 @@
 
             document.getElementById('btn-gettimetable')
             .addEventListener('click', function(){
-                print_eva(feature.properties.EVA_NR);
+                get_time_table(feature.properties.EVA_NR, '211025', '17');
         });
 
 
