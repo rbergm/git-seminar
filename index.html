@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geoinformationsdienste: DB-Haltestellen</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="shortcut icon" href="#"> <!-- wegen favicon.ico error. ggf. entfernen-->
+<style>
+        body {
+          margin: 0;
+          padding: 0;
+        }
+  
+        #map {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+        }
+      </style>
+</head>
+<body>
+    <div id='map'></div>
+
+    <script src="api_request.js"></script>
+
+
+    
+</body>
+</html>
+
+<script>
+    
+    mapboxgl.accessToken = 'pk.eyJ1IjoianV0bzQ4M2MiLCJhIjoiY2t1em0xbnZuMjk4ZTJvbzB1NTRqbjE3NCJ9._WokI9DVRVeKtbgVJVKo-A';
+
+    const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v10',
+    center: [13, 51],
+    zoom: 7
+    });
+
+    map.on('load', () => {
+        map.addSource('haltestellen', {
+            type: 'geojson',
+            
+            data: './data/haltestellen_wgs84.geojson'
+        });
+        
+        map.addLayer({
+            'id': 'haltestellen-layer',
+            'type': 'circle',
+            'source': 'haltestellen',
+            'paint': {
+                'circle-radius': 4,
+                'circle-stroke-width': 2,
+                'circle-color': 'red',
+                'circle-stroke-color': 'white'
+            }
+        });
+    });
+
+    map.on('click', (event) => {
+            
+        const features = map.queryRenderedFeatures(event.point, {
+            layers: ['haltestellen-layer'] 
+        });
+        
+        if (!features.length) {
+            return;
+        }
+        const feature = features[0];
+        
+
+        const popup = new mapboxgl.Popup({ offset: [0, -15] })
+            .setLngLat(feature.geometry.coordinates)
+            .setHTML(
+                `<h3>${feature.properties.NAME}</h3><p>${feature.properties.EVA_NR}</p>`
+            )
+            .addTo(map);
+        });
+
+
+</script>
