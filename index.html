@@ -35,6 +35,9 @@
 
 <script>
     
+    function print_eva(eva) {
+        console.log('EVA-NR: ', eva)
+    }
     mapboxgl.accessToken = 'pk.eyJ1IjoianV0bzQ4M2MiLCJhIjoiY2t1em0xbnZuMjk4ZTJvbzB1NTRqbjE3NCJ9._WokI9DVRVeKtbgVJVKo-A';
 
     const map = new mapboxgl.Map({
@@ -66,23 +69,31 @@
 
     map.on('click', (event) => {
             
-        const features = map.queryRenderedFeatures(event.point, {
+        let features = map.queryRenderedFeatures(event.point, {
             layers: ['haltestellen-layer'] 
         });
         
         if (!features.length) {
             return;
         }
-        const feature = features[0];
+        let feature = features[0];
         
 
-        const popup = new mapboxgl.Popup({ offset: [0, -15] })
+
+        let popup = new mapboxgl.Popup({ offset: [0, -15] })
             .setLngLat(feature.geometry.coordinates)
             .setHTML(
-                `<h3>${feature.properties.NAME}</h3><p>${feature.properties.EVA_NR}</p>`
+                `<h3>${feature.properties.NAME}</h3>
+                <button id='btn-gettimetable'>Fahrplan anfordern</button>`
             )
             .addTo(map);
+
+            document.getElementById('btn-gettimetable')
+            .addEventListener('click', function(){
+                print_eva(feature.properties.EVA_NR);
         });
 
+
+    });
 
 </script>
