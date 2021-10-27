@@ -14,7 +14,7 @@
           margin: 0;
           padding: 0;
         }
-  
+
         #map {
           position: absolute;
           top: 0;
@@ -26,20 +26,20 @@
 <body>
     <div id='map'></div>
 
-    
 
 
-    
+
+
 </body>
 </html>
 
 <script src="api_request.js" type="text/javascript"></script>
 <script>
-    
+
     function print_eva(eva) {
         console.log('EVA-NR: ', eva)
     }
-    mapboxgl.accessToken = 'pk.eyJ1IjoianV0bzQ4M2MiLCJhIjoiY2t1em0xbnZuMjk4ZTJvbzB1NTRqbjE3NCJ9._WokI9DVRVeKtbgVJVKo-A';
+    mapboxgl.accessToken = 'XXX'; // TODO: API-Key
 
     const map = new mapboxgl.Map({
     container: 'map',
@@ -51,10 +51,10 @@
     map.on('load', () => {
         map.addSource('haltestellen', {
             type: 'geojson',
-            
+
             data: './data/haltestellen_wgs84.geojson'
         });
-        
+
         map.addLayer({
             'id': 'haltestellen-layer',
             'type': 'circle',
@@ -69,16 +69,16 @@
     });
 
     map.on('click', (event) => {
-            
+
         let features = map.queryRenderedFeatures(event.point, {
-            layers: ['haltestellen-layer'] 
+            layers: ['haltestellen-layer']
         });
-        
+
         if (!features.length) {
             return;
         }
         let feature = features[0];
-        
+
 
 
         let popup = new mapboxgl.Popup({ offset: [0, -15] })
