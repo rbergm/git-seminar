@@ -34,3 +34,7 @@ build/
 
 ### Jupyter notebooks ###
 .ipynb_checkpoints/
+
+### Misc files ###
+auth.json
+
