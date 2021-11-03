@@ -1,6 +1,6 @@
 import json
 
-path = r"C:\Users\juliu\Desktop\GIT\GID\git-seminar-main\git-seminar-main\src\main\python\timetables\timetables.json"
+path = r"\...\timetables.json"
 
 with open(path, encoding='UTF-8') as file:
     timetables_json = json.load(file)
