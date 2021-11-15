@@ -122,7 +122,7 @@ map.on('load', () => {
         'type': 'circle',
         'source': 'haltestellen',
         'paint': {
-            'circle-radius': 3,
+            'circle-radius': 2,
             'circle-stroke-width': 2,
             'circle-color': 'red',
             'circle-stroke-color': 'white'
@@ -192,7 +192,7 @@ map.on('click', (event) => {
 
         document.getElementById('btn-gettimetable')
         .addEventListener('click', function(){
-            get_time_table(feature.properties.EVA_NR, '211114', '16');
+            get_time_table(feature.properties.EVA_NR, '211115', '16');
             
     });
 
@@ -222,6 +222,7 @@ let marker = new mapboxgl.Marker({
 
 function onDragEnd() {
     getIso();
+    
 }
 
 
@@ -242,44 +243,7 @@ async function getIso() {
 
     let = iso_polygon = data.features[0].geometry;
    
-    const features = map.querySourceFeatures('haltestellen', {
-        sourceLayer: 'haltestellen-layer'
-    });
-    
-    let collection = [];
-    for (let index = 0; index < features.length; index++) {
-        const feature = features[index].geometry.coordinates;
-        collection.push(feature);
-        
-    }
-
-    let multipoint = turf.multiPoint(collection);
-
-    let intersection = turf.pointsWithinPolygon(multipoint, iso_polygon);
-    console.log(intersection);
-
-
-    if (intersection === null) return;
-        map.getSource('intersection').setData({
-            type: 'FeatureCollection',
-            features: intersection
-    });
-
-
-    if (map.getLayer('intersection-lyr')) {
-        map.removeLayer('intersection-lyr');
-    }
-    map.addLayer(
-        {
-        id: 'intersection-lyr',
-        type: 'circle',
-        source: 'intersection',
-        paint: {
-            'circle-radius': 12,
-            'circle-color': '#486DE0'
-        }
-        }, 'isoLayer'
-    );
+    map.setPaintProperty('haltestellen-layer', 'circle-radius', ["case", ["==", ["within", iso_polygon], true], 4, ["==", ["within", iso_polygon], false], 2, 0]);
 
     // console.log(intersection);
 }
