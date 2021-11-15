@@ -10,49 +10,10 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="shortcut icon" href="#"> <!-- wegen favicon.ico error. ggf. entfernen-->
     <link href="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.min.css" rel="stylesheet" />
+    <link href="mapstyle.css" rel="stylesheet" type="text/css" />
     <script src="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.js"></script>
-    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
-<style>
-        body {
-          margin: 0;
-          padding: 0;
-        }
-  
-        #map {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          width: 100%;
-        }
-
-        .mapboxgl-popup-close-button {
-        display: none;
-        }
-
-        .mapboxgl-popup-content {
-        font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-        padding: 0;
-        width: 180px;
-        }
-
-        .mapboxgl-popup-content h3 {
-        background: #91c949;
-        color: #fff;
-        margin: 0;
-        padding: 10px;
-        border-radius: 3px 3px 0 0;
-        font-weight: 700;
-        margin-top: -15px;
-        }
-
-        .mapboxgl-popup-content button {
-        margin: 0;
-        padding: 10px;
-        font-weight: 400;
-        }
 
 
-      </style>
 </head>
 <body>
     <div id='map'></div>
@@ -92,9 +53,6 @@
         </form>
     </div>
     
-    
-
-
 </body>
 </html>
 
@@ -103,6 +61,19 @@
 
 mapboxgl.accessToken = 'pk.eyJ1IjoianV0bzQ4M2MiLCJhIjoiY2t1em0xbnZuMjk4ZTJvbzB1NTRqbjE3NCJ9._WokI9DVRVeKtbgVJVKo-A';
 
+// retrieve "Verkehrsmittel" and "Maximale Dauer"
+const params = document.getElementById('params');
+const urlBase = 'https://api.mapbox.com/isochrone/v1/mapbox/';
+let lon = 13.5040715;
+let lat = 51.1411039;
+let profile = 'cycling';
+let minutes = 10;
+let lngLat = {
+    lon: lon,
+    lat: lat
+};
+
+
 const map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/light-v10',
@@ -110,6 +81,7 @@ center: [13, 51],
 zoom: 7
 });
 
+// All stops in Saxony with respective EVA-No
 map.on('load', () => {
     map.addSource('haltestellen', {
         type: 'geojson',
@@ -128,7 +100,8 @@ map.on('load', () => {
             'circle-stroke-color': 'white'
         }
     });
-
+    
+    // Add empty Source. Container for Isochrone polygon. Gets reset with every getIso()- call
     map.addSource('iso', {
     type: 'geojson',
     data: {
@@ -148,27 +121,21 @@ map.on('load', () => {
         'fill-opacity': 0.3
         }
     });
-
-    map.addSource('intersection', {
-    type: 'geojson',
-    data: {
-        type: 'FeatureCollection',
-        features: []
-    }
 });
 
-// Initialize the marker at the query coordinates
+// Initialize marker
+let marker = new mapboxgl.Marker({
+    draggable : true,
+    'color': '#314ccd'
+});
+
 marker.setLngLat(lngLat).addTo(map);
-
-// Make the API call
-
-
+// Call getIso on dragend
 marker.on('dragend', onDragEnd);
 
 
 
-});
-
+// query clicked trainstation feature and display name and api button in a popup
 map.on('click', (event) => {
         
     let features = map.queryRenderedFeatures(event.point, {
@@ -199,34 +166,7 @@ map.on('click', (event) => {
 
 });
 
-// Target the params form in the HTML
-const params = document.getElementById('params');
 
-// Create variables to use in getIso()
-const urlBase = 'https://api.mapbox.com/isochrone/v1/mapbox/';
-let lon = 13.5040715;
-let lat = 51.1411039;
-let profile = 'cycling';
-let minutes = 10;
-let lngLat = {
-    lon: lon,
-    lat: lat
-};
-
-let marker = new mapboxgl.Marker({
-    draggable : true,
-    'color': '#314ccd'
-});
-
-
-
-function onDragEnd() {
-    getIso();
-    
-}
-
-
-// sets up the Isochrone API query then makes a fetch call
 async function getIso() {
 
     let lngLat = marker.getLngLat();
@@ -243,12 +183,15 @@ async function getIso() {
 
     let = iso_polygon = data.features[0].geometry;
    
-    map.setPaintProperty('haltestellen-layer', 'circle-radius', ["case", ["==", ["within", iso_polygon], true], 4, ["==", ["within", iso_polygon], false], 2, 0]);
+    map.setPaintProperty('haltestellen-layer', 'circle-radius', 
+                        ["case", 
+                        ["==", ["within", iso_polygon], true], 4, 
+                        ["==", ["within", iso_polygon], false], 2, 
+                        0]);
 
-    // console.log(intersection);
+
 }
 
-// When a user changes the value of profile or duration by clicking a button, change the parameter's value and make the API query again
 params.addEventListener('change', (event) => {
     if (event.target.name === 'profile') {
         profile = event.target.value;
@@ -258,5 +201,9 @@ params.addEventListener('change', (event) => {
     getIso();
 });
 
+function onDragEnd() {
+    getIso();
+    
+}
 
 </script>
