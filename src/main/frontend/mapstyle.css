@@ -1,69 +1,69 @@
 body {
-margin: 0;
-padding: 0;
-}
-
-#map {
-position: absolute;
-top: 0;
-bottom: 0;
-width: 100%;
-}
-
-.mapboxgl-popup-close-button {
-display: none;
-}
-
-.mapboxgl-popup-content {
-font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-padding: 0;
-width: 180px;
-}
-
-.mapboxgl-popup-content h3 {
-background: #91c949;
-color: #fff;
-margin: 0;
-padding: 10px;
-border-radius: 3px 3px 0 0;
-font-weight: 700;
-margin-top: -15px;
-}
-
-.mapboxgl-popup-content button {
-margin: 0;
-padding: 10px;
-font-weight: 400;
-}
-
-.tableFixHead {
-overflow-y: auto;
-height: 150px;
-width: 300;
-position: absolute;
-top: 500px;
-}
-.tableFixHead thead th {
-position: sticky;
-top: 0;
-}
-table {
-border-collapse: collapse;
-width: 100%;
-}
-th,
-td {
-padding: 15px 100px;
-background: #eee;
-}
-th {
-background: #eee;
-padding: 2px 100px;
-}
-.tableFixHead,
-.tableFixHead td {
-box-shadow: inset 1px -1px #000;
-}
-.tableFixHead th {
-box-shadow: inset 1px 1px #000, 0 1px #000;
-}
+    margin: 0;
+    padding: 0;
+    }
+    
+    #map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    }
+    
+    .mapboxgl-popup-close-button {
+    display: none;
+    }
+    
+    .mapboxgl-popup-content {
+    font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+    padding: 0;
+    width: 180px;
+    }
+    
+    .mapboxgl-popup-content h3 {
+    background: #91c949;
+    color: #fff;
+    margin: 0;
+    padding: 10px;
+    border-radius: 3px 3px 0 0;
+    font-weight: 700;
+    margin-top: -15px;
+    }
+    
+    .mapboxgl-popup-content button {
+    margin: 0;
+    padding: 10px;
+    font-weight: 400;
+    }
+    
+    .tableFixHead {
+    overflow-y: auto;
+    height: 150px;
+    width: 300;
+    position: absolute;
+    top: 500px;
+    }
+    .tableFixHead thead th {
+    position: sticky;
+    top: 0;
+    }
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    }
+    th,
+    td {
+    padding: 15px 250px;
+    background: #eee;
+    }
+    th {
+    background: #eee;
+    padding: 2px 250px;
+    }
+    .tableFixHead,
+    .tableFixHead td {
+    box-shadow: inset 1px -1px #000;
+    }
+    .tableFixHead th {
+    box-shadow: inset 1px 1px #000, 0 1px #000;
+    }

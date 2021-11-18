@@ -18,7 +18,7 @@ async function get_time_table(eva, plus_x_hours) {
   let timetables = null;
 
 
-  await fetch(url, {
+await fetch(url, {
     headers: {
       Accept: "application/xml",
       Authorization: "Bearer fc4f82d6be092177015ebbb25b56563a" // API Key
@@ -55,10 +55,32 @@ async function get_time_table(eva, plus_x_hours) {
   })
   .then(function(i) { 
     timetables = i;
+
+
+
+    let table = document.getElementsByTagName("tbody")[0];
+
+    console.log(timetables);
+    for (let index = 0; index < timetables.length; index++) {
+     
+      let traintype = timetables[index][0];
+      let datetime = timetables[index][1];
+      let platform = timetables[index][2];
+      let route = timetables[index][3];
+
+      let new_text= traintype + " auf Gleis " + platform + " um " + datetime + " richtung " +(route.substring(route.lastIndexOf("|")+1));
+
+      let row = table.insertRow();
+      let cell = row.insertCell();
+  
+      let newText = document.createTextNode(new_text);
+      cell.appendChild(newText);
+      
+    }
+  
+  
     
   });
-  console.log(timetables)
-
 
   // print in nice format 
 }
