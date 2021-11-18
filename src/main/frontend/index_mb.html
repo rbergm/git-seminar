@@ -52,7 +52,38 @@
             </div>
         </form>
     </div>
-    
+    <div class="tableFixHead">
+        <table>
+          <thead>
+            <tr>
+              <th>Col 1</th>
+              <th>Col 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.1</td>
+              <td>2.1</td>
+            </tr>
+            <tr>
+              <td>1.2</td>
+              <td>2.2</td>
+            </tr>
+            <tr>
+              <td>1.3</td>
+              <td>2.3</td>
+            </tr>
+            <tr>
+              <td>1.4</td>
+              <td>2.4</td>
+            </tr>
+            <tr>
+              <td>1.5</td>
+              <td>2.5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 </body>
 </html>
 
@@ -73,6 +104,7 @@ let lngLat = {
     lat: lat
 };
 
+timetables = null;
 
 const map = new mapboxgl.Map({
 container: 'map',
@@ -159,11 +191,8 @@ map.on('click', (event) => {
 
         document.getElementById('btn-gettimetable')
         .addEventListener('click', function(){
-            get_time_table(feature.properties.EVA_NR, '211115', '16');
-            
-    });
-
-
+            get_time_table(feature.properties.EVA_NR, 2);
+        });
 });
 
 
@@ -203,7 +232,7 @@ params.addEventListener('change', (event) => {
 
 function onDragEnd() {
     getIso();
-    
+    console.log(timetables);
 }
 
 </script>
