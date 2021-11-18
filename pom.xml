@@ -18,7 +18,7 @@
 
 		<properties>
 				<java.version>11</java.version>
-				<geotools.version>26-RC</geotools.version>
+				<geotools.version>26.0</geotools.version>
 		</properties>
 
 		<dependencies>
@@ -36,6 +36,18 @@
 				<dependency>
 						<groupId>org.geotools</groupId>
 						<artifactId>gt-shapefile</artifactId>
+						<version>${geotools.version}</version>
+				</dependency>
+
+				<dependency>
+						<groupId>org.geotools</groupId>
+						<artifactId>gt-process</artifactId>
+						<version>${geotools.version}</version>
+				</dependency>
+
+				<dependency>
+						<groupId>org.geotools</groupId>
+						<artifactId>gt-process-feature</artifactId>
 						<version>${geotools.version}</version>
 				</dependency>
 
