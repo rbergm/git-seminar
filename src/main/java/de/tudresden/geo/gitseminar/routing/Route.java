@@ -2,26 +2,66 @@ package de.tudresden.geo.gitseminar.routing;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import de.tudresden.geo.gitseminar.util.Count;
 
+/**
+ * A {@code Route} represents a non-cyclic sequence of stops at train stations.
+ *
+ * Each route starts and ends at specific (and different) stations, which are connected via changes
+ * of train lines. Routes are opinionated in that they do not allow cycles, i.e. visiting a station
+ * more than once. Similarly, using the same train line multiple times is forbidden as well.
+ *
+ * Routes can be expanded by adding additional stops, but may never shrink.
+ *
+ * All changes of train lines are represented by a corresponding {@link Change} object, which
+ * provides the station at which the change occurred, as well as the line taken from that station.
+ * Importantly, this also includes the very first station, where a train was entered for the first
+ * time. Depending on context, this may or may not fit the definition of change (as it does not
+ * connect one train line with another). To accommodate these different semantics, routes provide
+ * two different kinds of accessor methods for changes: methods such as {@code getChanges} provide
+ * the stored changes as-is, i.e. also containing the train-entry change. On the other hand, methods
+ * containing the marker {@code effective} (such as {@code getEffectiveChanges}) prune the first
+ * change. Furthermore, each change object contains a boolean indicator for whether it represents
+ * the train-entry change, or not.
+ *
+ * @author Rico Bergmann
+ *
+ */
 public class Route {
 
+	/**
+	 * Constructs an initial route, which directly connects to stations.
+	 */
 	public static Route generate(TrainStation startStation, TrainStation destination,
 			TrainLine line) {
-		var initialChange = new Change(startStation, line);
-		return new Route(startStation, Arrays.asList(initialChange), destination);
+		var initialChange = new Change(startStation, line, true);
+		return new Route(startStation, Arrays.asList(initialChange), destination, new HashSet<>());
 	}
 
 	private final TrainStation startStation;
 	private final List<Change> changes;
 	private final TrainStation finalStop;
 
-	private Route(TrainStation startStation, List<Change> changes, TrainStation finalStop) {
+	/**
+	 * Passed stations represent all stations that are neither start station, nor final station, but
+	 * have been visited somewhere on the path. At least, this will include all stations where a
+	 * change of train lines took place, but can also include other stations that have been simply
+	 * passed-by.
+	 *
+	 * This attribute is of great importance for detecting all sorts of cycles efficiently.
+	 */
+	private final Set<TrainStation> passedStations;
+
+	private Route(TrainStation startStation, List<Change> changes, TrainStation finalStop,
+			Set<TrainStation> passedStations) {
 		super();
 		this.startStation = startStation;
 		this.changes = changes;
 		this.finalStop = finalStop;
+		this.passedStations = passedStations;
 	}
 
 	public TrainStation getStartStation() {
@@ -55,23 +95,39 @@ public class Route {
 	}
 
 	public Route expandBy(TrainStation nextStop, TrainLine lineTaken) {
-		List<Change> expandedChanges = new ArrayList<>(this.changes);
-
 		// check for cycles in our route
-		for (var change : changes) {
-			if (change.station.equals(nextStop)) {
-				throw new CyclicRouteException("Cycle at change " + change);
-			}
+
+		// a cycle may occur towards the start of our route, towards its end, or to some intermediate
+		// station.
+		if (this.startStation.equals(nextStop) || this.finalStop.equals(nextStop)
+				|| this.passedStations.contains(nextStop)) {
+			throw new CyclicRouteException();
 		}
+
+		// also check that we do not reuse lines we already took
+		int changeIdx = 1;
+		int nChanges = changes.size();
+		for (var change : changes) {
+			if (change.targetLine.equals(lineTaken) && changeIdx < nChanges) {
+				throw new WigglingChangeException();
+			}
+			changeIdx++;
+		}
+
+		// now that we know that the route is valid, we can built the necessary data for it
+		List<Change> expandedChanges = new ArrayList<>(this.changes);
+		Set<TrainStation> expandedPassedStations = new HashSet<>(this.passedStations);
+
+		expandedPassedStations.add(this.finalStop);
 
 		// there will always be at least one change: the one at the first station
 		var lastChangeIdx = this.changes.size() - 1;
 		var lastChange = this.changes.get(lastChangeIdx);
 		if (!lastChange.targetLine.equals(lineTaken)) {
-			expandedChanges.add(new Change(this.finalStop, lineTaken));
+			expandedChanges.add(new Change(this.finalStop, lineTaken, false));
 		}
 
-		return new Route(this.startStation, expandedChanges, nextStop);
+		return new Route(this.startStation, expandedChanges, nextStop, expandedPassedStations);
 	}
 
 	@Override
@@ -111,17 +167,25 @@ public class Route {
 
 	@Override
 	public String toString() {
-		return "Route [startStation=" + startStation + ", changes=" + changes + ", finalStop="
-				+ finalStop + "]";
+		var routeComponents = new StringBuilder(changes.size());
+		for (var change : changes) {
+			routeComponents.append(
+					change.getStation().getName() + " -[" + change.getTargetLine().getName() + "]-> ");
+		}
+		routeComponents.append(finalStop.getName());
+
+		return routeComponents.toString();
 	}
 
 	public static class Change {
 		private final TrainStation station;
 		private final TrainLine targetLine;
+		private final boolean trainEntry;
 
-		public Change(TrainStation station, TrainLine targetLine) {
+		public Change(TrainStation station, TrainLine targetLine, boolean trainEntry) {
 			this.station = station;
 			this.targetLine = targetLine;
+			this.trainEntry = trainEntry;
 		}
 
 		public TrainStation getStation() {
@@ -130,6 +194,10 @@ public class Route {
 
 		public TrainLine getTargetLine() {
 			return targetLine;
+		}
+
+		public boolean isTrainEntry() {
+			return trainEntry;
 		}
 
 		@Override
@@ -163,7 +231,8 @@ public class Route {
 
 		@Override
 		public String toString() {
-			return "Change [station=" + station + ", targetLine=" + targetLine + "]";
+			var prefix = trainEntry ? "TrainEntry " : "Change ";
+			return prefix + "[station=" + station + ", targetLine=" + targetLine + "]";
 		}
 
 	}

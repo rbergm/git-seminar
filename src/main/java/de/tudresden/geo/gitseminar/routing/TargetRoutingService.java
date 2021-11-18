@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import de.tudresden.geo.gitseminar.util.Count;
+import de.tudresden.geo.gitseminar.util.Graphs;
 
 @Service
 public class TargetRoutingService {
@@ -28,7 +29,7 @@ public class TargetRoutingService {
 		for (var connection : trainlineNetwork.edgesOf(start)) {
 			for (var line : connection.getLines()) {
 				try {
-					var destination = trainlineNetwork.getEdgeTarget(connection);
+					var destination = Graphs.edgeTarget(trainlineNetwork, start, connection);
 					routeQueue.add(Route.generate(start, destination, line));
 				} catch (CyclicRouteException e) {
 					log.trace(e.getMessage());
@@ -40,6 +41,8 @@ public class TargetRoutingService {
 			// Poll retrieves *and removes* the first element in our queue
 			Route candidateRoute = routeQueue.poll();
 
+			log.trace("Now checking route {}", candidateRoute);
+
 			if (target.isSatisfiedBy(candidateRoute.getFinalStop())) {
 				if (candidateRoute.countEffectiveChanges().isLessThan(bestMaxChanges)) {
 					bestRoute = candidateRoute;
@@ -49,14 +52,15 @@ public class TargetRoutingService {
 					// than the best route. Therefore, we can simply drop this route.
 				}
 			} else if (candidateRoute.countEffectiveChanges().isLessThan(bestMaxChanges)) {
-				var neighborConnections = trainlineNetwork.edgesOf(candidateRoute.getFinalStop());
+				var currentStop = candidateRoute.getFinalStop();
+				var neighborConnections = trainlineNetwork.edgesOf(currentStop);
 				for (var connection : neighborConnections) {
 					for (var line : connection.getLines()) {
 						// TODO: don't consider the backward link to our previous station
 						try {
-							var destination = trainlineNetwork.getEdgeTarget(connection);
+							var destination = Graphs.edgeTarget(trainlineNetwork, currentStop, connection);
 							routeQueue.add(candidateRoute.expandBy(destination, line));
-						} catch (CyclicRouteException e) {
+						} catch (CyclicRouteException | WigglingChangeException e) {
 							log.trace(e.getMessage());
 						}
 					}

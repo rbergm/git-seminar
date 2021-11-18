@@ -39,4 +39,9 @@ public class TrainLine {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return name;
+	}
+
 }

@@ -32,6 +32,15 @@ public class Count implements Comparable<Count> {
 		return this.value < other.value;
 	}
 
+	public Count increasedBy(int value) {
+		return Count.of(this.value + value);
+	}
+
+	public Count plus(Count other) {
+		return Count.of(this.value + other.value);
+	}
+
+
 	@Override
 	public int compareTo(Count other) {
 		return this.value - other.value;

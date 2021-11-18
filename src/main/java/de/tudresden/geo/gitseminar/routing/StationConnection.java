@@ -1,5 +1,6 @@
 package de.tudresden.geo.gitseminar.routing;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.jgrapht.graph.DefaultWeightedEdge;
@@ -19,7 +20,7 @@ public class StationConnection extends DefaultWeightedEdge {
 	private List<TrainLine> lines;
 
 	private StationConnection(List<TrainLine> servedLines) {
-		this.lines = servedLines;
+		this.lines = new ArrayList<>(servedLines);
 	}
 
 	public List<TrainLine> getLines() {
@@ -28,6 +29,17 @@ public class StationConnection extends DefaultWeightedEdge {
 
 	public void setLines(List<TrainLine> lines) {
 		this.lines = lines;
+	}
+
+	public void addLineIfNotPresent(TrainLine line) {
+		if (!this.lines.contains(line)) {
+			this.lines.add(line);
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "" + lines;
 	}
 
 }

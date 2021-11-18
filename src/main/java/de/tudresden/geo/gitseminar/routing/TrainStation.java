@@ -57,6 +57,11 @@ public class TrainStation {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return name;
+	}
+
 	public static class TrainStationBuilder {
 		private String name;
 		private String eva = "";
@@ -83,7 +88,7 @@ public class TrainStation {
 		}
 
 		public TrainStation get() {
-			return new TrainStation(name, eva, oberzentrum, mittelzentrum);
+			return new TrainStation(name, eva, mittelzentrum, oberzentrum);
 		}
 	}
 
