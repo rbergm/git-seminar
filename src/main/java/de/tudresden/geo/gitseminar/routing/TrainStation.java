@@ -27,7 +27,11 @@ public class TrainStation {
 	}
 
 	public boolean isMittelzentrum() {
-		return mittelzentrum;
+		return mittelzentrum && !oberzentrum;
+	}
+
+	public boolean qualifiesAsMittelzentrum() {
+		return oberzentrum || mittelzentrum;
 	}
 
 	public boolean isOberzentrum() {
