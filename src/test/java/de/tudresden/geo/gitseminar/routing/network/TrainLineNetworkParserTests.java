@@ -12,6 +12,7 @@ import de.tudresden.geo.gitseminar.routing.util.GraphVisualizationService;
 public class TrainLineNetworkParserTests {
 
 	private static final Logger log = LoggerFactory.getLogger(TrainLineNetworkParserTests.class);
+	private static final boolean visualize = true;
 
 	@Test
 	public void deserializationProvidesCorrectObject() throws IOException {
@@ -40,9 +41,48 @@ public class TrainLineNetworkParserTests {
 		assertThat(result).isPresent();
 
 		var trainLineNetwork = result.get();
-		log.debug("Tests finished, visualizing results now.");
 
-		GraphVisualizationService.saveTrainLineNetwork(trainLineNetwork, "fullgraph.png");
+		if (visualize) {
+			log.debug("Tests finished, visualizing results now.");
+			GraphVisualizationService.saveTrainLineNetwork(trainLineNetwork, "fullgraph.png");
+		}
+
+	}
+
+	@Test
+	public void detectsOberzentrum() {
+		var stationName = "Dresden (Hbf)";
+		var parser = new TrainLineNetworkParser();
+
+		var station = parser.generateTrainStation(stationName);
+		assertThat(station.isOberzentrum()).isTrue();
+
+		// Oberzentrum should also be considered Mittelzentrum
+		assertThat(station.qualifiesAsMittelzentrum()).isTrue();
+		assertThat(station.isMittelzentrum()).isFalse();
+	}
+
+	@Test
+	public void detectsMittelzentrum() {
+		var stationName = "Freital-Hainsberg";
+		var parser = new TrainLineNetworkParser();
+
+		var station = parser.generateTrainStation(stationName);
+		assertThat(station.isMittelzentrum()).isTrue();
+		assertThat(station.qualifiesAsMittelzentrum()).isTrue();
+
+		assertThat(station.isOberzentrum()).isFalse();
+	}
+
+	@Test
+	public void detectsNormalStations() {
+		var stationName = "Oberwiesenthal";
+		var parser = new TrainLineNetworkParser();
+
+		var station = parser.generateTrainStation(stationName);
+		assertThat(station.isMittelzentrum()).isFalse();
+		assertThat(station.qualifiesAsMittelzentrum()).isFalse();
+		assertThat(station.isOberzentrum()).isFalse();
 	}
 
 }
