@@ -15,9 +15,6 @@ async function get_time_table(eva, plus_x_hours) {
 
   let url = "https://api.deutschebahn.com/timetables/v1/plan/" + eva +"/" + date +"/" + time;
 
-  let timetables = null;
-
-
 await fetch(url, {
     headers: {
       Accept: "application/xml",
@@ -53,10 +50,7 @@ await fetch(url, {
       return stopsList;
     
   })
-  .then(function(i) { 
-    timetables = i;
-
-
+  .then(function(timetables) { 
 
     let table = document.getElementsByTagName("tbody")[0];
 
@@ -76,6 +70,10 @@ await fetch(url, {
       let newText = document.createTextNode(new_text);
       cell.appendChild(newText);
       
+
+      document.getElementById("params_div").style.display = "inline";
+      // $("#params_div").show();
+
     }
   
   

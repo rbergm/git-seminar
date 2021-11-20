@@ -18,7 +18,7 @@
 <body>
     <div id='map'></div>
 
-    <div class="absolute fl my24 mx24 py24 px24 bg-gray-faint round">
+    <div id = "params_div" class="absolute fl my24 mx24 py24 px24 bg-gray-faint round">
         <form id="params">
             <h4 class="txt-m txt-bold mb6">Verkehrsmittel:</h4>
             <div class="mb12 mr12 toggle-group align-center">
@@ -74,14 +74,11 @@ mapboxgl.accessToken = 'pk.eyJ1IjoianV0bzQ4M2MiLCJhIjoiY2t1em0xbnZuMjk4ZTJvbzB1N
 // retrieve "Verkehrsmittel" and "Maximale Dauer"
 const params = document.getElementById('params');
 const urlBase = 'https://api.mapbox.com/isochrone/v1/mapbox/';
-let lon = 13.5040715;
-let lat = 51.1411039;
+
+marker_list = [];
 let profile = 'cycling';
 let minutes = 10;
-let lngLat = {
-    lon: lon,
-    lat: lat
-};
+
 
 timetables = null;
 
@@ -89,8 +86,10 @@ const map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/light-v10',
 center: [13, 51],
-zoom: 7
+zoom: 7,
+doubleClickZoom: false
 });
+
 
 // All stops in Saxony with respective EVA-No
 map.on('load', () => {
@@ -132,17 +131,37 @@ map.on('load', () => {
         'fill-opacity': 0.3
         }
     });
+
+
 });
 
-// Initialize marker
-let marker = new mapboxgl.Marker({
-    draggable : true,
-    'color': '#314ccd'
+
+map.on('dblclick', function(click) {
+    
+    let marker_div = document.getElementsByClassName("mapboxgl-marker mapboxgl-marker-anchor-center");
+    
+
+    if (marker_div.length > 0) {
+        console.log(marker_div);
+        marker_div[0].parentNode.removeChild(marker_div[0]);
+    }
+    
+
+    let coordinates = click.lngLat;
+    let marker = new mapboxgl.Marker({
+        draggable : true,
+        'color': '#314ccd'
+    });
+      marker.setLngLat(coordinates);
+      marker.addTo(map);
+      marker.on('dragend', onDragEnd);
+      marker_list.push(marker);
+
+      document.getElementById("params_div").style.display = "inline";
+
+      getIso();
 });
 
-marker.setLngLat(lngLat).addTo(map);
-// Call getIso on dragend
-marker.on('dragend', onDragEnd);
 
 
 
@@ -176,7 +195,7 @@ map.on('click', (event) => {
 
 
 async function getIso() {
-
+    let marker = marker_list.pop();
     let lngLat = marker.getLngLat();
     let lng = lngLat.lng;
     let lat = lngLat.lat;
