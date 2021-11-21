@@ -54,7 +54,6 @@ await fetch(url, {
 
     let table = document.getElementsByTagName("tbody")[0];
 
-    console.log(timetables);
     for (let index = 0; index < timetables.length; index++) {
      
       let traintype = timetables[index][0];
@@ -69,10 +68,7 @@ await fetch(url, {
   
       let newText = document.createTextNode(new_text);
       cell.appendChild(newText);
-      
-
-      document.getElementById("params_div").style.display = "inline";
-      // $("#params_div").show();
+     
 
     }
   

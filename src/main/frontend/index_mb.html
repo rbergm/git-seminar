@@ -144,7 +144,15 @@ map.on('dblclick', function(click) {
     if (marker_div.length > 0) {
         console.log(marker_div);
         marker_div[0].parentNode.removeChild(marker_div[0]);
+        marker_list.pop();
     }
+
+    
+    // if (marker_list.length > 0) {
+    //     console.log(marker_list);
+        
+
+    // }
     
 
     let coordinates = click.lngLat;
@@ -155,6 +163,7 @@ map.on('dblclick', function(click) {
       marker.setLngLat(coordinates);
       marker.addTo(map);
       marker.on('dragend', onDragEnd);
+
       marker_list.push(marker);
 
       document.getElementById("params_div").style.display = "inline";
@@ -195,7 +204,7 @@ map.on('click', (event) => {
 
 
 async function getIso() {
-    let marker = marker_list.pop();
+    let marker = marker_list[0];
     let lngLat = marker.getLngLat();
     let lng = lngLat.lng;
     let lat = lngLat.lat;
