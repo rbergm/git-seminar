@@ -18,6 +18,15 @@
 <body>
     <div id='map'></div>
 
+
+        <input type="checkbox" id="switchbutton" class="checkbox" />
+        <label for="switchbutton" class="toggle" id = "switchlabel">
+              
+            <p>OFF ON</p>
+  
+        </label>
+
+
     <div id = "params_div" class="absolute fl my24 mx24 py24 px24 bg-gray-faint round">
         <form id="params">
             <h4 class="txt-m txt-bold mb6">Verkehrsmittel:</h4>
@@ -52,11 +61,11 @@
             </div>
         </form>
     </div>
-    <div class="tableFixHead">
+    <div class="tableFixHead" id="departure_table">
         <table>
           <thead>
             <tr>
-              <th>Col 1</th>
+              <th>Departures</th>
             </tr>
           </thead>
           <tbody>
@@ -68,6 +77,8 @@
 
 <script src="api_request.js" type="text/javascript"></script>
 <script>
+
+const checkbox = document.getElementById('switchbutton');
 
 mapboxgl.accessToken = 'pk.eyJ1IjoianV0bzQ4M2MiLCJhIjoiY2t1em0xbnZuMjk4ZTJvbzB1NTRqbjE3NCJ9._WokI9DVRVeKtbgVJVKo-A';
 
@@ -129,6 +140,7 @@ map.on('load', () => {
         'paint': {
         'fill-color': '#5a3fc0',
         'fill-opacity': 0.3
+        
         }
     });
 
@@ -137,38 +149,30 @@ map.on('load', () => {
 
 
 map.on('dblclick', function(click) {
-    
+    // get html collection of 'all' current markers
     let marker_div = document.getElementsByClassName("mapboxgl-marker mapboxgl-marker-anchor-center");
     
-
+    // if there is a marker, delete marker div and marker object (from marker_list)
     if (marker_div.length > 0) {
         console.log(marker_div);
         marker_div[0].parentNode.removeChild(marker_div[0]);
         marker_list.pop();
     }
 
-    
-    // if (marker_list.length > 0) {
-    //     console.log(marker_list);
-        
-
-    // }
-    
-
     let coordinates = click.lngLat;
     let marker = new mapboxgl.Marker({
         draggable : true,
         'color': '#314ccd'
     });
-      marker.setLngLat(coordinates);
-      marker.addTo(map);
-      marker.on('dragend', onDragEnd);
+    marker.setLngLat(coordinates);
+    marker.addTo(map);
+    marker.on('dragend', onDragEnd);
 
-      marker_list.push(marker);
+    marker_list.push(marker);
+    
+    document.getElementById("params_div").style.display = "inline";
 
-      document.getElementById("params_div").style.display = "inline";
-
-      getIso();
+    getIso();
 });
 
 
@@ -241,5 +245,27 @@ function onDragEnd() {
     getIso();
     console.log(timetables);
 }
+
+
+
+
+checkbox.addEventListener('change', (event) => {
+  if (event.currentTarget.checked) {
+    document.getElementById("params_div").style.display = "none";
+    document.getElementById("departure_table").style.display = "none";
+    document.getElementsByClassName("mapboxgl-marker mapboxgl-marker-anchor-center")[0].style.display = "none";
+    map.setLayoutProperty("haltestellen-layer", 'visibility', 'none');
+    map.setLayoutProperty("isoLayer", 'visibility', 'none');
+
+
+  } else {
+    document.getElementById("params_div").style.display = "inline";
+    document.getElementById("departure_table").style.display = "inline";
+    document.getElementsByClassName("mapboxgl-marker mapboxgl-marker-anchor-center")[0].style.display = "inline";
+    map.setLayoutProperty("haltestellen-layer", 'visibility', 'visible');
+    map.setLayoutProperty("isoLayer", 'visibility', 'visible');
+  }
+})
+
 
 </script>

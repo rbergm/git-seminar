@@ -51,8 +51,11 @@ await fetch(url, {
     
   })
   .then(function(timetables) { 
-
+    
     let table = document.getElementsByTagName("tbody")[0];
+    while(table.hasChildNodes()){
+      table.removeChild(table.firstChild);
+    }
 
     for (let index = 0; index < timetables.length; index++) {
      
@@ -61,7 +64,10 @@ await fetch(url, {
       let platform = timetables[index][2];
       let route = timetables[index][3];
 
-      let new_text= traintype + " auf Gleis " + platform + " um " + datetime + " richtung " +(route.substring(route.lastIndexOf("|")+1));
+      let date = datetime.substring(4,6) + '.' + datetime.substring(2,4) + '.' + datetime.substring(0,2);
+      let time = datetime.substring(6,8) + ':' + datetime.substring(8);
+
+      let new_text= traintype + " auf Gleis " + platform + ' am ' + date + " um " + time + " Richtung " + (route.substring(route.lastIndexOf("|")+1));
 
       let row = table.insertRow();
       let cell = row.insertCell();
@@ -72,9 +78,6 @@ await fetch(url, {
 
     }
   
-  
-    
   });
 
-  // print in nice format 
 }
