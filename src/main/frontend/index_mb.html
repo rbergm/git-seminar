@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geoinformationsdienste: DB-Haltestellen</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="shortcut icon" href="#"> <!-- wegen favicon.ico error. ggf. entfernen-->
     <link href="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.min.css" rel="stylesheet" />
     <link href="mapstyle.css" rel="stylesheet" type="text/css" />
-    <script src="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js'></script>
+    <script src="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.js"></script>
 
 </head>
     <body>
@@ -95,7 +96,7 @@
     </body>
 </html>
 
-<script src="api_request.js" type="text/javascript"></script>
+<script src="timetable_api_request.js" type="text/javascript"></script>
 <script>
 
 const checkbox = document.getElementById('SwitchMode');
@@ -135,9 +136,11 @@ map.on('load', () => {
         'type': 'circle',
         'source': 'haltestellen',
         'paint': {
-            'circle-radius': 2,
-            'circle-stroke-width': 2,
+            'circle-opacity': 0.6,
+            'circle-radius': 2.5,
             'circle-color': 'red',
+            'circle-stroke-width': 3,
+            'circle-stroke-opacity': 0,
             'circle-stroke-color': 'white'
         }
     });
@@ -237,20 +240,46 @@ async function getIso() {
     `${urlBase}${profile}/${lng},${lat}?contours_minutes=${minutes}&polygons=true&access_token=${mapboxgl.accessToken}`,
     { method: 'GET' }
     );
+
     let data = await query.json();
 
     map.getSource('iso').setData(data);
 
     let = iso_polygon = data.features[0].geometry;
-   
+    
     map.setPaintProperty('haltestellen-layer', 'circle-radius', 
                         ["case", 
                         ["==", ["within", iso_polygon], true], 4, 
-                        ["==", ["within", iso_polygon], false], 2, 
+                        ["==", ["within", iso_polygon], false], 2.5, 
                         0]);
 
     let query_stations = map.querySourceFeatures('haltestellen', {
         filter: ['within', iso_polygon]
+    });
+
+    // sort List by distance
+    marker_latlon = marker_list[0].getLngLat();
+    marker_position = turf.point([marker_latlon.lng, marker_latlon.lat]);
+
+    // distance for each station within isochrone to marker
+    for (const station of query_stations) {
+        station_location = turf.point([station.properties.Laenge, station.properties.Breite]);
+        
+        station.properties.distance = turf.distance(
+            marker_position,
+            station_location
+        );
+    }
+
+    // syntax for sorting array of objects by property
+    query_stations.sort((a, b) => {
+        if (a.properties.distance > b.properties.distance) {
+            return 1;
+        }
+        if (a.properties.distance < b.properties.distance) {
+            return -1;
+        }
+        return 0; 
     });
 
     listgroup = document.getElementById('station_listgroup');
@@ -260,7 +289,7 @@ async function getIso() {
     }
     double_check = []
     for (let station = 0; station < query_stations.length; station++) {
-
+        
         let element = query_stations[station];
         let name = element.properties.NAME;
         let eva = element.properties.EVA_NR;
@@ -270,13 +299,17 @@ async function getIso() {
             let li = document.createElement('li');
             li.className = 'list-group-item';
             li.appendChild(document.createTextNode(name));
-            li.onclick = function (){get_time_table(eva, 7)};
+            li.onclick = function (){
+                get_time_table(eva, 7);
+                map.setPaintProperty('haltestellen-layer', 'circle-stroke-opacity', ['match', ['get', 'EVA_NR'], eva, 1, 0]);
+                map.setPaintProperty('haltestellen-layer', 'circle-opacity', ['match', ['get', 'EVA_NR'], eva, 1, 0.6]);
+                map.setPaintProperty('haltestellen-layer', 'circle-color', ['match', ['get', 'EVA_NR'], eva, 'darkred', 'red']);
+            };
+
             listgroup.appendChild(li);
             double_check.push(eva);
             
-        }
-        
-        
+        }   
     }
 }
 
