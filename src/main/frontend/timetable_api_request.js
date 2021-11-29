@@ -1,5 +1,11 @@
-async function get_time_table(eva, plus_x_hours) {
+async function get_time_table(eva, name, plus_x_hours) {
 
+  document.getElementById('departure_table_head').innerHTML = 'Abfahrten von ' + name;
+
+  map.setPaintProperty('haltestellen-layer', 'circle-stroke-opacity', ['match', ['get', 'EVA_NR'], eva, 1, 0]);
+  map.setPaintProperty('haltestellen-layer', 'circle-opacity', ['match', ['get', 'EVA_NR'], eva, 1, 0.6]);
+  map.setPaintProperty('haltestellen-layer', 'circle-color', ['match', ['get', 'EVA_NR'], eva, 'darkred', 'red']);
+  
   let DateTime = new Date(); // current DateTime
   DateTime.setHours(DateTime.getHours() + plus_x_hours);  // Adding user input "in how many hours do you want to depart?"
   let Day = (DateTime.getDate() < 10 ? '0' : '') + (DateTime.getDate().toString()); // add leading 0 to numbers < 10
@@ -8,10 +14,7 @@ async function get_time_table(eva, plus_x_hours) {
   let Year = DateTime.getFullYear().toString().substring(2); // 2 digits representation of year
   let time = (DateTime.getHours() < 10 ? '0' : '') + (DateTime.getHours().toString()); // add leading 0 to numbers < 10
 
-
   let date = Year+Month+Day; // concatanate to YYMMDD
-  console.log(date);
-  console.log(time);
 
   let url = "https://api.deutschebahn.com/timetables/v1/plan/" + eva +"/" + date +"/" + time;
 
@@ -29,7 +32,7 @@ await fetch(url, {
       let xmlDoc = parser.parseFromString(data, 'text/xml');
   
       let stops = xmlDoc.getElementsByTagName('s');         // s = stop(Haltestelle)
-
+    
       let stopsList = [];    
 
       for (let i = 0; i < stops.length; i++) {
@@ -48,6 +51,7 @@ await fetch(url, {
       }
     
       return stopsList;
+
     
   })
   .then(function(timetables) { 
@@ -76,6 +80,9 @@ await fetch(url, {
       let newText = document.createTextNode(new_text);
 
       cell1.appendChild(newText);
+      
+      
+
 
     }
   

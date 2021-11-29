@@ -87,7 +87,7 @@
             <table class="table table-bordered table-striped mb-0" id = "departure_table">
                 <thead>
                     <tr>
-                    <th scope="col">Abfahrten</th>
+                    <th scope="col" id="departure_table_head">Abfahrten</th>
                     </tr>
                 </thead>
             <tbody><i class="fab fa-github"></i></tbody>
@@ -97,6 +97,7 @@
 </html>
 
 <script src="timetable_api_request.js" type="text/javascript"></script>
+<script src="routing_api_request.js" type="text/javascript"></script>
 <script>
 
 const checkbox = document.getElementById('SwitchMode');
@@ -139,9 +140,9 @@ map.on('load', () => {
             'circle-opacity': 0.6,
             'circle-radius': 2.5,
             'circle-color': 'red',
-            'circle-stroke-width': 3,
+            'circle-stroke-width': 4,
             'circle-stroke-opacity': 0,
-            'circle-stroke-color': 'white'
+            'circle-stroke-color': 'red'
         }
     });
     
@@ -225,12 +226,18 @@ map.on('click', (event) => {
 
         document.getElementById('btn-gettimetable')
         .addEventListener('click', function(){
-            get_time_table(feature.properties.EVA_NR, 7);
+            get_time_table(feature.properties.EVA_NR, feature.properties.NAME, 0);
         });
 });
 
 
 async function getIso() {
+
+    if (map.getSource('route')) {
+        map.removeLayer('route');
+        map.removeSource('route');
+            
+    }
     let marker = marker_list[0];
     let lngLat = marker.getLngLat();
     let lng = lngLat.lng;
@@ -300,10 +307,9 @@ async function getIso() {
             li.className = 'list-group-item';
             li.appendChild(document.createTextNode(name));
             li.onclick = function (){
-                get_time_table(eva, 7);
-                map.setPaintProperty('haltestellen-layer', 'circle-stroke-opacity', ['match', ['get', 'EVA_NR'], eva, 1, 0]);
-                map.setPaintProperty('haltestellen-layer', 'circle-opacity', ['match', ['get', 'EVA_NR'], eva, 1, 0.6]);
-                map.setPaintProperty('haltestellen-layer', 'circle-color', ['match', ['get', 'EVA_NR'], eva, 'darkred', 'red']);
+                get_time_table(eva, name, 0);
+                let marker_location = marker_list[0].getLngLat()
+                getRoute(marker_location.lng, marker_location.lat, element.properties.Laenge, element.properties.Breite, profile);
             };
 
             listgroup.appendChild(li);
@@ -322,9 +328,12 @@ params.addEventListener('change', (event) => {
     getIso();
 });
 
+
 function onDragEnd() {
     getIso();
+
 }
+
 
 function Mode1() {
     document.getElementById("next_station_div").style.display = "block";
