@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
     }
-    
+
+
 #map {
 position: absolute;
 top: 0;
@@ -40,13 +41,15 @@ font-weight: 400;
 
 #next_station_div {
     background-color: #fff;
-    position: relative;
-    width: 324px;
-    height: 550px;
+    position: absolute;
+    top: 55px;
+    height: 90%;
+    width: 21%;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 10px;
     margin-top: 5px;
     margin-left: 5px;
+    margin-bottom: 5px;
     
 }
 
@@ -62,14 +65,14 @@ font-weight: 400;
 
 
 #params_div {
-    width: 276px;
-    height: 199px;
+    width: 90%;
+    height: 15%;
 
 }
 
 #next_stations_title {
     position: absolute;
-    top: 240px;
+    top: 38%;
     margin-left: 48px;
     font-size: 10pt;
 
@@ -87,7 +90,6 @@ font-weight: 400;
 display: block;
 position: absolute;
 bottom: 0px;
-left: 0px;
 }
 
 #departure_table thead {
@@ -103,7 +105,12 @@ left: 0px;
 
 #tablediv {
 width: 600px;
+position: absolute;
+bottom: 0px;
 background-color: #fff;
+right: 0px;
+margin-right: 5px;
+margin-bottom: 5px;
 }
 
 #station_listgroup {
@@ -122,3 +129,58 @@ background-color: #fff;
 li {
     cursor: pointer;
 }
+
+
+
+/* Popup container */
+.nav-item-popup {
+position: relative;
+display: inline-block;
+cursor: pointer;
+}
+
+/* The actual popup (appears on bottom) */
+.nav-item-popup .popuptext {
+visibility: hidden;
+width: 600px;
+background-color: #007bff;
+color: #fff;
+text-align: start;
+border-radius: 6px;
+padding: 8px ;
+position: absolute;
+z-index: 1;
+top: 125%;
+left: 50%;
+margin-left: -80px;
+}
+
+.nav-item-popup .popuptext::after {
+content: " ";
+position: absolute;
+bottom: 100%;  /* At the top of the tooltip */
+left: 13.5%;
+margin-left: -10px;
+border-width: 10px;
+border-style: solid;
+border-color: transparent transparent black transparent;
+}
+
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.nav-item-popup .show {
+visibility: visible;
+-webkit-animation: fadeIn 5s;
+animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+from {opacity: 0;}
+to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+from {opacity: 0;}
+to {opacity:1 ;}
+} 

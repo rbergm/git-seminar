@@ -60,10 +60,21 @@ await fetch(url, {
     while(table.hasChildNodes()){
       table.removeChild(table.firstChild);
     }
-
+    
+    timetables.sort((a, b) => {
+      if (a[1]> b[1]) {
+          return 1;
+      }
+      if (a[1] < b[1]) {
+          return -1;
+      }
+      return 0;
+    });
 
     for (let index = 0; index < timetables.length; index++) {
-     
+
+
+
       let traintype = timetables[index][0];
       let datetime = timetables[index][1];
       let platform = timetables[index][2];

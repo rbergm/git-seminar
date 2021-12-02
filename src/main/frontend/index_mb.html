@@ -28,7 +28,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item" onclick="Mode1()"> <a class="nav-link" href="#">Mein nächster Bahnhof</a> </li>
                         <li class="nav-item" onclick="Mode2()"> <a class="nav-link" href="#">Rasterübersicht</a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="#">Über</a> </li>
+                        <li class="nav-item-popup" onclick="infoText()"> <a class="nav-link" href="#">Über</a> <span class="popuptext" id="myPopup"> Mein nächster Bahnhof:<br>Dieser Modus dient zum Finden der nächstgelegenen Haltestellen um einen gewählten Standort und der nächsten Abfahrten von einem gewählen Bahnhof. Auswählbar ist die gewünschte Fortbewegungsmöglichkeit und die maximale Dauer zum nächsten Bahnhof. <br> Der Standort kann durch Doppelklick auf der Karte gesetzt werden und anschließend mit der Maus verschoben werden. <br><br> Rasterübersicht:<br> Diese Übersicht dient der Veranschaulichung der Erreichbarkeiten in Sachsen auf Grundlage der Anzahl der BewohnerInnen.<br></span></li>
                     </ul>
                     <p class="d-none d-md-block lead mb-0 text-white"> <i class="fa d-inline fa-lg fa-stop-circle"></i> <b> Haltestellen-Informationssystem</b> </p>
                     <ul class="navbar-nav ml-auto">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </nav>
-            <div id = "next_station_div">  
+                    <div id = "next_station_div">  
                 <div id = "params_div" class="absolute fl my24 mx24 py24 px24 bg-white-faint round">
                     
                     <form id="params">
@@ -93,6 +93,10 @@
             <tbody><i class="fab fa-github"></i></tbody>
         </div>
 
+        
+
+
+
     </body>
 </html>
 
@@ -126,10 +130,32 @@ doubleClickZoom: false
 
 // All stops in Saxony with respective EVA-No
 map.on('load', () => {
-    map.addSource('haltestellen', {
-        type: 'geojson',
+    map.addSource('raster-source', {
+        'type': 'image',
         
-        data: 'Data/haltestellen_wgs84.geojson'
+        'url': 'data/dist_raster_gif.gif',
+        'coordinates': [
+            [11.7909799230130741, 51.7068931722358016],
+            [15.0453037544106447,51.7068931722358016],
+            [15.0453037544106447, 50.1560044713354003],
+            [11.7909799230130741,50.1560044713354003]
+        ]
+    });
+
+    map.addLayer({
+        'id': 'raster-layer',
+        'type': 'raster',
+        'source': 'raster-source',
+        'paint':{
+                'raster-fade-duration': 0
+            }
+    });
+
+    map.addSource('haltestellen', {
+        'type': 'geojson',
+        
+        'data': 'data/haltestellen_wgs84.geojson',
+
     });
     
     map.addLayer({
@@ -148,11 +174,11 @@ map.on('load', () => {
     
     // Add empty Source. Container for Isochrone polygon. Gets reset with every getIso()- call
     map.addSource('iso', {
-    type: 'geojson',
-    data: {
-    'type': 'FeatureCollection',
-    'features': []
-    }
+        'type': 'geojson',
+        'data': {
+            'type': 'FeatureCollection',
+            'features': []
+        }
     });
 
     map.addLayer(
@@ -337,6 +363,7 @@ function onDragEnd() {
 
 function Mode1() {
     document.getElementById("next_station_div").style.display = "block";
+    document.getElementById("myPopup").style.visibility = "hidden";
     if (document.getElementById("tablediv") != undefined) {
         document.getElementById("tablediv").style.display = "block";
     }
@@ -352,6 +379,7 @@ function Mode1() {
 
 function Mode2() {
     document.getElementById("next_station_div").style.display = "none";
+    document.getElementById("myPopup").style.visibility = "hidden";
     if (document.getElementById("tablediv") != undefined) {
         document.getElementById("tablediv").style.display = "none";
     }
@@ -364,6 +392,19 @@ function Mode2() {
     
     map.setLayoutProperty("haltestellen-layer", 'visibility', 'none');
     map.setLayoutProperty("isoLayer", 'visibility', 'none');
+}
+
+function infoText() {
+    let popup = document.getElementById("myPopup");
+
+    if (popup.style.visibility == 'visible') {
+
+        popup.style.visibility = 'hidden';
+    }else{
+        popup.style.visibility = 'visible';
+
+    }
+    
 }
 
 
