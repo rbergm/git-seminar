@@ -2,7 +2,6 @@ package de.tudresden.geo.gitseminar.routing.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,11 +25,6 @@ public class RoutingRequestController {
     this.networkSupplier = networkSupplier;
   }
 
-  @GetMapping("/routing/calculate")
-  public String baseRouting() {
-    return "Calculation done";
-  }
-
   @PostMapping("/routing/calculate")
   public ResponseEntity<Route> calculateRoute(@RequestBody RoutingRequest routingData) {
     var start = TrainStation.ofName(routingData.getStartStation()).get();
@@ -43,6 +37,8 @@ public class RoutingRequestController {
       throw new IllegalArgumentException(
           "Unknown target specification: " + routingData.getTarget());
     }
+
+    // TODO: exception handling: no route and start station matches target
 
     var route = routingService.findTarget(networkSupplier.getNetwork(), start, target);
 

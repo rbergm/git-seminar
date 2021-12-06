@@ -1,8 +1,3 @@
-
-//let headers = new Headers();
-//headers.append('Accept', 'application/json');
-//headers.append('Content-Type', 'application/json');
-
 const init = {
     method: "POST",
     headers: {
@@ -20,5 +15,5 @@ fetch(req, init).then((resp) => {
     if (!resp.ok) {
         throw new Error(`Error: ${resp.status} - ${resp.statusText}`);
     }
-    return resp.text();
+    return resp.json();
 }).then((route) => console.log(route));
