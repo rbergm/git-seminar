@@ -10,7 +10,6 @@ import de.tudresden.geo.gitseminar.routing.OberzentrumTargetSpecification;
 import de.tudresden.geo.gitseminar.routing.StartStationMatchesTargetSpecificationException;
 import de.tudresden.geo.gitseminar.routing.TargetRoutingService;
 import de.tudresden.geo.gitseminar.routing.TargetSpecification;
-import de.tudresden.geo.gitseminar.routing.TrainStation;
 import de.tudresden.geo.gitseminar.routing.network.TrainNetworkSupplier;
 
 @RestController
@@ -28,9 +27,7 @@ public class RoutingRequestController {
   @PostMapping("/routing/calculate")
   public ResponseEntity<RoutingResponse> calculateRoute(@RequestBody RoutingRequest routingData) {
 
-    // TODO: lookup the start station somewhere instead of creating it from scratch again. This
-    // retains zentrum status, etc.
-    var start = TrainStation.ofName(routingData.getStartStation()).get();
+    var start = networkSupplier.getTrainStation(routingData.getStartStation());
     TargetSpecification target = null;
     if (routingData.getTarget().equalsIgnoreCase("mittelzentrum")) {
       target = new MittelzentrumTargetSpecification();
@@ -40,6 +37,8 @@ public class RoutingRequestController {
       throw new IllegalArgumentException(
           "Unknown target specification: " + routingData.getTarget());
     }
+
+    // TODO: handle IArgE if the vertex does not exist
 
     RoutingResponse response;
     HttpStatus responseStatus;

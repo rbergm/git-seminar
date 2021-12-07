@@ -1,6 +1,7 @@
 package de.tudresden.geo.gitseminar.routing.network;
 
 import java.io.IOException;
+import java.util.Map;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultUndirectedGraph;
 import org.slf4j.Logger;
@@ -15,47 +16,56 @@ import de.tudresden.geo.gitseminar.routing.TrainStation;
 @Service
 public class TrainNetworkSupplier {
 
-	private static Logger log = LoggerFactory.getLogger(TrainNetworkSupplier.class);
+  private static Logger log = LoggerFactory.getLogger(TrainNetworkSupplier.class);
 
-	private Graph<TrainStation, StationConnection> network;
+  private Graph<TrainStation, StationConnection> network;
+  private Map<String, TrainStation> trainStations;
 
-	private TrainLineNetworkParser parser;
-	private String networkDescription;
+  private TrainLineNetworkParser parser;
+  private String networkDescription;
 
-	public TrainNetworkSupplier(TrainLineNetworkParser parser,
-			@Value("${trainnetwork.file}") String networkDescription) {
-		this.parser = parser;
-		this.networkDescription = networkDescription;
-	}
+  public TrainNetworkSupplier(TrainLineNetworkParser parser,
+      @Value("${trainnetwork.file}") String networkDescription) {
+    this.parser = parser;
+    this.networkDescription = networkDescription;
+  }
 
-	public Graph<TrainStation, StationConnection> getNetwork() {
-		if (network == null) {
-			initializeNetwork();
-		}
+  public Graph<TrainStation, StationConnection> getNetwork() {
+    if (network == null) {
+      initializeNetwork();
+    }
 
-		return network;
-	}
+    return network;
+  }
 
-	private void initializeNetwork() {
-		try {
-			Resource networkFile = new ClassPathResource(networkDescription);
-			var parsingResult = parser.loadFromJsonFile(networkFile.getFile());
+  public TrainStation getTrainStation(String name) {
+    if (network == null) {
+      initializeNetwork();
+    }
+    return trainStations.get(name);
+  }
 
-			if (parsingResult.isEmpty()) {
-				log.error("Train network is empty");
-				setupDummyNetwork();
-			}
+  private void initializeNetwork() {
+    try {
+      Resource networkFile = new ClassPathResource(networkDescription);
+      var parsingResult = parser.loadFromJsonFile(networkFile.getFile());
 
-			network = parsingResult.get();
+      if (parsingResult.isEmpty()) {
+        log.error("Train network is empty");
+        setupDummyNetwork();
+      }
 
-		} catch (IOException e) {
-			log.error("Could not load train network from file: {}", e.getMessage());
-			setupDummyNetwork();
-		}
-	}
+      network = parsingResult.get().getLeft();
+      trainStations = parsingResult.get().getRight();
 
-	private void setupDummyNetwork() {
-		network = new DefaultUndirectedGraph<>(StationConnection.class);
-	}
+    } catch (IOException e) {
+      log.error("Could not load train network from file: {}", e.getMessage());
+      setupDummyNetwork();
+    }
+  }
+
+  private void setupDummyNetwork() {
+    network = new DefaultUndirectedGraph<>(StationConnection.class);
+  }
 
 }

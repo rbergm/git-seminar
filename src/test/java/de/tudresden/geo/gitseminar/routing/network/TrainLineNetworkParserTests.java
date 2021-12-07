@@ -11,78 +11,78 @@ import de.tudresden.geo.gitseminar.routing.util.GraphVisualizationService;
 
 public class TrainLineNetworkParserTests {
 
-	private static final Logger log = LoggerFactory.getLogger(TrainLineNetworkParserTests.class);
-	private static final boolean visualize = true;
+  private static final Logger log = LoggerFactory.getLogger(TrainLineNetworkParserTests.class);
+  private static final boolean visualize = true;
 
-	@Test
-	public void deserializationProvidesCorrectObject() throws IOException {
-		Resource jsonResource = new ClassPathResource("timetables.json");
-		var parser = new TrainLineNetworkParser();
+  @Test
+  public void deserializationProvidesCorrectObject() throws IOException {
+    Resource jsonResource = new ClassPathResource("timetables.json");
+    var parser = new TrainLineNetworkParser();
 
-		var result = parser.deserializeJsonFile(jsonResource.getFile());
+    var result = parser.deserializeJsonFile(jsonResource.getFile());
 
-		assertThat(result).isPresent();
+    assertThat(result).isPresent();
 
-		var lineInfos = result.get();
-		assertThat(lineInfos.getData()).isNotEmpty();
+    var lineInfos = result.get();
+    assertThat(lineInfos.getData()).isNotEmpty();
 
-		var firstLineInfo = lineInfos.getData().get(0);
-		assertThat(firstLineInfo.getTrainType()).isEqualTo("VBG");
+    var firstLineInfo = lineInfos.getData().get(0);
+    assertThat(firstLineInfo.getTrainType()).isEqualTo("VBG");
 
-		log.debug("First line info: {}", firstLineInfo);
-	}
+    log.debug("First line info: {}", firstLineInfo);
+  }
 
-	@Test
-	public void testCompleteWorkflow() throws IOException {
-		Resource jsonResource = new ClassPathResource("timetables.json");
-		var parser = new TrainLineNetworkParser();
+  @Test
+  public void testCompleteWorkflow() throws IOException {
+    Resource jsonResource = new ClassPathResource("timetables.json");
+    var parser = new TrainLineNetworkParser();
 
-		var result = parser.loadFromJsonFile(jsonResource.getFile());
-		assertThat(result).isPresent();
+    var result = parser.loadFromJsonFile(jsonResource.getFile());
+    assertThat(result).isPresent();
 
-		var trainLineNetwork = result.get();
+    var trainLineNetwork = result.get();
 
-		if (visualize) {
-			log.debug("Tests finished, visualizing results now.");
-			GraphVisualizationService.saveTrainLineNetwork(trainLineNetwork, "fullgraph.png");
-		}
+    if (visualize) {
+      log.debug("Tests finished, visualizing results now.");
+      GraphVisualizationService.saveTrainLineNetwork(trainLineNetwork.getLeft(), "fullgraph.png");
+    }
 
-	}
+  }
 
-	@Test
-	public void detectsOberzentrum() {
-		var stationName = "Dresden (Hbf)";
-		var parser = new TrainLineNetworkParser();
+  @Test
+  public void detectsOberzentrum() {
+    var stationName = "Dresden (Hbf)";
+    var parser = new TrainLineNetworkParser();
 
-		var station = parser.generateTrainStation(stationName);
-		assertThat(station.isOberzentrum()).isTrue();
+    var station = parser.generateTrainStation(stationName);
+    assertThat(station.isOberzentrum()).isTrue();
 
-		// Oberzentrum should also be considered Mittelzentrum
-		assertThat(station.qualifiesAsMittelzentrum()).isTrue();
-		assertThat(station.isMittelzentrum()).isFalse();
-	}
+    // Oberzentrum should also be considered Mittelzentrum
+    assertThat(station.qualifiesAsMittelzentrum()).isTrue();
+    assertThat(station.isMittelzentrum()).isFalse();
+  }
 
-	@Test
-	public void detectsMittelzentrum() {
-		var stationName = "Freital-Hainsberg";
-		var parser = new TrainLineNetworkParser();
+  @Test
+  public void detectsMittelzentrum() {
+    var stationName = "Freital-Hainsberg";
+    var parser = new TrainLineNetworkParser();
 
-		var station = parser.generateTrainStation(stationName);
-		assertThat(station.isMittelzentrum()).isTrue();
-		assertThat(station.qualifiesAsMittelzentrum()).isTrue();
+    var station = parser.generateTrainStation(stationName);
+    assertThat(station.isMittelzentrum()).isTrue();
+    assertThat(station.qualifiesAsMittelzentrum()).isTrue();
 
-		assertThat(station.isOberzentrum()).isFalse();
-	}
+    assertThat(station.isOberzentrum()).isFalse();
+  }
 
-	@Test
-	public void detectsNormalStations() {
-		var stationName = "Oberwiesenthal";
-		var parser = new TrainLineNetworkParser();
+  @Test
+  public void detectsNormalStations() {
+    var stationName = "Oberwiesenthal";
+    var parser = new TrainLineNetworkParser();
 
-		var station = parser.generateTrainStation(stationName);
-		assertThat(station.isMittelzentrum()).isFalse();
-		assertThat(station.qualifiesAsMittelzentrum()).isFalse();
-		assertThat(station.isOberzentrum()).isFalse();
-	}
+    var station = parser.generateTrainStation(stationName);
+    assertThat(station.isMittelzentrum()).isFalse();
+    assertThat(station.qualifiesAsMittelzentrum()).isFalse();
+    assertThat(station.isOberzentrum()).isFalse();
+  }
 
 }
