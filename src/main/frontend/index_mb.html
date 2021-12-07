@@ -83,18 +83,25 @@
        
 
         <div class = 'table-wrapper-scroll-y my-custom-scrollbar' id = 'tablediv'>
-            
+            <ul class="nav nav-tabs" id="nav_departure_route">
+                <li class="nav-item" onclick='route_view()' >
+                  <a class="nav-link">Abfahrten</a>
+                </li>
+                <li class="nav-item" onclick='departure_view()'>
+                  <a class="nav-link">Route</a>
+                </li>
+              </ul>
             <table class='table table-striped' id = 'departure_table'>
                 <thead>
                     <tr>
-                    <th scope='col' id='departure_table_head'>Abfahrten</th>
+                    <th id='departure_table_head'></th>
                     </tr>
                 </thead>
-            <tbody><i class='fab fa-github'></i></tbody>
+            <tbody></tbody>
         </div>
 
         
-
+        
 
 
     </body>
@@ -399,6 +406,14 @@ function Mode2() {
     map.setLayoutProperty('isoLayer', 'visibility', 'none');
     map.setLayoutProperty('raster-layer', 'visibility', 'visible');
     map.setLayoutProperty('route', 'visibility', 'none')
+}
+
+function departure_view() {
+    document.getElementById('departure_table').style.display = 'none';
+}
+
+function route_view() {
+    document.getElementById('departure_table').style.display = 'inline';
 }
 
 function infoText() {

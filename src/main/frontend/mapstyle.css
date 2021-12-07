@@ -88,19 +88,29 @@ font-weight: 400;
     }
 .table-wrapper-scroll-y {
 display: block;
-position: absolute;
-bottom: 0px;
+position: relative;
+bottom: 0;
+}
+
+#departure_table {
+    background-color: #fff;
+    position: sticky;
 }
 
 #departure_table thead {
     position: sticky;
     top: 0; 
+    height: 41.6px;
     z-index: 1;
-    background-color: #fff;
+}
+
+#departure_table_head {
+    height: 41.6px;
 }
 
 #departure_table tbody{
-    background-color: #fff;
+    position: relative;
+
 }
 
 #tablediv {
@@ -171,3 +181,10 @@ border-color: transparent transparent black transparent;
     cursor: pointer;
 }
 
+#nav_departure_route {
+    position: sticky; 
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+    width: 590.4px;
+}
