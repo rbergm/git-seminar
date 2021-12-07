@@ -88,6 +88,9 @@
                 <li class="nav-item" onclick='route_view()'>
                   <a class="nav-link">Route</a>
                 </li>
+                <li>
+                    <input id="slider" type="range" min="0" max="10">
+                </li>
               </ul>
             <table class='table table-striped' id = 'departure_table'>
                 <thead>
@@ -363,6 +366,13 @@ params.addEventListener('change', (event) => {
     getIso();
 });
 
+let last_eva = 0;
+let last_name = '';
+let slider = document.getElementById('slider');
+slider.addEventListener('change', (event) => {
+    let hours = parseInt(slider.value);
+    get_time_table(last_eva, last_name, hours)
+});
 
 function onDragEnd() {
     getIso();

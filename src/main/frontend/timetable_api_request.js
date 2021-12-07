@@ -15,15 +15,19 @@ async function get_time_table(eva, name, plus_x_hours) {
   let time = (DateTime.getHours() < 10 ? '0' : '') + (DateTime.getHours().toString()); // add leading 0 to numbers < 10
   let date = Year+Month+Day; // concatanate to YYMMDD
   let url  = "https://api.deutschebahn.com/timetables/v1/plan/" + eva +"/" + date +"/" + time;
-
+  last_eva = eva;
+  last_name = name;
+  console.log(url);
 await fetch(url, {
     headers: {
       Accept: "application/xml",
       Authorization: "Bearer fc4f82d6be092177015ebbb25b56563a" // API Key
     }
   })
-  .then(function(resp) {        // handles the API GET-response
-        return resp.text();     // get the Body of the Response (omit meta data)
+  .then(function(resp) {        // handles the API GET-response 
+
+    return resp.text();     // get the Body of the Response (omit meta data)
+        
   }) 
   .then(function(data){
       let parser = new DOMParser();

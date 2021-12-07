@@ -19,7 +19,7 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         }
     };
 
-    
+
     while(instructions.hasChildNodes()){
         instructions.removeChild(instructions.firstChild);
     }
@@ -54,6 +54,8 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
             'line-opacity': 0.75
         }
     });
+
+    
 }
 
 
