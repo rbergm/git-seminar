@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import de.tudresden.geo.gitseminar.routing.MittelzentrumTargetSpecification;
 import de.tudresden.geo.gitseminar.routing.OberzentrumTargetSpecification;
-import de.tudresden.geo.gitseminar.routing.Route;
+import de.tudresden.geo.gitseminar.routing.StartStationMatchesTargetSpecificationException;
 import de.tudresden.geo.gitseminar.routing.TargetRoutingService;
 import de.tudresden.geo.gitseminar.routing.TargetSpecification;
 import de.tudresden.geo.gitseminar.routing.TrainStation;
@@ -26,7 +26,10 @@ public class RoutingRequestController {
   }
 
   @PostMapping("/routing/calculate")
-  public ResponseEntity<Route> calculateRoute(@RequestBody RoutingRequest routingData) {
+  public ResponseEntity<RoutingResponse> calculateRoute(@RequestBody RoutingRequest routingData) {
+
+    // TODO: lookup the start station somewhere instead of creating it from scratch again. This
+    // retains zentrum status, etc.
     var start = TrainStation.ofName(routingData.getStartStation()).get();
     TargetSpecification target = null;
     if (routingData.getTarget().equalsIgnoreCase("mittelzentrum")) {
@@ -38,15 +41,23 @@ public class RoutingRequestController {
           "Unknown target specification: " + routingData.getTarget());
     }
 
-    // TODO: exception handling: no route and start station matches target
-
-    var route = routingService.findTarget(networkSupplier.getNetwork(), start, target);
-
-    if (route.isEmpty()) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    RoutingResponse response;
+    HttpStatus responseStatus;
+    try {
+      var route = routingService.findTarget(networkSupplier.getNetwork(), start, target);
+      if (route.isEmpty()) {
+        response = RoutingResponse.noRoute();
+        responseStatus = HttpStatus.NOT_FOUND;
+      } else {
+        response = RoutingResponse.ok(route.get());
+        responseStatus = HttpStatus.OK;
+      }
+    } catch (StartStationMatchesTargetSpecificationException e) {
+      response = RoutingResponse.startMatchesTarget();
+      responseStatus = HttpStatus.OK;
     }
 
-    return ResponseEntity.status(HttpStatus.OK).body(route.get());
+    return ResponseEntity.status(responseStatus).body(response);
   }
 
 }
