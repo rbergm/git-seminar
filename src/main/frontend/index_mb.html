@@ -89,7 +89,7 @@
                   <a class="nav-link">Route</a>
                 </li>
                 <li>
-                    <input id="slider" type="range" min="0" max="10">
+                    <input id="slider" type="range" min="0" max="10" value="0" step="1">
                 </li>
               </ul>
             <table class='table table-striped' id = 'departure_table'>
@@ -264,7 +264,7 @@ map.on('click', (event) => {
 
         document.getElementById('btn-gettimetable')
         .addEventListener('click', function(){
-            get_time_table(feature.properties.EVA_NR, feature.properties.NAME, 0);
+            get_time_table(feature.properties.EVA_NR, feature.properties.NAME);
         });
 });
 
@@ -345,7 +345,7 @@ async function getIso() {
             li.className = 'list-group-item';
             li.appendChild(document.createTextNode(name));
             li.onclick = function (){
-                get_time_table(eva, name, 0);
+                get_time_table(eva, name);
                 let marker_location = marker_list[0].getLngLat()
                 getRoute(marker_location.lng, marker_location.lat, element.properties.Laenge, element.properties.Breite, profile);
             };
@@ -369,14 +369,16 @@ params.addEventListener('change', (event) => {
 let last_eva = 0;
 let last_name = '';
 let slider = document.getElementById('slider');
+
 slider.addEventListener('change', (event) => {
-    let hours = parseInt(slider.value);
-    get_time_table(last_eva, last_name, hours)
+    if (last_eva != 0) {
+        get_time_table(last_eva, last_name)
+        console.log(slider.value);
+    }
 });
 
 function onDragEnd() {
     getIso();
-
 }
 
 

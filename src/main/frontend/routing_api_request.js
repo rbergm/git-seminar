@@ -60,4 +60,3 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
 
 
 }
-

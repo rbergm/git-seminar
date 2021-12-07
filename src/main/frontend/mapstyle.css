@@ -72,7 +72,7 @@ font-weight: 400;
 
 #next_stations_title {
     position: absolute;
-    top: 28%;
+    top: 38%;
     margin-left: 48px;
     font-size: 10pt;
 
@@ -187,9 +187,4 @@ border-color: transparent transparent black transparent;
     z-index: 1;
     background-color: #fff;
     width: 590.4px;
-}
-
-#navig_steps_listgroup {
-    display: none;
-    position: relative;
 }

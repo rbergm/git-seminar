@@ -1,5 +1,7 @@
-async function get_time_table(eva, name, plus_x_hours) {
+async function get_time_table(eva, name) {
 
+  let slider = document.getElementById("slider");
+  let plus_x_hours = parseInt(slider.value);
   document.getElementById('departure_table_head').innerHTML = 'Abfahrten von ' + name;
 
   map.setPaintProperty('haltestellen-layer', 'circle-stroke-opacity', ['match', ['get', 'EVA_NR'], eva, 1, 0]);
@@ -17,7 +19,7 @@ async function get_time_table(eva, name, plus_x_hours) {
   let url  = "https://api.deutschebahn.com/timetables/v1/plan/" + eva +"/" + date +"/" + time;
   last_eva = eva;
   last_name = name;
-  console.log(url);
+
 await fetch(url, {
     headers: {
       Accept: "application/xml",
