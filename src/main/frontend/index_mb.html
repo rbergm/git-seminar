@@ -347,7 +347,7 @@ async function getIso() {
             li.onclick = function (){
                 get_time_table(eva, name);
                 let marker_location = marker_list[0].getLngLat()
-                getRoute(marker_location.lng, marker_location.lat, element.properties.Laenge, element.properties.Breite, profile);
+                getRoute(marker_location.lng, marker_location.lat, element.properties.Laenge, element.properties.Breite, profile, name);
             };
 
             listgroup.appendChild(li);

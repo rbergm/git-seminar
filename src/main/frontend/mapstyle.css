@@ -188,3 +188,7 @@ border-color: transparent transparent black transparent;
     background-color: #fff;
     width: 590.4px;
 }
+
+#navig_steps_listgroup {
+    display: none;
+}

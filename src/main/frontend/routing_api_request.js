@@ -1,4 +1,4 @@
-async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profile) {
+async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profile, station_name) {
 
 
     const query = await fetch(
@@ -23,13 +23,55 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
     while (instructions.hasChildNodes()) {
         instructions.removeChild(instructions.firstChild);
     }
-    for (const step of steps) {
 
+    for (let index = 0; index < steps.length -1; index++) {
         let li = document.createElement('li');
         li.className = 'list-group-item';
-        li.appendChild(document.createTextNode(step.maneuver.instruction));
+        li.appendChild(document.createTextNode(steps[index].maneuver.instruction));
         instructions.appendChild(li);
     }
+
+    train_route = await getRouteFromProcessingService(station_name);
+    console.log(train_route);
+    if (train_route.status == 'ok') {
+        
+        let li_start = document.createElement('li');
+        li_start.className = 'list-group-item';
+        let start_station = train_route.route.startStation.name;
+        let instruction_start_station = 'Sie haben den Bahnhof ' + start_station + ' erreicht.';
+        li_start.appendChild(document.createTextNode(instruction_start_station));
+        instructions.appendChild(li_start);
+
+        let li_line = document.createElement('li');
+        li_line.className = 'list-group-item';
+        let start_line = train_route.route.changes[0].targetLine.name;
+        let instruction_line = 'Steigen Sie in die Linie ' + start_line + ' ein.';
+        li_line.appendChild(document.createTextNode(instruction_line));
+        instructions.appendChild(li_line);
+
+        for (const change of train_route.route.effectiveChanges) {
+            let li_change = document.createElement('li');
+            li_change.className = 'list-group-item';
+            let change_station = change.station.name;
+            let change_line = change.targetLine.name;
+            let instruction_change = 'Steigen Sie in ' + change_station + ' in die Linie ' + change_line + ' um.';
+            li_change.appendChild(document.createTextNode(instruction_change));
+            instructions.appendChild(li_change);
+        }
+
+        let li_target = document.createElement('li');
+        li_target.className = 'list-group-item';
+        let target_station = train_route.route.finalStop.name;
+        let instruction_target = 'Sie haben das Oberzentrum ' + target_station + ' erreicht.';
+        li_target.appendChild(document.createTextNode(instruction_target));
+        instructions.appendChild(li_target);
+
+
+    }
+
+
+
+
 
     // if the route already exists on the map, we'll reset it using setData
     if (map.getSource('route')) {
