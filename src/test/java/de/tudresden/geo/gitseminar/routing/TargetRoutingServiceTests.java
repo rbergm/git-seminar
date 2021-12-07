@@ -63,12 +63,12 @@ public class TargetRoutingServiceTests {
     var start = TrainStation.ofName("Großheringen").get();
     var goalSpec = new OberzentrumTargetSpecification();
 
-    var result = routingService.findTarget(network.get().getLeft(), start, goalSpec);
+    var result = routingService.findTarget(network.get().network, start, goalSpec);
     log.debug("First route: {}", result);
     assertThat(result).isPresent();
 
     start = TrainStation.ofName("Kurort Oberwiesenthal").get();
-    result = routingService.findTarget(network.get().getLeft(), start, goalSpec);
+    result = routingService.findTarget(network.get().network, start, goalSpec);
     log.debug("Second route: {}", result);
     assertThat(result).isPresent();
   }

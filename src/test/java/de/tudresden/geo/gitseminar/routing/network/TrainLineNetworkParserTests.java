@@ -44,7 +44,7 @@ public class TrainLineNetworkParserTests {
 
     if (visualize) {
       log.debug("Tests finished, visualizing results now.");
-      GraphVisualizationService.saveTrainLineNetwork(trainLineNetwork.getLeft(), "fullgraph.png");
+      GraphVisualizationService.saveTrainLineNetwork(trainLineNetwork.network, "fullgraph.png");
     }
 
   }

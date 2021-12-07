@@ -55,8 +55,8 @@ public class TrainNetworkSupplier {
         setupDummyNetwork();
       }
 
-      network = parsingResult.get().getLeft();
-      trainStations = parsingResult.get().getRight();
+      network = parsingResult.get().network;
+      trainStations = parsingResult.get().trainStations;
 
     } catch (IOException e) {
       log.error("Could not load train network from file: {}", e.getMessage());

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import org.apache.commons.lang3.tuple.Pair;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultUndirectedGraph;
 import org.slf4j.Logger;
@@ -24,10 +23,9 @@ public class TrainLineNetworkParser {
 
   private static final Logger log = LoggerFactory.getLogger(TrainLineNetworkParser.class);
 
-  public Optional<Pair<Graph<TrainStation, StationConnection>, Map<String, TrainStation>>> loadFromJsonFile(
-      File file) {
+  public Optional<TrainLineNetworkParserResult> loadFromJsonFile(File file) {
     var jsonData = deserializeJsonFile(file);
-    Optional<Pair<Graph<TrainStation, StationConnection>, Map<String, TrainStation>>> graphFromLineInfo =
+    Optional<TrainLineNetworkParserResult> graphFromLineInfo =
         jsonData.map(this::convertLineInfoToStationNetwork);
     return graphFromLineInfo;
   }
@@ -43,8 +41,7 @@ public class TrainLineNetworkParser {
     }
   }
 
-  Pair<Graph<TrainStation, StationConnection>, Map<String, TrainStation>> convertLineInfoToStationNetwork(
-      LineInfoJSON lineData) {
+  TrainLineNetworkParserResult convertLineInfoToStationNetwork(LineInfoJSON lineData) {
     Graph<TrainStation, StationConnection> trainLineNetwork =
         new DefaultUndirectedGraph<>(StationConnection.class);
     Map<String, TrainStation> trainStations = new HashMap<>();
@@ -88,7 +85,7 @@ public class TrainLineNetworkParser {
 
     }
 
-    return Pair.of(trainLineNetwork, trainStations);
+    return new TrainLineNetworkParserResult(trainLineNetwork, trainStations);
   }
 
   TrainLine parseTrainLine(LineInfo rawData) {
@@ -117,6 +114,19 @@ public class TrainLineNetworkParser {
     }
 
     return station.get();
+  }
+
+  public static class TrainLineNetworkParserResult {
+    public final Graph<TrainStation, StationConnection> network;
+    public final Map<String, TrainStation> trainStations;
+
+    private TrainLineNetworkParserResult(Graph<TrainStation, StationConnection> network,
+        Map<String, TrainStation> trainStations) {
+      super();
+      this.network = network;
+      this.trainStations = trainStations;
+    }
+
   }
 
 }
