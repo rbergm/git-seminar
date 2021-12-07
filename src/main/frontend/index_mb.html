@@ -76,18 +76,16 @@
                 <hr id = 'section_line'>
                 <b id = 'next_stations_title'>Die nächstgelegenen Bahnhöfe:</b>
 
-
-              <!-- <a href='#' class='btn btn-primary'>Go somewhere</a> -->
               <ul class='list-group' id='station_listgroup'></ul>
             </div>
        
 
         <div class = 'table-wrapper-scroll-y my-custom-scrollbar' id = 'tablediv'>
             <ul class="nav nav-tabs" id="nav_departure_route">
-                <li class="nav-item" onclick='route_view()' >
+                <li class="nav-item" onclick='departure_view()' >
                   <a class="nav-link">Abfahrten</a>
                 </li>
-                <li class="nav-item" onclick='departure_view()'>
+                <li class="nav-item" onclick='route_view()'>
                   <a class="nav-link">Route</a>
                 </li>
               </ul>
@@ -98,6 +96,7 @@
                     </tr>
                 </thead>
             <tbody></tbody>
+            <ul class='list-group' id='navig_steps_listgroup'></ul>
         </div>
 
         
@@ -386,7 +385,11 @@ function Mode1() {
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'visible');
     map.setLayoutProperty('isoLayer', 'visibility', 'visible');
     map.setLayoutProperty('raster-layer', 'visibility', 'none');
-    map.setLayoutProperty('route', 'visibility', 'visible')
+
+    if (map.getLayer('route')) {
+        map.setLayoutProperty('route', 'visibility', 'visible')
+    }
+    
 }
 
 function Mode2() {
@@ -405,15 +408,20 @@ function Mode2() {
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'none');
     map.setLayoutProperty('isoLayer', 'visibility', 'none');
     map.setLayoutProperty('raster-layer', 'visibility', 'visible');
-    map.setLayoutProperty('route', 'visibility', 'none')
+
+    if (map.getLayer('route')) {
+        map.setLayoutProperty('route', 'visibility', 'none')
+    }
 }
 
 function departure_view() {
-    document.getElementById('departure_table').style.display = 'none';
+    document.getElementById('departure_table').style.display = 'table';
+    document.getElementById('navig_steps_listgroup').style.display = 'none';
 }
 
 function route_view() {
-    document.getElementById('departure_table').style.display = 'inline';
+    document.getElementById('departure_table').style.display = 'none';
+    document.getElementById('navig_steps_listgroup').style.display = 'inline';
 }
 
 function infoText() {

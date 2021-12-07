@@ -76,7 +76,6 @@ await fetch(url, {
       let datetime  = timetables[index][1];
       let platform  = timetables[index][2];
       let route     = timetables[index][3]
-      console.log(route);
       
       let formatted_date = datetime.substring(4,6) + '.' + datetime.substring(2,4) + '.' + datetime.substring(0,2);
       let formatted_time = datetime.substring(6,8) + ':' + datetime.substring(8);
@@ -96,7 +95,7 @@ await fetch(url, {
       row.onclick = function() {
         if (hidden_row.style.display == 'none') {
           hidden_row.style.display = 'inline';
-        }else if (hidden_row.style.display = 'inline'){
+        }else if (hidden_row.style.display == 'inline'){
           hidden_row.style.display = 'none';
         }
       };
