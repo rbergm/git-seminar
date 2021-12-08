@@ -1,6 +1,7 @@
 package de.tudresden.geo.gitseminar.routing.network;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultUndirectedGraph;
@@ -43,6 +44,13 @@ public class TrainNetworkSupplier {
       initializeNetwork();
     }
     return trainStations.get(name);
+  }
+
+  public Collection<TrainStation> getAllTrainStations() {
+    if (network == null) {
+      initializeNetwork();
+    }
+    return trainStations.values();
   }
 
   private void initializeNetwork() {

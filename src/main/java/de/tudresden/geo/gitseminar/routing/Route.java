@@ -32,209 +32,213 @@ import de.tudresden.geo.gitseminar.util.Count;
  */
 public class Route {
 
-	/**
-	 * Constructs an initial route, which directly connects to stations.
-	 */
-	public static Route generate(TrainStation startStation, TrainStation destination,
-			TrainLine line) {
-		var initialChange = new Change(startStation, line, true);
-		return new Route(startStation, Arrays.asList(initialChange), destination, new HashSet<>());
-	}
+  /**
+   * Constructs an initial route, which directly connects to stations.
+   */
+  public static Route generate(TrainStation startStation, TrainStation destination,
+      TrainLine line) {
+    var initialChange = new Change(startStation, line, true);
+    return new Route(startStation, Arrays.asList(initialChange), destination, new HashSet<>());
+  }
 
-	private final TrainStation startStation;
-	private final List<Change> changes;
-	private final TrainStation finalStop;
+  private final TrainStation startStation;
+  private final List<Change> changes;
+  private final TrainStation finalStop;
 
-	/**
-	 * Passed stations represent all stations that are neither start station, nor final station, but
-	 * have been visited somewhere on the path. At least, this will include all stations where a
-	 * change of train lines took place, but can also include other stations that have been simply
-	 * passed-by.
-	 *
-	 * This attribute is of great importance for detecting all sorts of cycles efficiently.
-	 */
-	private final Set<TrainStation> passedStations;
+  /**
+   * Passed stations represent all stations that are neither start station, nor final station, but
+   * have been visited somewhere on the path. At least, this will include all stations where a
+   * change of train lines took place, but can also include other stations that have been simply
+   * passed-by.
+   *
+   * This attribute is of great importance for detecting all sorts of cycles efficiently.
+   */
+  private final Set<TrainStation> passedStations;
 
-	private Route(TrainStation startStation, List<Change> changes, TrainStation finalStop,
-			Set<TrainStation> passedStations) {
-		super();
-		this.startStation = startStation;
-		this.changes = changes;
-		this.finalStop = finalStop;
-		this.passedStations = passedStations;
-	}
+  private Route(TrainStation startStation, List<Change> changes, TrainStation finalStop,
+      Set<TrainStation> passedStations) {
+    super();
+    this.startStation = startStation;
+    this.changes = changes;
+    this.finalStop = finalStop;
+    this.passedStations = passedStations;
+  }
 
-	public TrainStation getStartStation() {
-		return startStation;
-	}
+  public TrainStation getStartStation() {
+    return startStation;
+  }
 
-	public List<Change> getChanges() {
-		return changes;
-	}
+  public List<Change> getChanges() {
+    return changes;
+  }
 
-	public List<Change> getEffectiveChanges() {
-		if (changes.size() == 1) {
-			return new ArrayList<>();
-		}
-		var effectiveChanges = new ArrayList<>(this.changes);
-		effectiveChanges.remove(0);
-		return effectiveChanges;
-	}
+  public List<Change> getEffectiveChanges() {
+    if (changes.size() == 1) {
+      return new ArrayList<>();
+    }
+    var effectiveChanges = new ArrayList<>(this.changes);
+    effectiveChanges.remove(0);
+    return effectiveChanges;
+  }
 
-	public TrainStation getFinalStop() {
-		return finalStop;
-	}
+  public TrainStation getFinalStop() {
+    return finalStop;
+  }
 
-	public Count countChanges() {
-		return Count.of(changes.size());
-	}
+  public Count countChanges() {
+    return Count.of(changes.size());
+  }
 
-	public Count countEffectiveChanges() {
-		// don't count the initial change, which resembles entering the very first train
-		return Count.generateFrom(changes.size() - 1);
-	}
+  public Count countEffectiveChanges() {
+    // don't count the initial change, which resembles entering the very first train
+    return Count.generateFrom(changes.size() - 1);
+  }
 
-	public Route expandBy(TrainStation nextStop, TrainLine lineTaken) {
-		// check for cycles in our route
+  public Count countPassedStations() {
+    return Count.of(passedStations.size());
+  }
 
-		// a cycle may occur towards the start of our route, towards its end, or to some intermediate
-		// station.
-		if (this.startStation.equals(nextStop) || this.finalStop.equals(nextStop)
-				|| this.passedStations.contains(nextStop)) {
-			throw new CyclicRouteException();
-		}
+  public Route expandBy(TrainStation nextStop, TrainLine lineTaken) {
+    // check for cycles in our route
 
-		// also check that we do not reuse lines we already took
-		int changeIdx = 1;
-		int nChanges = changes.size();
-		for (var change : changes) {
-			if (change.targetLine.equals(lineTaken) && changeIdx < nChanges) {
-				throw new WigglingChangeException();
-			}
-			changeIdx++;
-		}
+    // a cycle may occur towards the start of our route, towards its end, or to some intermediate
+    // station.
+    if (this.startStation.equals(nextStop) || this.finalStop.equals(nextStop)
+        || this.passedStations.contains(nextStop)) {
+      throw new CyclicRouteException();
+    }
 
-		// now that we know that the route is valid, we can built the necessary data for it
-		List<Change> expandedChanges = new ArrayList<>(this.changes);
-		Set<TrainStation> expandedPassedStations = new HashSet<>(this.passedStations);
+    // also check that we do not reuse lines we already took
+    int changeIdx = 1;
+    int nChanges = changes.size();
+    for (var change : changes) {
+      if (change.targetLine.equals(lineTaken) && changeIdx < nChanges) {
+        throw new WigglingChangeException();
+      }
+      changeIdx++;
+    }
 
-		expandedPassedStations.add(this.finalStop);
+    // now that we know that the route is valid, we can built the necessary data for it
+    List<Change> expandedChanges = new ArrayList<>(this.changes);
+    Set<TrainStation> expandedPassedStations = new HashSet<>(this.passedStations);
 
-		// there will always be at least one change: the one at the first station
-		var lastChangeIdx = this.changes.size() - 1;
-		var lastChange = this.changes.get(lastChangeIdx);
-		if (!lastChange.targetLine.equals(lineTaken)) {
-			expandedChanges.add(new Change(this.finalStop, lineTaken, false));
-		}
+    expandedPassedStations.add(this.finalStop);
 
-		return new Route(this.startStation, expandedChanges, nextStop, expandedPassedStations);
-	}
+    // there will always be at least one change: the one at the first station
+    var lastChangeIdx = this.changes.size() - 1;
+    var lastChange = this.changes.get(lastChangeIdx);
+    if (!lastChange.targetLine.equals(lineTaken)) {
+      expandedChanges.add(new Change(this.finalStop, lineTaken, false));
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((changes == null) ? 0 : changes.hashCode());
-		result = prime * result + ((finalStop == null) ? 0 : finalStop.hashCode());
-		result = prime * result + ((startStation == null) ? 0 : startStation.hashCode());
-		return result;
-	}
+    return new Route(this.startStation, expandedChanges, nextStop, expandedPassedStations);
+  }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!(obj instanceof Route))
-			return false;
-		Route other = (Route) obj;
-		if (changes == null) {
-			if (other.changes != null)
-				return false;
-		} else if (!changes.equals(other.changes))
-			return false;
-		if (finalStop == null) {
-			if (other.finalStop != null)
-				return false;
-		} else if (!finalStop.equals(other.finalStop))
-			return false;
-		if (startStation == null) {
-			if (other.startStation != null)
-				return false;
-		} else if (!startStation.equals(other.startStation))
-			return false;
-		return true;
-	}
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((changes == null) ? 0 : changes.hashCode());
+    result = prime * result + ((finalStop == null) ? 0 : finalStop.hashCode());
+    result = prime * result + ((startStation == null) ? 0 : startStation.hashCode());
+    return result;
+  }
 
-	@Override
-	public String toString() {
-		var routeComponents = new StringBuilder(changes.size());
-		for (var change : changes) {
-			routeComponents.append(
-					change.getStation().getName() + " -[" + change.getTargetLine().getName() + "]-> ");
-		}
-		routeComponents.append(finalStop.getName());
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (!(obj instanceof Route))
+      return false;
+    Route other = (Route) obj;
+    if (changes == null) {
+      if (other.changes != null)
+        return false;
+    } else if (!changes.equals(other.changes))
+      return false;
+    if (finalStop == null) {
+      if (other.finalStop != null)
+        return false;
+    } else if (!finalStop.equals(other.finalStop))
+      return false;
+    if (startStation == null) {
+      if (other.startStation != null)
+        return false;
+    } else if (!startStation.equals(other.startStation))
+      return false;
+    return true;
+  }
 
-		return routeComponents.toString();
-	}
+  @Override
+  public String toString() {
+    var routeComponents = new StringBuilder(changes.size());
+    for (var change : changes) {
+      routeComponents.append(
+          change.getStation().getName() + " -[" + change.getTargetLine().getName() + "]-> ");
+    }
+    routeComponents.append(finalStop.getName());
 
-	public static class Change {
-		private final TrainStation station;
-		private final TrainLine targetLine;
-		private final boolean trainEntry;
+    return routeComponents.toString();
+  }
 
-		public Change(TrainStation station, TrainLine targetLine, boolean trainEntry) {
-			this.station = station;
-			this.targetLine = targetLine;
-			this.trainEntry = trainEntry;
-		}
+  public static class Change {
+    private final TrainStation station;
+    private final TrainLine targetLine;
+    private final boolean trainEntry;
 
-		public TrainStation getStation() {
-			return station;
-		}
+    public Change(TrainStation station, TrainLine targetLine, boolean trainEntry) {
+      this.station = station;
+      this.targetLine = targetLine;
+      this.trainEntry = trainEntry;
+    }
 
-		public TrainLine getTargetLine() {
-			return targetLine;
-		}
+    public TrainStation getStation() {
+      return station;
+    }
 
-		public boolean isTrainEntry() {
-			return trainEntry;
-		}
+    public TrainLine getTargetLine() {
+      return targetLine;
+    }
 
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((station == null) ? 0 : station.hashCode());
-			result = prime * result + ((targetLine == null) ? 0 : targetLine.hashCode());
-			return result;
-		}
+    public boolean isTrainEntry() {
+      return trainEntry;
+    }
 
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (!(obj instanceof Change))
-				return false;
-			Change other = (Change) obj;
-			if (station == null) {
-				if (other.station != null)
-					return false;
-			} else if (!station.equals(other.station))
-				return false;
-			if (targetLine == null) {
-				if (other.targetLine != null)
-					return false;
-			} else if (!targetLine.equals(other.targetLine))
-				return false;
-			return true;
-		}
+    @Override
+    public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((station == null) ? 0 : station.hashCode());
+      result = prime * result + ((targetLine == null) ? 0 : targetLine.hashCode());
+      return result;
+    }
 
-		@Override
-		public String toString() {
-			var prefix = trainEntry ? "TrainEntry " : "Change ";
-			return prefix + "[station=" + station + ", targetLine=" + targetLine + "]";
-		}
+    @Override
+    public boolean equals(Object obj) {
+      if (this == obj)
+        return true;
+      if (!(obj instanceof Change))
+        return false;
+      Change other = (Change) obj;
+      if (station == null) {
+        if (other.station != null)
+          return false;
+      } else if (!station.equals(other.station))
+        return false;
+      if (targetLine == null) {
+        if (other.targetLine != null)
+          return false;
+      } else if (!targetLine.equals(other.targetLine))
+        return false;
+      return true;
+    }
 
-	}
+    @Override
+    public String toString() {
+      var prefix = trainEntry ? "TrainEntry " : "Change ";
+      return prefix + "[station=" + station + ", targetLine=" + targetLine + "]";
+    }
+
+  }
 
 }
