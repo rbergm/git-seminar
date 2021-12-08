@@ -1,0 +1,932 @@
+station,target,changes,stops
+Weida,Leipzig-Knauthain,0,9
+Roßlau(Elbe),Delitzsch unt Bf,0,3
+Kodersdorf,Görlitz,0,0
+Königsborn,Delitzsch unt Bf,0,8
+Weickersdorf(Sachs),Bautzen,0,1
+Blönsdorf,Delitzsch unt Bf,0,12
+Teufelsmühle,Zittau Vorstadt,0,4
+Meerane,Glauchau-Schönbörnchen,0,0
+Bremen Hbf,Leipzig/Halle Flughafen,0,7
+Pirna-Copitz,Pirna-Copitz,0,0
+Kurort Oybin,Zittau Vorstadt,0,5
+Neudietendorf,Leipzig-Miltitz,0,14
+Stockheim(Oberfr),Leipzig Hbf,0,15
+Kämmereiforst,Eilenburg,0,0
+Rudolstadt(Thür),Leipzig Hbf,0,6
+Ostritz Stadt Dresden,Görlitz-Weinhübel Joh.-R.-Becher-Straße,0,1
+Leipzig-Lindenau,Leipzig-Lindenau,0,0
+Batowice Lubanskie,Görlitz,0,3
+Camburg(Saale),Leipzig Hbf,0,2
+Stralsund Hbf,Leipzig Hbf,0,11
+Ellefeld,Ellefeld,0,0
+Ebersbach(Sachs),Zittau,0,2
+Chrastava,Zittau,0,1
+Norddeich,Leipzig/Halle Flughafen,0,18
+Ludwigsstadt,Leipzig Hbf,0,12
+Leißling,Leipzig-Miltitz,0,6
+Löbau(Sachs),Löbau(Sachs),0,0
+Prenzlau,Leipzig Hbf,0,6
+Berbisdorf Anbau,Lößnitzgrund,0,6
+Sluknov,Dresden Hbf,1,14
+München-Pasing,Leipzig Hbf,0,4
+Raguhn,Delitzsch unt Bf,0,3
+Klitschmar,Delitzsch unt Bf,0,1
+Zschaitz,Döbeln Hbf,0,0
+Freital-Hainsberg West,Freital-Hainsberg West,0,0
+Sedlitz Ost,Großenhain Cottb Bf,0,4
+Dohna(Sachs),Dresden-Zschachwitz,1,1
+Lohsa,Hoyerswerda-Neustadt,0,0
+Hamburg Hbf,Leipzig Hbf,0,4
+Rostock Hbf,Dresden-Neustadt,0,6
+Förtschendorf,Leipzig Hbf,0,14
+Radebeul-Zitzschewig,Radebeul-Zitzschewig,0,0
+Bertsdorf,Zittau Vorstadt,0,2
+Meißen Triebischtal,Meißen Triebischtal,0,0
+Bützow,Dresden-Neustadt,0,7
+Plattling,Leipzig Hbf,0,7
+Langenwolmsdorf Mitte,Pirna-Copitz Nord,0,4
+Magdeburg-Neustadt,Delitzsch unt Bf,0,8
+Olbersdorf Oberdorf,Zittau Vorstadt,0,1
+Stauchitz,Riesa,0,1
+Taucha(Leipzig),Leipzig Hbf,0,0
+Eisenach,Leipzig Hbf,0,1
+Zerbst/Anhalt,Delitzsch unt Bf,0,5
+Pirna,Pirna,0,0
+Nassau(Erzgeb),Freiberg(Sachs),0,4
+Deutzen Markt,Markkleeberg,0,3
+Kubschütz,Bautzen,0,0
+Züssow,Leipzig Hbf,0,9
+Chemnitz Riemenschneiderstraße,Chemnitz Riemenschneiderstraße,0,0
+Chemnitz Theaterplatz,Chemnitz Theaterplatz,0,0
+Helmsdorf(Pirna),Pirna-Copitz Nord,0,2
+Sehma,Annaberg-Buchholz Süd,0,0
+Aalen Hbf,Leipzig Hbf,0,8
+Duisburg Hbf,Leipzig/Halle Flughafen,0,13
+Leipzig Slevogtstraße,Leipzig Slevogtstraße,0,0
+Beucha,Leipzig-Engelsdorf,0,1
+Altenbach,Wurzen,0,1
+Feilitzsch,Plauen(Vogtl) ob Bf,0,1
+Sedzislaw,Görlitz,0,21
+Dortmund Hbf,Leipzig/Halle Flughafen,0,10
+Schönberg(Vogtl),Plauen(Vogtl) ob Bf,0,2
+"Jocketa Talsperrenblick, Pöhl",Plauen(Vogtl) ob Bf (Busbahnhof),0,0
+Edle Krone,Freital-Hainsberg West,0,1
+Auerbach(V) unt Bf,Auerbach(V) unt Bf,0,0
+Bad Liebenwerda,Torgau,0,3
+Bad Brambach,Oelsnitz(Vogtl),0,5
+Putzkau,Radeberg,0,3
+Görlitz-Weinhübel,Görlitz-Weinhübel,0,0
+Neukirchen-Klaffenbach,Chemnitz Friedrichstraße,0,1
+Rumburk,Dresden Hbf,1,16
+Netzschkau,Reichenbach(Vogtl) ob Bf,0,0
+Sohl,Oelsnitz(Vogtl),0,3
+Zeitz,Leipzig-Knauthain,0,3
+Sohland,Zittau,0,3
+Großröhrsdorf,Radeberg,0,1
+Ebensfeld,Leipzig Hbf,0,24
+Adorf(Erzgeb),Chemnitz Friedrichstraße,0,2
+Leipzig Wilhelm-Leuschner-Platz,Leipzig Wilhelm-Leuschner-Platz,0,0
+"Reuth(b Plauen,Vogtl)",Plauen(Vogtl) ob Bf,0,3
+Wilischthal,Annaberg-Buchholz unterer Bf,0,5
+Graz Hbf,Dresden Hbf,0,13
+Mittelherwigsdorf,Zittau,0,0
+Crossen Ort,Leipzig-Knauthain,0,5
+Oelsnitz(Erzgeb),Oelsnitz(Erzgeb),0,0
+Jena-Zwätzen,Leipzig Hbf,0,5
+Jena Paradies,Leipzig Hbf,0,1
+Oberoderwitz,Zittau,0,0
+Budapest-Nyugati,Dresden Hbf,0,13
+Freital-Deuben,Freital-Deuben,0,0
+Berthelsdorf(Erzgebirge) Ort,Freiberg(Sachs),0,1
+Leipzig Anger-Crottendorf,Leipzig Anger-Crottendorf,0,0
+Dresden-Kemnitz,Dresden-Kemnitz,0,0
+Seifhennersdorf,Zittau,0,4
+Oranienburg,Dresden-Neustadt,0,3
+Vierenstraße,Annaberg-Buchholz Süd,1,4
+Mannheim Hbf,Leipzig Hbf,0,3
+Zittau Hp,Zittau Hp,0,0
+Hof Hbf,Plauen(Vogtl) ob Bf,0,0
+Dresden-Pieschen,Dresden-Pieschen,0,0
+Zittau Vorstadt,Zittau Vorstadt,0,0
+Frantiskovy Lazne Aquaforum,Oelsnitz(Vogtl),0,10
+Lichtenberg(Erzgeb),Freiberg(Sachs),0,2
+Nünchritz,Riesa,0,1
+Hainewalde,Zittau,0,1
+Lichtenstein(Sachs),Lichtenstein(Sachs),0,0
+Olbernhau,Chemnitz Hbf,0,14
+Dresden-Cotta,Dresden-Cotta,0,0
+Ulberndorf,Dippoldiswalde,0,0
+Schmilka-Hirschmühle,Pirna,0,6
+Neukirch(Lausitz)West,Radeberg,0,3
+Hohenroda,Delitzsch ob Bf,0,0
+Varnsdorf,Zittau,0,0
+Neukirch(Lausitz)Ost,Radeberg,0,2
+Zörnigall,Delitzsch unt Bf,0,9
+Chemnitz Schule Altchemnitz,Chemnitz Schule Altchemnitz,0,0
+Magdeburg Herrenkrug,Delitzsch unt Bf,0,8
+Raun,Oelsnitz(Vogtl),0,4
+Zittau,Zittau,0,0
+Gundelsdorf,Leipzig Hbf,0,16
+Wolfsgefärth,Leipzig-Knauthain,0,10
+Blumenau,Chemnitz Hbf,0,12
+Pommritz,Löbau(Sachs),0,0
+Muldenhütten,Freiberg(Sachs),0,0
+Annaberg-Buchholz Mitte,Annaberg-Buchholz Mitte,0,0
+Marienhafe,Leipzig/Halle Flughafen,0,16
+Glashütte(Sachs),Dresden-Zschachwitz,1,8
+Boguszow Gorce,Görlitz,0,24
+Valdek,Dresden Hbf,1,15
+Markkleeberg Nord,Markkleeberg Nord,0,0
+Decin-Priper,Dresden Hbf,1,2
+Dahlen(Sachs),Oschatz,0,0
+Chemnitz Rösslerstraße,Chemnitz Rösslerstraße,0,0
+Bienenmühle,Freiberg(Sachs),0,6
+Reichenbach(Vogtl) ob Bf,Reichenbach(Vogtl) ob Bf,0,0
+Bad Elster,Oelsnitz(Vogtl),0,2
+Delmenhorst,Leipzig/Halle Flughafen,0,8
+Wahlitz,Delitzsch unt Bf,0,7
+Lauenstein(Sachs),Dresden-Zschachwitz,1,11
+Kurort Jonsdorf Hst,Zittau Vorstadt,0,3
+Neustadt(Orla),Leipzig-Knauthain,0,12
+Glauchau(Sachs),Glauchau(Sachs),0,0
+Hetzdorf(Flöhatal),Chemnitz Hbf,0,3
+Chemnitz Technopark,Chemnitz Technopark,0,0
+Varnsdorf stare nadr,Zittau,0,1
+Hirschfelde,Zittau,0,0
+Mühlbach(Pirna),Dresden-Zschachwitz,1,5
+Kiel Hbf,Leipzig Hbf,0,5
+Leipzig Hbf (tief),Leipzig Hbf (tief),0,0
+Orlamünde,Leipzig Hbf,0,6
+Drebkau,Großenhain Cottb Bf,0,6
+Dresden-Reick,Dresden-Reick,0,0
+Falkenberg(Elster),Torgau,0,1
+Leipzig-Miltitz,Leipzig-Miltitz,0,0
+Biederitz,Delitzsch unt Bf,0,7
+Gera-Langenberg,Leipzig-Knauthain,0,7
+Hermsdorf(Dresden),Dresden-Klotzsche,0,2
+Bad Kösen,Leipzig Hbf,0,2
+Rybnica,Görlitz,0,13
+Leipzig-Wahren,Leipzig-Wahren,0,0
+Walbrzych Glowny,Görlitz,0,26
+Radeburg,Lößnitzgrund,0,7
+Barthmühle,Plauen(Vogtl) Mitte,0,0
+Großenhain Cottb Bf,Großenhain Cottb Bf,0,0
+Berlin Hbf (tief),Dresden-Neustadt,0,1
+Radebeul-Kötzschenbroda,Radebeul-Kötzschenbroda,0,0
+Güterglück,Delitzsch unt Bf,0,6
+Mitteloelsnitz,Oelsnitz Bahnhofstraße,0,0
+Schöna,Pirna,0,7
+Schöneck(Vogtl) Ferienpark,Falkenstein(Vogtl),0,3
+Luban Sl.,Görlitz,0,5
+Chemnitz-Altchemnitz,Chemnitz-Altchemnitz,0,0
+Wiesa(Erzgeb),Annaberg-Buchholz unterer Bf,0,0
+Warmbad,Annaberg-Buchholz unterer Bf,0,3
+Weida Mitte,Leipzig-Knauthain,0,11
+Hirschfelde Markt,Zittau,0,0
+Stadt Wehlen(Sachs),Pirna,0,1
+Saalfeld(Saale),Leipzig Hbf,0,3
+Wien Meidling,Dresden Hbf,0,7
+Falkenau(Sachs)Süd,Chemnitz-Hilbersdorf,0,2
+Mikulasovice dolni nadrazi,Dresden Hbf,1,9
+Niederschlottwitz,Dresden-Zschachwitz,1,6
+Cottbus Hbf,Weißwasser(Oberlausitz),0,4
+Kaulsdorf(Saale),Leipzig Hbf,0,9
+Rodleben,Delitzsch unt Bf,0,4
+Jena Saalbf,Leipzig Hbf,0,4
+Jeßnitz(Anh),Delitzsch unt Bf,0,2
+Stollberg(Sachs),Stollberg(Sachs),0,0
+Dresden Hbf,Dresden Hbf,0,0
+Ellwangen,Leipzig Hbf,0,7
+Eilenburg,Eilenburg,0,0
+Sättelstädt,Leipzig-Miltitz,0,20
+Bad Sulza,Leipzig Hbf,0,6
+Zwickau(Sachs)Hbf,Zwickau(Sachs)Hbf,0,0
+Dresden-Stetzsch,Dresden-Stetzsch,0,0
+Oelsnitz(Vogtl),Oelsnitz(Vogtl),0,0
+Halle Dessauer Brücke,Schkeuditz West,0,6
+Gera Hbf,Glauchau(Sachs),0,0
+Mittweida,Mittweida,0,0
+Wutha,Leipzig-Miltitz,0,22
+Bad Zwischenahn,Leipzig/Halle Flughafen,0,11
+Jerzmanki,Görlitz,0,1
+Dresden Bischofsplatz,Dresden Bischofsplatz,0,0
+Emden Außenhafen,Leipzig/Halle Flughafen,0,16
+Zwota-Zechenbach,Falkenstein(Vogtl),1,5
+Flöha,Chemnitz Hbf,0,0
+Wünschendorf Nord,Plauen(Vogtl) Mitte,0,9
+Dresden Mitte,Dresden Mitte,0,0
+Chemnitz Mitte,Chemnitz Mitte,0,0
+Hainichen,Chemnitz-Hilbersdorf,0,5
+Helmstedt,Leipzig/Halle Flughafen,0,3
+Bischofswerda,Bautzen,0,0
+Leipzig Miltitzer Allee,Leipzig Miltitzer Allee,0,0
+Neumühle(Elster),Plauen(Vogtl) Mitte,0,6
+Limmritz(Sachs),Döbeln Hbf,0,0
+Nürnberg Hbf,Leipzig Hbf,0,2
+Niesky,Niesky,0,0
+Chemnitz Schneeberger Straße,Chemnitz Schneeberger Straße,0,0
+Thermalbad Wiesenbad,Annaberg-Buchholz unterer Bf,0,1
+Burgstädt,Chemnitz Hbf,0,0
+Vaihingen(Enz),Leipzig Hbf,0,12
+Leipzig-Sellerhausen,Leipzig-Sellerhausen,0,0
+Dresden-Friedrichstadt,Dresden-Friedrichstadt,0,0
+Bärnsdorf,Lößnitzgrund,0,4
+Neustadt(Sachs),Pirna-Copitz Nord,0,6
+Markkleeberg-Gaschwitz,Markkleeberg-Gaschwitz,0,0
+Gryfow Sl.,Görlitz,0,8
+Bergwitz,Delitzsch unt Bf,0,6
+Ebing,Leipzig Hbf,0,26
+Markkleeberg-Großstädteln,Markkleeberg-Großstädteln,0,0
+Crossen a d Elster,Leipzig-Knauthain,0,6
+Zoblitz,Löbau(Sachs),0,0
+Leipzig Völkerschlachtdenkmal,Leipzig Völkerschlachtdenkmal,0,0
+Leipzig MDR,Leipzig MDR,0,0
+Finsterwalde(Niederlausitz),Torgau,0,3
+Dittersbach,Chemnitz-Hilbersdorf,0,4
+Burgkemnitz,Delitzsch unt Bf,0,3
+Geithain,Leipzig Hbf,0,1
+Chemnitz Schillerplatz,Chemnitz Schillerplatz,0,0
+Peißen,Delitzsch unt Bf,0,4
+Freital-Hainsberg,Freital-Hainsberg,0,0
+Hartmannmühle,Dresden-Zschachwitz,1,12
+Jesewitz(Leipzig),Eilenburg,0,0
+Goßdorf-Kohlmühle,Dresden Hbf,1,3
+Leipzig-Möckern,Leipzig-Möckern,0,0
+Krzewina Zgorzelecka,Görlitz-Weinhübel,0,1
+Dolni Zleb zast.,Dresden Hbf,1,3
+Kurort Rathen,Pirna,0,2
+Chemnitz Süd,Chemnitz Süd,0,0
+Porstendorf,Leipzig Hbf,0,4
+Köln Hbf,Leipzig/Halle Flughafen,0,14
+Zirovice-Seniky,Oelsnitz(Vogtl),0,8
+Tautenhain,Leipzig-Liebertwolkwitz,0,7
+Erlangen,Leipzig Hbf,0,1
+Prösen Ost,Großenhain Cottb Bf,0,2
+Triptis,Leipzig-Knauthain,0,11
+Pößneck ob Bf,Leipzig-Knauthain,0,13
+Weixdorf Bad,Dresden-Klotzsche,0,0
+Plauen(Vogtl) ob Bf (Busbahnhof),Plauen(Vogtl) ob Bf (Busbahnhof),0,0
+Chemnitz Hbf (Bahnhofstraße),Chemnitz Hbf (Bahnhofstraße),0,0
+Plauen(Vogtl) Mitte,Plauen(Vogtl) Mitte,0,0
+Bagenz,Weißwasser(Oberlausitz),0,2
+Anklam,Leipzig Hbf,0,8
+Königsbrück,Dresden-Klotzsche,0,7
+Würzburg Hbf,Leipzig Hbf,0,2
+Clausnitz,Freiberg(Sachs),0,5
+Muldenstein,Delitzsch unt Bf,0,2
+Antonsthal,Schwarzenberg Hp,0,1
+Leipzig-Knauthain,Leipzig-Knauthain,0,0
+Neumark(Sachs),Reichenbach(Vogtl) ob Bf,0,0
+Olszyna Lubanska,Görlitz,0,6
+Nove Zamky,Dresden Hbf,0,8
+Obercarsdorf,Dippoldiswalde,0,1
+Neusalza-Spremberg,Zittau,0,3
+Michelau(Oberfr),Leipzig Hbf,0,21
+Zahna,Delitzsch unt Bf,0,11
+Berga(Elster),Plauen(Vogtl) Mitte,0,7
+Halle Zoo,Schkeuditz West,0,7
+Markkleeberg,Markkleeberg,0,0
+Großkugel,Schkeuditz West,0,0
+Oßmannstedt,Leipzig-Miltitz,0,12
+Frohburg,Borna(Leipzig),0,2
+Kötzschau,Leipzig-Miltitz,0,2
+Falkenau(Sachs)Hp,Chemnitz Hbf,0,2
+Elsterwerda,Dresden-Neustadt,0,0
+Chemnitz-Schönau,Chemnitz-Schönau,0,0
+Vieselbach,Leipzig-Miltitz,0,13
+Lichtenstein Hartensteiner Straße,Lichtenstein Hartensteiner Straße,0,0
+Boleslawiec,Görlitz,0,8
+Lauter(Sachs),Schwarzenberg-Neuwelt,0,0
+Lehndorf(Altenburg),Crimmitschau,0,2
+Hennersdorf(Sachs),Chemnitz Hbf,0,4
+Schirgiswalde-Kirschau,Radeberg,0,4
+Borna(Leipzig),Borna(Leipzig),0,0
+Uhsmannsdorf,Weißwasser(Oberlausitz),0,2
+Ubocze,Görlitz,0,7
+Chotyne,Zittau,0,1
+Fulda,Leipzig Hbf,0,2
+Lengefeld-Rauenstein,Chemnitz Hbf,0,9
+Mulda(Sachs),Freiberg(Sachs),0,3
+Schüptitz,Leipzig-Knauthain,0,13
+Niederoderwitz,Zittau,0,1
+Schmiedeberg-Naundorf,Dippoldiswalde,0,2
+Varnsdorf mlékárna,Zittau,0,2
+Ingolstadt Hbf,Leipzig Hbf,0,3
+Stollberg Schlachthofstraße,Stollberg Schlachthofstraße,0,0
+Apolda,Leipzig Hbf,0,7
+Dresden Grenzstraße,Dresden Grenzstraße,0,0
+Dresden Freiberger Straße,Dresden Freiberger Straße,0,0
+Borsdorf(Sachs),Leipzig-Engelsdorf,0,0
+Prösen West,Riesa,0,3
+Leipzig-Paunsdorf,Leipzig-Paunsdorf,0,0
+Hoyerswerda,Hoyerswerda,0,0
+Leipzig Mockauer Straße,Leipzig Mockauer Straße,0,0
+Heidenau-Großsedlitz,Pirna,0,0
+Halle Messe,Schkeuditz West,0,3
+Großharthau,Radeberg,0,1
+Leipzig/Halle Flughafen,Leipzig/Halle Flughafen,0,0
+Seifersdorf,Dippoldiswalde,0,1
+Szob,Dresden Hbf,0,10
+Dessau Hbf,Delitzsch unt Bf,0,2
+Lobstädt,Borna(Leipzig),0,0
+Mechterstädt,Leipzig-Miltitz,0,19
+Neumark(Sachs) Ladestraße,Werdau,0,0
+Böhlen Werke,Markkleeberg,0,1
+Schweikershain,Mittweida,0,1
+Leipzig-Heiterblick,Leipzig-Heiterblick,0,0
+Friedewald(Kr Dresden) Bad,Lößnitzgrund,0,1
+Forchheim(Oberfr),Leipzig Hbf,0,29
+Naumburg(Saale)Hbf,Leipzig Hbf,0,0
+Mikulowa,Görlitz,0,2
+Jedrzychowice,Görlitz,0,2
+Neupetershain,Großenhain Cottb Bf,0,5
+Großsteinberg,Grimma ob Bf,0,0
+Stolpen,Pirna-Copitz Nord,0,3
+Oederan,Freiberg(Sachs),0,2
+Bennewitz,Wurzen,0,0
+Fröttstädt,Leipzig-Miltitz,0,18
+Bad Staffelstein,Leipzig Hbf,0,23
+Oberoderwitz Oberdorf,Zittau,0,3
+Leipzig Essener Straße,Leipzig Essener Straße,0,0
+Augsburg Hbf,Leipzig Hbf,0,5
+Kahla(Thür),Leipzig Hbf,0,5
+Grünbach(Vogtl),Falkenstein(Vogtl),0,0
+Ponitz,Crimmitschau,0,0
+Stendal Hbf,Leipzig Hbf,0,3
+Neudorf(Erzgeb),Annaberg-Buchholz Süd,1,3
+Bochum Hbf,Leipzig/Halle Flughafen,0,11
+Greppin,Delitzsch unt Bf,0,1
+Lippendorf Kraftwerk/Wendestelle,Borna(Leipzig),0,2
+Berlin-Spandau,Leipzig Hbf,0,2
+Neustrelitz Hbf,Dresden-Neustadt,0,4
+Freital-Potschappel,Freital-Potschappel,0,0
+Limbach(Vogtl),Reichenbach(Vogtl) ob Bf,0,1
+Ansbach,Leipzig Hbf,0,5
+St Egidien,Hohenstein-Ernstthal,0,0
+Görlitz-Rauschwalde,Görlitz-Rauschwalde,0,0
+Tomaszow Boleslawiecki,Görlitz,0,9
+Klingenberg-Colmnitz,Freiberg(Sachs),0,2
+Gütersloh Hbf,Leipzig/Halle Flughafen,0,8
+Leipzig Hbf,Leipzig Hbf,0,0
+Pönitz(Leipzig),Eilenburg,0,1
+"Bärenstein(b Glashütte, Sachs)",Dresden-Zschachwitz,1,10
+Ottendorf(Mittweida),Chemnitz Kinderwaldstätte,0,1
+Taubenheim(Spree),Zittau,0,4
+Niederdorf(Erzgeb),Stollberg Schlachthofstraße,0,0
+Zschopau,Annaberg-Buchholz unterer Bf,0,6
+Dresden-Niedersedlitz,Dresden-Niedersedlitz,0,0
+Chemnitz Gustav-Freytag-Straße,Chemnitz Gustav-Freytag-Straße,0,0
+Neukieritzsch,Borna(Leipzig),0,1
+Warnemünde,Dresden-Neustadt,0,7
+Rentzschmühle,Plauen(Vogtl) Mitte,0,1
+Weißes Roß,Lößnitzgrund,0,0
+Syrau,Plauen(Vogtl) ob Bf,0,0
+Zeithain,Riesa,0,0
+Belgershain,Leipzig-Liebertwolkwitz,0,0
+Zschortau,Delitzsch unt Bf,0,0
+Neukirchen-Wyhra,Borna(Leipzig),0,1
+Leipzig-Engelsdorf,Leipzig-Engelsdorf,0,0
+Zgorzelec Miasto,Görlitz,0,1
+Kurort Altenberg(Erzgebirge),Dresden-Zschachwitz,1,14
+Fährbrücke,Bad Schlema,0,1
+Schwarzenberg(Erzg),Schwarzenberg(Erzg),0,0
+Moritzburg,Lößnitzgrund,0,2
+Leipzig Werkstättenstraße,Leipzig Werkstättenstraße,0,0
+Senftenberg,Großenhain Cottb Bf,0,3
+Niederau,Coswig(b Dresden),0,1
+Meißen,Meißen,0,0
+Kamenz(Sachs),Kamenz(Sachs),0,0
+Demitz-Thumitz,Bautzen,0,1
+Olbernhau West,Chemnitz Hbf,0,13
+Schärding,Leipzig Hbf,0,9
+Lichtenstein Ernst-Schneller-Siedlung,Lichtenstein Ernst-Schneller-Siedlung,0,0
+Zeutsch,Leipzig Hbf,0,7
+Chemnitz Küchwald,Chemnitz Küchwald,0,0
+Rechenberg,Freiberg(Sachs),0,8
+Steinpleis,Werdau,0,0
+Zschopau Ost,Annaberg-Buchholz unterer Bf,0,7
+Unterloquitz,Leipzig Hbf,0,10
+Lauta(Nl),Hoyerswerda,0,1
+Lohmen,Pirna-Copitz Nord,0,0
+Zwickau Stadthalle,Zwickau Stadthalle,0,0
+Grobau,Plauen(Vogtl) ob Bf,0,4
+Schwarzkollm,Hoyerswerda,0,0
+Hundsgrün,Oelsnitz(Vogtl),0,0
+Reifland-Wünschendorf,Chemnitz Hbf,0,8
+Schleife,Weißwasser(Oberlausitz),0,0
+Greiz,Plauen(Vogtl) Mitte,0,5
+Johanngeorgenstadt,Schwarzenberg Hp,0,4
+Petergrube,Borna(Leipzig),0,0
+Bad Dürrenberg,Leipzig Hbf,0,1
+Brno hl.n.,Dresden Hbf,0,4
+Weida Altstadt,Leipzig-Knauthain,0,12
+Freiberg(Sachs),Freiberg(Sachs),0,0
+Zwickau-Schedewitz,Zwickau-Schedewitz,0,0
+Markranstädt,Leipzig-Miltitz,0,0
+Deutzen,Markkleeberg,0,3
+Klitten,Niesky,0,2
+Minden(Westf),Leipzig/Halle Flughafen,0,5
+Kraslice,Falkenstein(Vogtl),1,7
+Kyhna,Delitzsch unt Bf,0,0
+Niederbobritzsch,Freiberg(Sachs),0,1
+Witkow Sl.,Görlitz,0,22
+Bad Hersfeld,Leipzig Hbf,0,2
+Frankfurt(Main)Hbf,Leipzig Hbf,0,2
+Klaffenbach Hp,Chemnitz Friedrichstraße,0,0
+Frantiskovy Lazne,Oelsnitz(Vogtl),0,9
+Hähnichen,Weißwasser(Oberlausitz),0,1
+Berlin Südkreuz,Dresden-Neustadt,0,0
+Braunsdorf-Lichtenwalde,Chemnitz-Hilbersdorf,0,1
+Bad Lausick,Leipzig Hbf,0,0
+Reußen,Delitzsch unt Bf,0,3
+Leipzig-Plagwitz,Leipzig-Plagwitz,0,0
+Narsdorf,Chemnitz Hbf,0,1
+Arnsdorf(Dresden),Radeberg,0,0
+Lasow,Görlitz,0,3
+Gräfenhainichen,Delitzsch unt Bf,0,4
+Crimmitschau,Crimmitschau,0,0
+Bärenhecke-Johnsbach,Dresden-Zschachwitz,1,9
+Niedergörsdorf,Delitzsch unt Bf,0,13
+Bruck/Mur,Dresden Hbf,0,12
+Hopfgarten(Sachs),Leipzig-Liebertwolkwitz,0,6
+Oberholz,Leipzig-Liebertwolkwitz,0,1
+Loitsch-Hohenleuben,Leipzig-Knauthain,0,13
+Chemnitz Annenstraße,Chemnitz Annenstraße,0,0
+Silberstraße,Zwickau-Schedewitz,0,2
+Hagenwerder,Görlitz-Weinhübel Joh.-R.-Becher-Straße,0,0
+Plauen(Vogtl)-Straßberg,Plauen(Vogtl)-Straßberg,0,0
+Glaubitz(Riesa),Riesa,0,0
+Plauen(Vogtl) ob Bf,Plauen(Vogtl) ob Bf,0,0
+Eilenburg Ost,Eilenburg Ost,0,0
+Grüna(Sachs)Hp,Chemnitz-Siegmar,0,0
+Niedertrebra,Leipzig-Miltitz,0,11
+Günzburg,Leipzig Hbf,0,6
+Crailsheim,Leipzig Hbf,0,6
+Uhlstädt,Leipzig Hbf,0,7
+Wandersleben,Leipzig-Miltitz,0,15
+Königstein(Sächs Schw),Pirna,0,3
+Wels Hbf,Leipzig Hbf,0,9
+Auerbach(Vogtl) Hp,Auerbach(Vogtl) Hp,0,0
+Torgau,Torgau,0,0
+Wojanow,Görlitz,0,16
+Werdau,Werdau,0,0
+Steinbach am Wald,Leipzig Hbf,0,13
+Dresden-Zschachwitz,Dresden-Zschachwitz,0,0
+Chemnitz Friedrichstraße,Chemnitz Friedrichstraße,0,0
+Pasewalk,Leipzig Hbf,0,7
+Decin-Certova voda,Dresden Hbf,1,4
+Neunhofen,Leipzig-Knauthain,0,13
+Wüstenbrand,Hohenstein-Ernstthal,0,0
+Großlehna,Leipzig-Miltitz,0,1
+Hammerunterwiesenthal,Annaberg-Buchholz Süd,1,7
+Altenburg,Markkleeberg,0,1
+Ruppertsgrün,Plauen(Vogtl) ob Bf,0,2
+Mehltheuer,Plauen(Vogtl) ob Bf,0,0
+Hosena,Hoyerswerda,0,2
+Pressig-Rothenkirchen,Leipzig Hbf,0,14
+Mürzzuschlag,Dresden Hbf,0,10
+Görlitz-Weinhübel Joh.-R.-Becher-Straße,Görlitz-Weinhübel Joh.-R.-Becher-Straße,0,0
+Gutenfürst,Plauen(Vogtl) ob Bf,0,5
+Praha-Holesovice,Dresden Hbf,0,3
+Semmering,Dresden Hbf,0,9
+Varnsdorf Pivovar Kocour,Zittau,0,5
+Langebrück(Sachs),Radeberg,0,0
+Frankenberg(Sachs),Chemnitz-Hilbersdorf,0,3
+Berlin Gesundbrunnen,Dresden-Neustadt,0,2
+Leisnig,Döbeln Hbf,0,2
+Unterwiesenthal,Annaberg-Buchholz Süd,1,8
+Chemnitz-Siegmar,Chemnitz-Siegmar,0,0
+Piensk,Görlitz,0,4
+Sluknov zast.,Dresden Hbf,1,13
+Klosterbuch,Döbeln Hbf,0,1
+Reichenbach(Oberlausitz),Reichenbach(Oberlausitz),0,0
+Leipzig Coppiplatz,Leipzig Coppiplatz,0,0
+Schorndorf,Leipzig Hbf,0,10
+Hagen Hbf,Leipzig/Halle Flughafen,0,11
+Hallstadt(b Bamberg),Leipzig Hbf,0,27
+Leipzig Nord,Leipzig Nord,0,0
+Schwerin Hbf,Dresden-Neustadt,0,8
+Delitzsch unt Bf,Delitzsch unt Bf,0,0
+Pegau,Leipzig-Knauthain,0,1
+Dresden-Klotzsche,Dresden-Klotzsche,0,0
+Burkhardswalde-Maxen,Dresden-Zschachwitz,1,4
+Rothenstein(Saale),Leipzig Hbf,0,5
+Magdeburg Hbf,Leipzig/Halle Flughafen,0,2
+Oldenburg(Oldb),Leipzig/Halle Flughafen,0,10
+Lampertswalde,Großenhain Cottb Bf,0,0
+Herlasgrün,Auerbach(V) ob Bf,0,1
+Chemnitz Alt Chemnitz Center,Chemnitz Alt Chemnitz Center,0,0
+Leipzig Grünauer Allee,Leipzig Grünauer Allee,0,0
+Leipzig Messe,Leipzig Messe,0,0
+Boguszow Gorce Zach.,Görlitz,0,23
+Nennigmühle,Chemnitz Hbf,0,11
+Rechenberg Schule,Freiberg(Sachs),0,7
+Cainsdorf,Zwickau-Schedewitz,0,0
+Weixdorf,Dresden-Klotzsche,0,1
+Dresden-Kemnitz Flensburger Straße,Dresden-Kemnitz Flensburger Straße,0,0
+Frankfurt(M) Flughafen Fernbf,Leipzig Hbf,0,3
+Halle-Trotha,Schkeuditz West,0,9
+Muldenberg Floßplatz,Falkenstein(Vogtl),0,1
+Chemnitz TU Campus,Chemnitz TU Campus,0,0
+Oschatz,Oschatz,0,0
+Bratislava hl.st.,Dresden Hbf,0,7
+Zeulenroda unt Bf,Leipzig-Knauthain,0,14
+Hartenstein,Bad Schlema,0,0
+Jocketa,Plauen(Vogtl) ob Bf,0,1
+Hohndorf Mitte,Oelsnitz(Erzgeb),0,0
+Janowice Wielkie,Görlitz,0,18
+Breitenbrunn(Erzg),Schwarzenberg Hp,0,2
+Bad Schandau,Dresden Hbf,0,0
+Schmiedeberg (Dresden),Dippoldiswalde,0,3
+Frauenhain,Großenhain Cottb Bf,0,1
+Auerbach(V) ob Bf,Auerbach(V) ob Bf,0,0
+Jena-Göschwitz,Leipzig Hbf,0,2
+Bitterfeld,Leipzig Hbf,0,0
+Vilemov u Sluknova,Dresden Hbf,1,8
+Schönau(Hörsel),Leipzig-Miltitz,0,21
+Bad Schlema,Bad Schlema,0,0
+Ciechanowice,Görlitz,0,19
+Chemnitz Lothringer/Elsasser Str.,Chemnitz Lothringer/Elsasser Str.,0,0
+Fürth(Bay)Hbf,Leipzig Hbf,0,3
+Chemnitz Scheffelstraße,Chemnitz Scheffelstraße,0,0
+Chemnitz Kinderwaldstätte,Chemnitz Kinderwaldstätte,0,0
+Schkeuditz West,Schkeuditz West,0,0
+Oelsnitz Bahnhofstraße,Oelsnitz Bahnhofstraße,0,0
+St.Pölten Hbf,Leipzig Hbf,0,11
+Zwickau-Pölbitz,Zwickau-Pölbitz,0,0
+Halle Wohnstadt Nord,Schkeuditz West,0,8
+Lipova u Sluknova,Dresden Hbf,1,10
+Coburg,Leipzig Hbf,0,1
+Dresden Industriegelände,Dresden Industriegelände,0,0
+Falkenstein(Vogtl),Falkenstein(Vogtl),0,0
+Leipzig-Connewitz,Leipzig-Connewitz,0,0
+Leipzig-Leutzsch,Leipzig-Leutzsch,0,0
+Gommern,Delitzsch unt Bf,0,6
+Mockrehna,Torgau,0,0
+Legnica,Görlitz,0,14
+Zwotental,Falkenstein(Vogtl),0,4
+Norden,Leipzig/Halle Flughafen,0,17
+Weischlitz,Plauen(Vogtl)West,0,0
+Cossebaude,Dresden-Stetzsch Am Urnenfeld,0,0
+Rackwitz(Leipzig),Leipzig Messe,0,0
+Radebeul-Naundorf Friedrich-List-Straße,Radebeul-Naundorf Friedrich-List-Straße,0,0
+Marciszow,Görlitz,0,20
+Liberec,Zittau,0,2
+Chemnitz Rosenbergstraße,Chemnitz Rosenbergstraße,0,0
+Frankenstein(Sachs),Freiberg(Sachs),0,1
+Mücka,Niesky,0,1
+Leipzig-Stötteritz,Leipzig-Stötteritz,0,0
+Waldheim,Mittweida,0,2
+Niederwiesa,Chemnitz Hbf,0,0
+Stuttgart Hbf,Leipzig Hbf,0,4
+Leipzig-Gohlis,Leipzig-Gohlis,0,0
+Erfurt-Bischleben,Leipzig-Miltitz,0,14
+Obervogelgesang,Pirna,0,0
+Salzwedel,Leipzig Hbf,0,3
+Jelenia Gora,Görlitz,0,15
+Wegliniec,Görlitz,0,5
+Hohenstein-Ernstthal,Hohenstein-Ernstthal,0,0
+Weißwasser(Oberlausitz),Weißwasser(Oberlausitz),0,0
+Praha hl.n.,Dresden Hbf,0,4
+Großschönau(Sachs),Zittau,0,0
+Dresden-Strehlen,Dresden-Strehlen,0,0
+Straubing,Leipzig Hbf,0,6
+Elsterwerda-Biehla,Großenhain Cottb Bf,0,4
+Erlabrunn(Erzgeb),Schwarzenberg Hp,0,3
+Bautzen,Bautzen,0,0
+Neukirchen-Wyhra An der Schanze,Borna(Leipzig),0,1
+Seitschen,Bautzen,0,0
+Pforzheim Hbf,Leipzig Hbf,0,14
+Dresden-Trachau,Dresden-Trachau,0,0
+Kretscham-Rothensehma,Annaberg-Buchholz Süd,1,5
+Hohenleuben,Leipzig-Knauthain,0,12
+Steinpleis Post,Werdau,0,0
+Erfurt Hbf,Leipzig Hbf,0,0
+Treuen,Auerbach(V) ob Bf,0,0
+Peine,Leipzig/Halle Flughafen,0,4
+Plessa,Hoyerswerda,0,5
+Rebiszow,Görlitz,0,10
+Lößnitzgrund,Lößnitzgrund,0,0
+Meißen Altstadt,Meißen Altstadt,0,0
+Altmittweida,Mittweida,0,0
+Chemnitz Roter Turm,Chemnitz Roter Turm,0,0
+Oppurg,Leipzig-Knauthain,0,13
+Glauchau-Schönbörnchen,Glauchau-Schönbörnchen,0,0
+Großpösna,Leipzig-Liebertwolkwitz,0,0
+Treben-Lehma,Crimmitschau,0,4
+Chemnitz Bernsbachplatz,Chemnitz Bernsbachplatz,0,0
+Chemnitz Zentralhaltestelle,Chemnitz Zentralhaltestelle,0,0
+Oberlichtenau,Chemnitz Kinderwaldstätte,0,0
+Doberschütz,Eilenburg Ost,0,0
+Weesenstein Gemeindeamt,Dresden-Zschachwitz,1,3
+Schwarzenberg-Neuwelt,Schwarzenberg-Neuwelt,0,0
+Kronach,Leipzig Hbf,0,4
+Rödlitz-Hohndorf,Lichtenstein Hartensteiner Straße,0,0
+Düsseldorf Hbf,Leipzig/Halle Flughafen,0,14
+Kurort Oberwiesenthal,Annaberg-Buchholz Süd,1,9
+Flöha-Plaue,Chemnitz Hbf,0,2
+Zapfendorf,Leipzig Hbf,0,25
+Beilrode,Torgau,0,0
+Radeberg,Radeberg,0,0
+Chemnitz-Hilbersdorf,Chemnitz-Hilbersdorf,0,0
+Okmiany,Görlitz,0,10
+Radebeul-Naundorf,Radebeul-Naundorf,0,0
+Wuppertal Hbf,Leipzig/Halle Flughafen,0,12
+Hainewalde Gemeindeamt,Zittau,0,1
+Krumhermsdorf,Pirna-Copitz Nord,0,7
+Hamburg-Altona,Leipzig Hbf,0,7
+Gröbers,Schkeuditz West,0,1
+Velky Senov,Dresden Hbf,1,11
+Dippoldiswalde,Dippoldiswalde,0,0
+Bülzig,Delitzsch unt Bf,0,10
+Zabeltitz,Großenhain Cottb Bf,0,0
+Tanndorf,Grimma ob Bf,0,1
+Wilkau-Haßlau,Zwickau-Schedewitz,0,1
+Jahnsdorf(Erzgeb),Stollberg Schlachthofstraße,0,2
+Leer(Ostfriesl),Leipzig/Halle Flughafen,0,14
+Friedewald(Kr Dresden)Hp,Lößnitzgrund,0,0
+Bamberg,Leipzig Hbf,0,1
+Rietschen,Weißwasser(Oberlausitz),0,0
+Köttewitz,Dresden-Zschachwitz,1,2
+Kuty,Dresden Hbf,0,6
+Hopfgarten(Weimar),Leipzig-Miltitz,0,13
+Gera Süd,Leipzig-Knauthain,0,8
+Niederwartha,Radebeul-Naundorf Friedrich-List-Straße,0,0
+Kwieciszowice,Görlitz,0,11
+Chojnow,Görlitz,0,12
+Boguszow Gorce Wsch.,Görlitz,0,25
+Milkowice,Görlitz,0,13
+Berbisdorf,Lößnitzgrund,0,5
+Neumünster,Leipzig Hbf,0,7
+Landsberg(b. Halle/Saale) Süd,Delitzsch unt Bf,0,2
+Ottendorf-Okrilla Nord,Dresden-Klotzsche,0,5
+Annaberg-Buchholz unterer Bf,Annaberg-Buchholz unterer Bf,0,0
+Rabenau,Freital-Coßmannsdorf,0,0
+Breitengüßbach,Leipzig Hbf,0,26
+Dürrröhrsdorf,Pirna-Copitz Nord,0,1
+Olbersdorf Niederdorf,Zittau Vorstadt,0,0
+Wülknitz,Riesa,0,1
+Holzhau,Freiberg(Sachs),0,10
+Plesna(CZ),Oelsnitz(Vogtl),0,6
+Leipzig-Thekla,Leipzig-Thekla,0,0
+Großheringen,Leipzig Hbf,0,5
+Linz Hbf,Leipzig Hbf,0,10
+Horni Poustevna,Dresden Hbf,1,7
+Ottendorf-Okrilla Hp,Dresden-Klotzsche,0,4
+Uhyst,Hoyerswerda-Neustadt,0,1
+Dresden Hbf (Strehlener Str.),Dresden Hbf (Strehlener Str.),0,0
+Hannover Hbf,Leipzig/Halle Flughafen,0,4
+Schöneck(Vogtl),Falkenstein(Vogtl),0,2
+Hochstadt-Marktzeuln,Leipzig Hbf,0,20
+Bily Kostel nad Nisou,Zittau,0,2
+Breternitz,Leipzig Hbf,0,9
+Pockau-Lengefeld,Chemnitz Hbf,0,10
+Usti nad Labem hl.n.,Dresden Hbf,0,2
+Spremberg,Weißwasser(Oberlausitz),0,1
+Wolfen(Bitterfeld),Delitzsch unt Bf,0,1
+Lichtenfels,Leipzig Hbf,0,5
+Kurort Oybin-Niederdorf,Zittau Vorstadt,0,3
+Chemnitz-Borna Hp,Chemnitz-Borna Hp,0,0
+Chemnitz Altchemnitzer Straße,Chemnitz Altchemnitzer Straße,0,0
+Stenn,Zwickau(Sachs)Hbf,0,0
+Schwäbisch Gmünd,Leipzig Hbf,0,9
+Eberswalde Hbf,Leipzig Hbf,0,4
+Waldkirchen(Erzgeb),Chemnitz Hbf,0,6
+Greifswald,Leipzig Hbf,0,10
+Geising,Dresden-Zschachwitz,1,13
+Bergen auf Rügen,Leipzig Hbf,0,12
+Leipzig Markt,Leipzig Markt,0,0
+Leipzig-Liebertwolkwitz,Leipzig-Liebertwolkwitz,0,0
+Krölpa-Ranis,Leipzig-Knauthain,0,18
+Triebes,Leipzig-Knauthain,0,13
+Görlitz,Görlitz,0,0
+Großdeuben,Markkleeberg-Gaschwitz,0,0
+Leipzig Olbrichtstraße,Leipzig Olbrichtstraße,0,0
+Angermünde,Leipzig Hbf,0,5
+Chemnitz Uhlestraße,Chemnitz Uhlestraße,0,0
+Wünschendorf,Plauen(Vogtl) Mitte,0,8
+Ulbersdorf,Dresden Hbf,1,2
+Porschdorf (Kr. Pirna)  Straße zum Bahnhof,Dresden Hbf,1,2
+Pratau,Delitzsch unt Bf,0,7
+Langenwolmsdorf,Pirna-Copitz Nord,0,5
+Wetterzeube,Leipzig-Knauthain,0,4
+Leubsdorf(Sachs),Chemnitz Hbf,0,5
+Chemnitz Hbf,Chemnitz Hbf,0,0
+Pirk,Oelsnitz(Vogtl),0,0
+Dresden-Plauen,Dresden-Plauen,0,0
+Bad Köstritz,Leipzig-Knauthain,0,6
+Cunnertswalde,Lößnitzgrund,0,3
+Chemnitz-Harthau,Chemnitz-Harthau,0,0
+Wittgensdorf ob Bf,Chemnitz-Borna Hp,0,1
+Leipzig-Lützschena,Leipzig-Lützschena,0,0
+Essen Hbf,Leipzig/Halle Flughafen,0,12
+Dolni Zleb,Dresden Hbf,1,2
+Wolkenstein,Annaberg-Buchholz unterer Bf,0,2
+Hude,Leipzig/Halle Flughafen,0,9
+Leipzig-Rückmarsdorf,Leipzig-Rückmarsdorf,0,0
+Zareba,Görlitz,0,4
+Ortrand,Großenhain Cottb Bf,0,1
+Otterwisch,Leipzig-Liebertwolkwitz,0,3
+Lübs(Magdeburg),Delitzsch unt Bf,0,7
+Voigtsgrün,Rodewisch,0,2
+Unterneudorf,Annaberg-Buchholz Süd,1,2
+Pulsnitz Süd,Radeberg,0,2
+Regis-Breitingen,Markkleeberg,0,4
+Rathmannsdorf(Kr Pirna),Dresden Hbf,1,1
+Pfaffenhain,Stollberg Schlachthofstraße,0,1
+Neuoelsnitz,Oelsnitz Bahnhofstraße,0,1
+Dornburg(Saale),Leipzig Hbf,0,3
+Redwitz(Rodach),Leipzig Hbf,0,19
+Oberschlottwitz,Dresden-Zschachwitz,1,7
+Passau Hbf,Leipzig Hbf,0,8
+Ulbersdorf Almenhof,Dresden Hbf,1,3
+Wien Hbf,Dresden Hbf,0,6
+Niederwürschnitz,Stollberg Schlachthofstraße,0,0
+Ostrau,Döbeln Hbf,0,1
+Witzschdorf,Chemnitz Hbf,0,5
+Sebnitz(Sachs),Pirna-Copitz Nord,0,8
+Breclav,Dresden Hbf,0,5
+Weimar,Leipzig Hbf,0,8
+"Mehltheuer Schleizer Str., Rosenbach/Vogtl.",Plauen(Vogtl) ob Bf (Busbahnhof),0,1
+Gotha,Leipzig Hbf,0,1
+Bischheim-Gersdorf,Kamenz(Sachs),0,0
+Olbernhau-Grünthal,Chemnitz Hbf,0,15
+Zebrzydowa,Görlitz,0,7
+Ruhland,Großenhain Cottb Bf,0,2
+Nagymaros-Visegrad,Dresden Hbf,0,11
+Großkorbetha,Leipzig-Miltitz,0,4
+Kapfenberg,Dresden Hbf,0,11
+Gröditz(Riesa),Riesa,0,3
+Dessau Süd,Delitzsch unt Bf,0,3
+Braunschweig Hbf,Leipzig/Halle Flughafen,0,3
+Ebersbrunn,Zwickau(Sachs)Hbf,0,1
+Niederpöllnitz,Leipzig-Knauthain,0,10
+Oberrothenbach,Zwickau-Pölbitz,0,0
+Heidenau,Dresden-Zschachwitz,0,0
+Krippen,Pirna,0,5
+Pirna-Copitz Nord,Pirna-Copitz Nord,0,0
+Döbeln Hbf,Döbeln Hbf,0,0
+Leipzig-Holzhausen,Leipzig-Holzhausen,0,0
+Schmölln(Ol),Radeberg,0,2
+Dresden-Stetzsch Am Urnenfeld,Dresden-Stetzsch Am Urnenfeld,0,0
+Herford,Leipzig/Halle Flughafen,0,6
+Heidenau Süd,Pirna,0,1
+Kraslice-Pod vlekem,Falkenstein(Vogtl),1,6
+München Hbf,Leipzig Hbf,0,3
+Gößnitz,Crimmitschau,0,0
+Delitzsch ob Bf,Delitzsch ob Bf,0,0
+Stara Kamienica,Görlitz,0,12
+Trzcinsko,Görlitz,0,17
+Jößnitz,Plauen(Vogtl) ob Bf,0,0
+Schweinsburg-Culten,Crimmitschau,0,0
+Rodewisch,Rodewisch,0,0
+Elsterberg,Plauen(Vogtl) Mitte,0,3
+Niederschlag,Annaberg-Buchholz Süd,1,6
+Weißenfels,Leipzig Hbf,0,0
+Ulm Hbf,Leipzig Hbf,0,5
+Hoyerswerda-Neustadt,Hoyerswerda-Neustadt,0,0
+Kühren,Wurzen,0,0
+Gersdorf(Görlitz),Reichenbach(Oberlausitz),0,0
+Zwickau Zentrum,Zwickau Zentrum,0,0
+Grimma ob Bf,Grimma ob Bf,0,0
+Mühlacker,Leipzig Hbf,0,13
+Kleinschirma,Freiberg(Sachs),0,0
+Dresden Flughafen,Dresden Flughafen,0,0
+Waren(Müritz),Dresden-Neustadt,0,5
+Neuhausen(Cottbus),Weißwasser(Oberlausitz),0,3
+Kürbitz,Plauen(Vogtl) Mitte,0,0
+Breitendorf,Löbau(Sachs),0,0
+Norddeich Mole,Leipzig/Halle Flughafen,0,19
+Leipzig Allee-Center,Leipzig Allee-Center,0,0
+Horka,Görlitz,0,1
+Westerstede-Ocholt,Leipzig/Halle Flughafen,0,12
+Nienburg(Weser),Leipzig/Halle Flughafen,0,5
+Neugersdorf,Zittau,0,1
+Dieskau,Schkeuditz West,0,2
+Zagajnik,Görlitz,0,6
+Karlsruhe Hbf,Leipzig Hbf,0,15
+Sturovo,Dresden Hbf,0,9
+Vac,Dresden Hbf,0,12
+Kleinröhrsdorf,Radeberg,0,0
+Lichtentanne(Sachs),Zwickau(Sachs)Hbf,0,0
+Buschmühle,Dippoldiswalde,0,4
+Malter,Dippoldiswalde,0,0
+Riesa,Riesa,0,0
+Spechtritz,Freital-Coßmannsdorf,0,1
+Neusörnewitz,Coswig(b Dresden),0,0
+Karlsruhe-Durlach,Leipzig Hbf,0,15
+Erlau(Sachs),Mittweida,0,0
+Köthen,Leipzig/Halle Flughafen,0,1
+Radebeul Ost,Radebeul Ost,0,0
+Jüterbog,Delitzsch unt Bf,0,14
+Zittau Süd,Zittau Süd,0,0
+Profen,Leipzig-Knauthain,0,2
+Rehfeld(Falkenberg),Torgau,0,1
+Dolni Poustevna,Dresden Hbf,1,6
+Frankenberg(Sachs) Süd,Chemnitz-Hilbersdorf,0,2
+Hohenfichte,Chemnitz Hbf,0,4
+Calau(Nl),Torgau,0,4
+Erla,Schwarzenberg Hp,0,0
+Cranzahl,Annaberg-Buchholz Süd,0,1
+Dresden-Neustadt,Dresden-Neustadt,0,0
+Augustfehn,Leipzig/Halle Flughafen,0,13
+Radebeul-Weintraube,Radebeul-Weintraube,0,0
+Leipzig-Mölkau,Leipzig-Mölkau,0,0
+Mosel,Glauchau-Schönbörnchen,0,0
+Seifhennersdorf Zollstraße,Zittau,0,3
+Adorf(Vogtl),Oelsnitz(Vogtl),0,1
+Decin hl.n.,Dresden Hbf,0,1
+Solingen Hbf,Leipzig/Halle Flughafen,0,13
+Eibau,Zittau,0,4
+Gera-Zwötzen,Plauen(Vogtl) Mitte,0,9
+Wittgensdorf Mitte,Chemnitz-Borna Hp,0,0
+Naunhof,Grimma ob Bf,0,1
+Wilthen,Radeberg,0,3
+Priestewitz,Großenhain Cottb Bf,0,0
+Regensburg Hbf,Leipzig Hbf,0,5
+Weesenstein,Dresden-Zschachwitz,1,3
+Prödel,Delitzsch unt Bf,0,7
+Kurort Kipsdorf,Dippoldiswalde,0,5
+Halle Steintorbrücke,Schkeuditz West,0,5
+Probstzella,Leipzig Hbf,0,11
+Verden(Aller),Leipzig/Halle Flughafen,0,6
+Osetnica,Görlitz,0,11
+Laußnitz,Dresden-Klotzsche,0,6
+Schkeuditz,Schkeuditz,0,0
+Jelenia Gora Zabobrze,Görlitz,0,14
+Doberlug-Kirchhain,Dresden-Neustadt,0,1
+Wiener Neustadt Hbf,Dresden Hbf,0,8
+Hamm(Westf)Hbf,Leipzig/Halle Flughafen,0,9
+Greiz-Dölau,Plauen(Vogtl) Mitte,0,4
+Machern(Sachs),Wurzen,0,2
+Berthelsdorf(Erzgeb),Freiberg(Sachs),0,0
+Ostseebad Binz,Leipzig Hbf,0,13
+Halle(Saale)Hbf,Leipzig/Halle Flughafen,0,0
+Steina,Döbeln Hbf,0,1
+Neuses(b Kronach),Leipzig Hbf,0,17
+Radis,Delitzsch unt Bf,0,5
+Scharfenstein,Annaberg-Buchholz unterer Bf,0,4
+Marke,Delitzsch unt Bf,0,4
+Werdau Nord,Werdau Nord,0,0
+Chemnitz Erdmannsdorfer Straße,Chemnitz Erdmannsdorfer Straße,0,0
+Gerichshain,Leipzig-Engelsdorf,0,1
+Lauchhammer,Hoyerswerda,0,4
+Dresden-Dobritz,Dresden-Dobritz,0,0
+Schwarzenberg Hp,Schwarzenberg Hp,0,0
+Bielefeld Hbf,Leipzig/Halle Flughafen,0,7
+Zwenkau-Großdalzig,Leipzig-Knauthain,0,0
+Lengenfeld(Vogtl),Rodewisch,0,0
+Pulsnitz,Kamenz(Sachs),0,1
+Könitz(Thür),Leipzig-Knauthain,0,14
+Emden Hbf,Leipzig/Halle Flughafen,0,15
+Rudolstadt-Schwarza,Leipzig Hbf,0,7
+Seebergen,Leipzig-Miltitz,0,16
+Leipzig Bayerischer Bahnhof,Leipzig Bayerischer Bahnhof,0,0
+Weinböhla Hp,Coswig(b Dresden),0,0
+Erdmannsdorf-Augustusburg,Chemnitz Hbf,0,3
+Leipzig Karlsruher Str,Leipzig Karlsruher Str,0,0
+Irfersgrün,Rodewisch,0,1
+Tharandt,Freital-Hainsberg West,0,0
+Uelzen,Leipzig Hbf,0,6
+Annaberg-Buchholz Süd,Annaberg-Buchholz Süd,0,0
+Seerhausen,Riesa,0,0
+Böhlen(Leipzig),Markkleeberg,0,0
+Zwota,Falkenstein(Vogtl),1,4
+Lutherstadt Wittenberg Hbf,Leipzig Hbf,0,0
+Kurort Jonsdorf,Zittau Vorstadt,0,4
+Wiesenburg(Sachs),Bad Schlema,0,2
+Petershain,Niesky,0,0
+Cheb,Oelsnitz(Vogtl),0,11
+Aue(Sachs),Aue(Sachs),0,0
+Unterwellenborn,Leipzig-Knauthain,0,14
+Elsterberg-Kunstseidenwerk,Plauen(Vogtl) Mitte,0,2
+Freital-Coßmannsdorf,Freital-Coßmannsdorf,0,0
+Klingenthal,Falkenstein(Vogtl),1,5
+Lauterbach-Steinbach,Leipzig-Liebertwolkwitz,0,4
+Holzhau Skilift,Freiberg(Sachs),0,9
+Westewitz-Hochweitzschen,Döbeln Hbf,0,0
+Großbothen,Grimma ob Bf,0,0
+Dresden-Kemnitz Zschonergrundstraße,Dresden-Kemnitz Zschonergrundstraße,0,0
+Ottendorf-Okrilla Süd,Dresden-Klotzsche,0,3
+Krensitz,Delitzsch ob Bf,0,1
+Hirschaid,Leipzig Hbf,0,28
+Floßmühle,Chemnitz Hbf,0,7
+Amtshainersdorf,Dresden Hbf,1,4
+Vojtanov,Oelsnitz(Vogtl),0,7
+Coswig(b Dresden),Coswig(b Dresden),0,0
+Petersroda,Delitzsch unt Bf,0,0
+Grünhainichen-Borstendorf,Chemnitz Hbf,0,6
+Tiefenau,Riesa,0,2
+Zgorzelec,Görlitz,0,0
+Mlynsko,Görlitz,0,9
+Hradek nad Nisou,Zittau,0,0
+Lichtenstein Gewerbegebiet,Lichtenstein Gewerbegebiet,0,0
+Decin-Prostredni Zleb,Dresden Hbf,1,3
+Küps,Leipzig Hbf,0,18
+Prösen,Riesa,0,4
+Wurzen,Wurzen,0,0
+Chemnitz Stadlerplatz,Chemnitz Stadlerplatz,0,0
+Velky Senov zast.,Dresden Hbf,1,12
+Plauen(Vogtl)West,Plauen(Vogtl)West,0,0
+Chemnitz Bruno-Salzer-Straße,Chemnitz Bruno-Salzer-Straße,0,0
