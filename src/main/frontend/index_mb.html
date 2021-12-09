@@ -18,7 +18,7 @@
 </head>
     <body>
         <div id='map'></div>
-
+        <nav id="menu"></nav>
 
         <nav class='navbar navbar-expand-lg navbar-dark bg-primary'>
             <div class='container-fluid'> <button class='navbar-toggler navbar-toggler-right border-0 p-0' type='button' data-toggle='collapse' data-target='#navbar20' id = 'navbar-toggle'>
@@ -37,6 +37,7 @@
                 </div>
             </div>
         </nav>
+        
                     <div id = 'next_station_div'>  
                 <div id = 'params_div' class='absolute fl my24 mx24 py24 px24 bg-white-faint round'>
                     
@@ -78,7 +79,8 @@
 
               <ul class='list-group' id='station_listgroup'></ul>
             </div>
-       
+        
+        
 
         <div class = 'table-wrapper-scroll-y my-custom-scrollbar' id = 'tablediv'>
             <ul class="nav nav-tabs" id="nav_departure_route">
@@ -152,7 +154,7 @@ map.on('load', () => {
     });
 
     map.addLayer({
-        'id': 'raster-layer',
+        'id': 'Einwohnerdichte',
         'type': 'raster',
         'source': 'raster-source',
         'layout': {
@@ -160,6 +162,26 @@ map.on('load', () => {
         },
         'paint': {
                 'raster-fade-duration': 0
+        }
+    });
+
+    map.addSource('ZO', {
+        'type': 'geojson',
+        
+        'data': 'data/ZO_wgs84_750.geojson'
+
+    });
+    
+    map.addLayer({
+        'id': 'Zentrale Orte',
+        'type': 'fill',
+        'source': 'ZO',
+        'layout':{
+            'visibility':'none'
+        },
+        'paint': {
+            'fill-color':'#0080ff',
+            'fill-opacity':0.5
         }
     });
 
@@ -237,7 +259,60 @@ map.on('dblclick', function(click) {
     getIso();
 });
 
+// After the last frame rendered before the map enters an "idle" state.
+map.on('idle', () => {
+// If these two layers were not added to the map, abort
+if (!map.getLayer('Zentrale Orte') || !map.getLayer('Einwohnerdichte')) {
+return;
+}
 
+
+// Enumerate ids of the layers.
+const toggleableLayerIds = ['Zentrale Orte', 'Einwohnerdichte'];
+ 
+// Set up the corresponding toggle button for each layer.
+for (const id of toggleableLayerIds) {
+// Skip layers that already have a button set up.
+if (document.getElementById(id)) {
+continue;
+}
+ 
+// Create a link.
+const link = document.createElement('a');
+link.id = id;
+link.href = '#';
+link.textContent = id;
+link.className = 'active';
+ 
+// Show or hide layer when the toggle is clicked.
+link.onclick = function (e) {
+const clickedLayer = this.textContent;
+e.preventDefault();
+e.stopPropagation();
+ 
+const visibility = map.getLayoutProperty(
+clickedLayer,
+'visibility'
+);
+ 
+// Toggle layer visibility by changing the layout object's visibility property.
+if (visibility === 'visible') {
+map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+this.className = '';
+} else {
+this.className = 'active';
+map.setLayoutProperty(
+clickedLayer,
+'visibility',
+'visible'
+);
+}
+};
+ 
+const layers = document.getElementById('menu');
+layers.appendChild(link);
+}
+});
 
 
 // query clicked trainstation feature and display name and api button in a popup
@@ -267,6 +342,8 @@ map.on('click', (event) => {
             get_time_table(feature.properties.EVA_NR, feature.properties.NAME);
         });
 });
+
+
 
 
 async function getIso() {
@@ -385,6 +462,7 @@ function onDragEnd() {
 function Mode1() {
     document.getElementById('next_station_div').style.display = 'block';
     document.getElementById('myPopup').style.visibility = 'hidden';
+    
     if (document.getElementById('tablediv') != undefined) {
         document.getElementById('tablediv').style.display = 'block';
     }
@@ -396,7 +474,8 @@ function Mode1() {
     }
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'visible');
     map.setLayoutProperty('isoLayer', 'visibility', 'visible');
-    map.setLayoutProperty('raster-layer', 'visibility', 'none');
+    map.setLayoutProperty('Einwohnerdichte', 'visibility', 'none');
+    map.setLayoutProperty('ZO-layer', 'visibility', 'none');
 
     if (map.getLayer('route')) {
         map.setLayoutProperty('route', 'visibility', 'visible')
@@ -416,10 +495,12 @@ function Mode2() {
     if (document.getElementsByClassName('mapboxgl-popup mapboxgl-popup-anchor-bottom')[0] != undefined) {
         document.getElementsByClassName('mapboxgl-popup mapboxgl-popup-anchor-bottom')[0].style.display = 'none';
     }
-    
+        
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'none');
     map.setLayoutProperty('isoLayer', 'visibility', 'none');
-    map.setLayoutProperty('raster-layer', 'visibility', 'visible');
+    map.setLayoutProperty('Einwohnerdichte', 'visibility', 'visible');
+    map.setLayoutProperty('ZO-layer', 'visibility', 'visible');
+    
 
     if (map.getLayer('route')) {
         map.setLayoutProperty('route', 'visibility', 'none')
