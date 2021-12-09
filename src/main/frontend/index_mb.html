@@ -17,94 +17,112 @@
 
 </head>
     <body>
-        <div id='map'></div>
-        <nav id="menu"></nav>
+        
+        <div class="container-fluid" id='main-container'>
+            <div id='map'></div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav id="menu"></nav>
 
-        <nav class='navbar navbar-expand-lg navbar-dark bg-primary'>
-            <div class='container-fluid'> <button class='navbar-toggler navbar-toggler-right border-0 p-0' type='button' data-toggle='collapse' data-target='#navbar20' id = 'navbar-toggle'>
-                    <p class='navbar-brand text-white mb-0'> <i class='fa d-inline fa-lg fa-stop-circle'></i> Haltestellen-Informationssystem </p>
-                </button>
-                <div class='collapse navbar-collapse' id='navbar20'>
-                    <ul class='navbar-nav mr-auto'>
-                        <li class='nav-item' onclick='Mode1()'> <a class='nav-link' href='#'>Mein nächster Bahnhof</a> </li>
-                        <li class='nav-item' onclick='Mode2()'> <a class='nav-link' href='#'>Rasterübersicht</a> </li>
-                        <li class='nav-item-popup' onclick='infoText()'> <a class='nav-link' href='#'>Über</a> <span class='popuptext' id='myPopup'> Mein nächster Bahnhof:<br>Dieser Modus dient zum Finden der nächstgelegenen Haltestellen um einen gewählten Standort und der nächsten Abfahrten von einem gewählen Bahnhof. Auswählbar ist die gewünschte Fortbewegungsmöglichkeit und die maximale Dauer zum nächsten Bahnhof. <br> Der Standort kann durch Doppelklick auf der Karte gesetzt werden und anschließend mit der Maus verschoben werden. <br><br> Rasterübersicht:<br> Diese Übersicht dient der Veranschaulichung der Erreichbarkeiten in Sachsen auf Grundlage der Anzahl der BewohnerInnen.<br></span></li>
-                    </ul>
-                    <p class='d-none d-md-block lead mb-0 text-white'> <i class='fa d-inline fa-lg fa-stop-circle'></i> <b> Haltestellen-Informationssystem</b> </p>
-                    <ul class='navbar-nav ml-auto'>
-                        <li class='nav-item mx-1'> <a class='nav-link' href='https://github.com/rbergm/git-seminar' target='_blank'> GitHub</a> </li>
-                    </ul>
+                    <nav class='navbar navbar-expand-lg navbar-dark bg-primary' id='navbar'>
+                        <div class='container-fluid'> <button class='navbar-toggler navbar-toggler-right border-0 p-0' type='button' data-toggle='collapse' data-target='#navbar20' id = 'navbar-toggle'>
+                                <p class='navbar-brand text-white mb-0'> <i class='fa d-inline fa-lg fa-stop-circle'></i> Haltestellen-Informationssystem </p>
+                            </button>
+                            <div class='collapse navbar-collapse' id='navbar20'>
+                                <ul class='navbar-nav mr-auto'>
+                                    <li class='nav-item' onclick='Mode1()'> <a class='nav-link' href='#'>Mein nächster Bahnhof</a> </li>
+                                    <li class='nav-item' onclick='Mode2()'> <a class='nav-link' href='#'>Rasterübersicht</a> </li>
+                                    <li class='nav-item-popup' onclick='infoText()'> <a class='nav-link' href='#'>Über</a> <span class='popuptext' id='myPopup'> Mein nächster Bahnhof:<br>Dieser Modus dient zum Finden der nächstgelegenen Haltestellen um einen gewählten Standort und der nächsten Abfahrten von einem gewählen Bahnhof. Auswählbar ist die gewünschte Fortbewegungsmöglichkeit und die maximale Dauer zum nächsten Bahnhof. <br> Der Standort kann durch Doppelklick auf der Karte gesetzt werden und anschließend mit der Maus verschoben werden. <br><br> Rasterübersicht:<br> Diese Übersicht dient der Veranschaulichung der Erreichbarkeiten in Sachsen auf Grundlage der Anzahl der BewohnerInnen.<br></span></li>
+                                </ul>
+                                <p class='d-none d-md-block lead mb-0 text-white'> <i class='fa d-inline fa-lg fa-stop-circle'></i> <b> Haltestellen-Informationssystem</b> </p>
+                                <ul class='navbar-nav ml-auto'>
+                                    <li class='nav-item mx-1'> <a class='nav-link' href='https://github.com/rbergm/git-seminar' target='_blank'> GitHub</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
             </div>
-        </nav>
-        
+            <div class="row justify-content-center" id="row2">
+                <div class="col-md-2">
                     <div id = 'next_station_div'>  
-                <div id = 'params_div' class='absolute fl my24 mx24 py24 px24 bg-white-faint round'>
-                    
-                    <form id='params'>
-                        <h4 class='txt-m txt-bold mb6'>Verkehrsmittel:</h4>
-                        <div class='mb12 mr12 toggle-group align-center'>
-                            <label class='toggle-container'>
-                                <input name='profile' type='radio' value='walking' />
-                                <div class='toggle toggle--active-null toggle--null'>zu Fuß</div>
-                            </label>
-                            <label class='toggle-container'>
-                                <input name='profile' type='radio' value='cycling' checked />
-                                <div class='toggle toggle--active-null toggle--null'>Fahrrad</div>
-                            </label>
-                            <label class='toggle-container'>
-                                <input name='profile' type='radio' value='driving' />
-                                <div class='toggle toggle--active-null toggle--null'>PKW</div>
-                            </label>
+                        <div id = 'params_div' class='absolute fl my15 mx15 py15 px15 bg-white-faint round'>
+                            
+                            <form id='params'>
+                                <h4 class='txt-m txt-bold mb6'>Verkehrsmittel:</h4>
+                                <div class='mb12 mr12 toggle-group align-center'>
+                                    <label class='toggle-container'>
+                                        <input name='profile' type='radio' value='walking' />
+                                        <div class='toggle toggle--active-null toggle--null'>zu Fuß</div>
+                                    </label>
+                                    <label class='toggle-container'>
+                                        <input name='profile' type='radio' value='cycling' checked />
+                                        <div class='toggle toggle--active-null toggle--null'>Fahrrad</div>
+                                    </label>
+                                    <label class='toggle-container'>
+                                        <input name='profile' type='radio' value='driving' />
+                                        <div class='toggle toggle--active-null toggle--null'>PKW</div>
+                                    </label>
+                                </div>
+                                <h4 class='txt-m txt-bold mb6'>Maximale Dauer:</h4>
+                                <div class='mb12 mr12 toggle-group align-center'>
+                                    <label class='toggle-container'>
+                                        <input name='duration' type='radio' value='10' checked />
+                                        <div class='toggle toggle--active-null toggle--null'>10 min</div>
+                                    </label>
+                                    <label class='toggle-container'>
+                                        <input name='duration' type='radio' value='20' />
+                                        <div class='toggle toggle--active-null toggle--null'>20 min</div>
+                                    </label>
+                                    <label class='toggle-container'>
+                                        <input name='duration' type='radio' value='30' />
+                                        <div class='toggle toggle--active-null toggle--null'>30 min</div>
+                                    </label>
+                                </div>
+                            </form>
                         </div>
-                        <h4 class='txt-m txt-bold mb6'>Maximale Dauer:</h4>
-                        <div class='mb12 mr12 toggle-group align-center'>
-                            <label class='toggle-container'>
-                                <input name='duration' type='radio' value='10' checked />
-                                <div class='toggle toggle--active-null toggle--null'>10 min</div>
-                            </label>
-                            <label class='toggle-container'>
-                                <input name='duration' type='radio' value='20' />
-                                <div class='toggle toggle--active-null toggle--null'>20 min</div>
-                            </label>
-                            <label class='toggle-container'>
-                                <input name='duration' type='radio' value='30' />
-                                <div class='toggle toggle--active-null toggle--null'>30 min</div>
-                            </label>
-                        </div>
-                    </form>
+                        <hr id = 'section_line'>
+                        <b id = 'next_stations_title'>Die nächstgelegenen Bahnhöfe:</b>
+        
+                      <ul class='list-group' id='station_listgroup'></ul>
+                    </div>
                 </div>
-                <hr id = 'section_line'>
-                <b id = 'next_stations_title'>Die nächstgelegenen Bahnhöfe:</b>
+                <div class="col-md-7">
+                </div>
+                <div class="col-md-3">
 
-              <ul class='list-group' id='station_listgroup'></ul>
+                </div>
             </div>
-        
-        
-
-        <div class = 'table-wrapper-scroll-y my-custom-scrollbar' id = 'tablediv'>
-            <ul class="nav nav-tabs" id="nav_departure_route">
-                <li class="nav-item" onclick='departure_view()' >
-                  <a class="nav-link">Abfahrten</a>
-                </li>
-                <li class="nav-item" onclick='route_view()'>
-                  <a class="nav-link">Route</a>
-                </li>
-                <li>
-                    <input id="slider" type="range" min="0" max="10" value="0" step="1">
-                </li>
-              </ul>
-            <table class='table table-striped' id = 'departure_table'>
-                <thead>
-                    <tr>
-                    <th id='departure_table_head'></th>
-                    </tr>
-                </thead>
-            <tbody></tbody>
-            <ul class='list-group' id='navig_steps_listgroup'></ul>
+            <div class="row" id="row3">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-4">
+                    <div class = 'table-wrapper-scroll-y my-custom-scrollbar' id = 'tablediv'>
+                        <ul class="nav nav-tabs" id="nav_departure_route">
+                            <li class="nav-item" onclick='departure_view()' >
+                              <a class="nav-link">Abfahrten</a>
+                            </li>
+                            <li class="nav-item" onclick='route_view()'>
+                              <a class="nav-link">Route</a>
+                            </li>
+                            <li>
+                                <input id="slider" type="range" min="0" max="10" value="0" step="1">
+                            </li>
+                          </ul>
+                        <table class='table table-striped' id = 'departure_table'>
+                            <thead>
+                                <tr>
+                                <th id='departure_table_head'></th>
+                                </tr>
+                            </thead>
+                        <tbody></tbody>
+                        <ul class='list-group' id='navig_steps_listgroup'></ul>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        
         
 
 
@@ -139,7 +157,7 @@ doubleClickZoom: false
 });
 
 
-// All stops in Saxony with respective EVA-No
+
 map.on('load', () => {
     map.addSource('raster-source', {
         'type': 'image',
@@ -181,12 +199,10 @@ map.on('load', () => {
         },
         'paint': {
             'fill-color':'#0080ff',
-            'fill-opacity':0.5,
-            'fill-outline-color': '#000',
-
+            'fill-opacity':0.5
         }
     });
-
+// All stops in Saxony with respective EVA-No
     map.addSource('haltestellen', {
         'type': 'geojson',
         
@@ -299,16 +315,16 @@ clickedLayer,
  
 // Toggle layer visibility by changing the layout object's visibility property.
 if (visibility === 'visible') {
-map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-this.className = '';
-} else {
-this.className = 'active';
-map.setLayoutProperty(
-clickedLayer,
-'visibility',
-'visible'
-);
-}
+    map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+    this.className = '';
+    } else {
+    this.className = 'active';
+    map.setLayoutProperty(
+    clickedLayer,
+    'visibility',
+    'visible'
+    );
+    }
 };
  
 const layers = document.getElementById('menu');
@@ -478,7 +494,6 @@ function Mode1() {
     map.setLayoutProperty('isoLayer', 'visibility', 'visible');
     map.setLayoutProperty('Einwohnerdichte', 'visibility', 'none');
     map.setLayoutProperty('ZO-layer', 'visibility', 'none');
-    map.setLayoutProperty('outline', 'visibility', 'none');
 
     if (map.getLayer('route')) {
         map.setLayoutProperty('route', 'visibility', 'visible')
@@ -503,7 +518,6 @@ function Mode2() {
     map.setLayoutProperty('isoLayer', 'visibility', 'none');
     map.setLayoutProperty('Einwohnerdichte', 'visibility', 'visible');
     map.setLayoutProperty('ZO-layer', 'visibility', 'visible');
-    map.setLayoutProperty('outline', 'visibility', 'visible');
     
 
     if (map.getLayer('route')) {
