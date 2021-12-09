@@ -49,10 +49,35 @@ body {
     border: 2px solid rgb(255, 255, 255);
     border-radius: 10px;
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 10px;
     margin-bottom: 5px;
     z-index: 2;
 
+}
+
+#raster_calc_div {
+    background-color: #fff;
+    position: relative;
+    top: 10px;
+    height: 60%;
+    width: 55%;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    z-index: 2;
+    display: none;
+
+}
+
+#calc_button {
+    margin-left: 10%;
+}
+
+#slider_div {
+    margin: 10px;
+    font-size: 8pt;
 }
 
 #params {
@@ -82,7 +107,6 @@ body {
 
 .my-custom-scrollbar {
     position: relative;
-    height: 200px;
     overflow-y: auto;
     scrollbar-width: thin;  
     scrollbar-color: #9b9b9b rgb(212, 224, 224);
@@ -98,33 +122,60 @@ body {
 
 #departure_table {
     background-color: #fff;
-    position: sticky;
+    position: relative;
+    top: 0px;
     z-index: 2;
+    max-height: 150px;
+    overflow-y: scroll;
 }
 
 #departure_table thead {
     position: sticky;
     top: 0; 
     height: 41.6px;
-    z-index: 2;
+    z-index: 1;
+    background-color: #fff;
 }
 
-#departure_table_head {
-    height: 41.6px;
-}
+
 
 #departure_table tbody{
     position: relative;
 
-} */
+} 
 
-#tablediv {
-    width: 100%;
-    height: 300px;
+#dep_time_slider_div {
+    margin-left: 20px;
+}
+
+#departure_time_slider {
+    /* padding-top: 15px; */
+    margin-top: 13px;
+    margin-right: 50px;
+}
+
+#departure_route_div {
+    background-color: #fff;
     position: relative;
     bottom: 0px;
+    height: 280px;
+    width: 100%;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    z-index: 2;
+
+}
+
+#tablediv {
+    width: 95%;
+    height: 60%;
+    position: relative;
+    top: 10px;
     background-color: #fff;
-    right: 0px;
+    margin-left: 10px;
     margin-right: 5px;
     margin-bottom: 5px;
     z-index: 2;

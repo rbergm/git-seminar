@@ -1,6 +1,6 @@
 async function get_time_table(eva, name) {
 
-  let slider = document.getElementById("slider");
+  let slider = document.getElementById("departure_time_slider");
   let plus_x_hours = parseInt(slider.value);
   document.getElementById('departure_table_head').innerHTML = 'Abfahrten von ' + name;
 
