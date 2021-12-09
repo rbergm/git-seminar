@@ -168,7 +168,7 @@ map.on('load', () => {
     map.addSource('ZO', {
         'type': 'geojson',
         
-        'data': 'data/ZO_wgs84_750.geojson'
+        'data': 'data/ZO_wgs84.geojson'
 
     });
     
@@ -181,7 +181,9 @@ map.on('load', () => {
         },
         'paint': {
             'fill-color':'#0080ff',
-            'fill-opacity':0.5
+            'fill-opacity':0.5,
+            'fill-outline-color': '#000',
+
         }
     });
 
@@ -476,6 +478,7 @@ function Mode1() {
     map.setLayoutProperty('isoLayer', 'visibility', 'visible');
     map.setLayoutProperty('Einwohnerdichte', 'visibility', 'none');
     map.setLayoutProperty('ZO-layer', 'visibility', 'none');
+    map.setLayoutProperty('outline', 'visibility', 'none');
 
     if (map.getLayer('route')) {
         map.setLayoutProperty('route', 'visibility', 'visible')
@@ -500,6 +503,7 @@ function Mode2() {
     map.setLayoutProperty('isoLayer', 'visibility', 'none');
     map.setLayoutProperty('Einwohnerdichte', 'visibility', 'visible');
     map.setLayoutProperty('ZO-layer', 'visibility', 'visible');
+    map.setLayoutProperty('outline', 'visibility', 'visible');
     
 
     if (map.getLayer('route')) {
