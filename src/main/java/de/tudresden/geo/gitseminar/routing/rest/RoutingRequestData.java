@@ -2,7 +2,7 @@ package de.tudresden.geo.gitseminar.routing.rest;
 
 import javax.validation.constraints.NotBlank;
 
-public class RoutingRequest {
+public class RoutingRequestData {
 
   @NotBlank
   private String startStation;
@@ -10,9 +10,9 @@ public class RoutingRequest {
   @NotBlank
   private String target;
 
-  public RoutingRequest() {}
+  public RoutingRequestData() {}
 
-  public RoutingRequest(@NotBlank String startStation, @NotBlank String target) {
+  public RoutingRequestData(@NotBlank String startStation, @NotBlank String target) {
     super();
     this.startStation = startStation;
     this.target = target;
@@ -47,9 +47,9 @@ public class RoutingRequest {
   public boolean equals(Object obj) {
     if (this == obj)
       return true;
-    if (!(obj instanceof RoutingRequest))
+    if (!(obj instanceof RoutingRequestData))
       return false;
-    RoutingRequest other = (RoutingRequest) obj;
+    RoutingRequestData other = (RoutingRequestData) obj;
     if (startStation == null) {
       if (other.startStation != null)
         return false;
