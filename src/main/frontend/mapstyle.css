@@ -1,7 +1,7 @@
 body {
-    margin: 0;
-    padding: 0;
-    }
+  margin: 0;
+  padding: 0;
+  }
 
 
 #map {
@@ -40,52 +40,52 @@ font-weight: 400;
 }
 
 #next_station_div {
-    background-color: #fff;
-    position: absolute;
-    top: 55px;
-    height: 90%;
-    width: 21%;
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 10px;
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    
+  background-color: #fff;
+  position: absolute;
+  top: 55px;
+  height: 90%;
+  width: 21%;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  
 }
 
 #params {
-    display: none;
+  display: none;
 }
 
 #section_line {
-    height: 2px;
-    position: relative;
-    top: 200px;
+  height: 2px;
+  position: relative;
+  top: 200px;
 }
 
 
 #params_div {
-    width: 90%;
-    height: 15%;
+  width: 90%;
+  height: 15%;
 
 }
 
 #next_stations_title {
-    position: absolute;
-    top: 38%;
-    margin-left: 48px;
-    font-size: 10pt;
+  position: absolute;
+  top: 38%;
+  margin-left: 48px;
+  font-size: 10pt;
 
 }
 
 .my-custom-scrollbar {
-    position: relative;
-    height: 200px;
-    overflow: auto;
-    scrollbar-width: thin;  
-    scrollbar-color: #9b9b9b rgb(212, 224, 224);
+  position: relative;
+  height: 200px;
+  overflow: auto;
+  scrollbar-width: thin;  
+  scrollbar-color: #9b9b9b rgb(212, 224, 224);
 
-    }
+  }
 .table-wrapper-scroll-y {
 display: block;
 position: relative;
@@ -93,23 +93,23 @@ bottom: 0;
 }
 
 #departure_table {
-    background-color: #fff;
-    position: sticky;
+  background-color: #fff;
+  position: sticky;
 }
 
 #departure_table thead {
-    position: sticky;
-    top: 0; 
-    height: 41.6px;
-    z-index: 1;
+  position: sticky;
+  top: 0; 
+  height: 41.6px;
+  z-index: 1;
 }
 
 #departure_table_head {
-    height: 41.6px;
+  height: 41.6px;
 }
 
 #departure_table tbody{
-    position: relative;
+  position: relative;
 
 }
 
@@ -124,20 +124,20 @@ margin-bottom: 5px;
 }
 
 #station_listgroup {
-    position: absolute;
-    top: 270px;
-    margin-left: 24px;
-    width: 270px;
-    max-height: 250px;
-    margin-bottom: 10px;
-    overflow-y:scroll;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;  
-    scrollbar-color: #9b9b9b rgb(212, 224, 224);
+  position: absolute;
+  top: 270px;
+  margin-left: 24px;
+  width: 270px;
+  max-height: 250px;
+  margin-bottom: 10px;
+  overflow-y:scroll;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;  
+  scrollbar-color: #9b9b9b rgb(212, 224, 224);
 }
 
 li {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 
@@ -178,17 +178,60 @@ border-color: transparent transparent black transparent;
 
 
 #row_departure_table {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #nav_departure_route {
-    position: sticky; 
-    top: 0;
-    z-index: 1;
-    background-color: #fff;
-    width: 590.4px;
+  position: sticky; 
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
+  width: 590.4px;
 }
 
 #navig_steps_listgroup {
-    display: none;
+  display: none;
 }
+
+#menu {
+  background: #fff;
+  position: absolute;
+  z-index: 1;
+  top: 60px;
+  right: 0px;
+  border-radius: 3px;
+  width: 120px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  font-family: 'Open Sans', sans-serif;
+  /* visibility: hidden; */
+  }
+
+#menu a {
+  font-size: 13px;
+  color: #404040;
+  display: block;
+  margin: 0;
+  padding: 0;
+  padding: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  text-align: center;
+  }
+   
+  #menu a:last-child {
+  border: none;
+  }
+   
+  #menu a:hover {
+  background-color: #f8f8f8;
+  color: #404040;
+  }
+   
+  #menu a.active {
+  background-color: #007bff;
+  color: #ffffff;
+  }
+   
+  #menu a.active:hover {
+  background: #3074a4;
+  }
