@@ -22,7 +22,7 @@
             <div id='map'></div>
             <div class="row">
                 <div class="col-lg-12">
-                    <nav id="menu"></nav>
+                    <nav id="menu" ></nav>
 
                     <nav class='navbar navbar-expand-lg navbar-dark bg-primary' id='navbar'>
                         <div class='container-fluid'> <button class='navbar-toggler navbar-toggler-right border-0 p-0' type='button' data-toggle='collapse' data-target='#navbar20' id = 'navbar-toggle'>
@@ -510,6 +510,7 @@ function onDragEnd() {
 function Mode1() {
     document.getElementById('next_station_div').style.display = 'block';
     document.getElementById('raster_calc_div').style.display = 'none';
+    document.getElementById('menu').style.display = 'none';
     document.getElementById('myPopup').style.visibility = 'hidden';
     
     if (document.getElementById('tablediv') != undefined) {
@@ -524,7 +525,7 @@ function Mode1() {
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'visible');
     map.setLayoutProperty('isoLayer', 'visibility', 'visible');
     map.setLayoutProperty('Einwohnerdichte', 'visibility', 'none');
-    map.setLayoutProperty('ZO-layer', 'visibility', 'none');
+    map.setLayoutProperty('Zentrale Orte', 'visibility', 'none');
 
     if (map.getLayer('route')) {
         map.setLayoutProperty('route', 'visibility', 'visible')
@@ -535,7 +536,9 @@ function Mode1() {
 function Mode2() {
     document.getElementById('next_station_div').style.display = 'none';
     document.getElementById('raster_calc_div').style.display = 'block';
+    document.getElementById('menu').style.display = 'block';
     document.getElementById('myPopup').style.visibility = 'hidden';
+    
     if (document.getElementById('tablediv') != undefined) {
         document.getElementById('tablediv').style.display = 'none';
     }
@@ -548,15 +551,13 @@ function Mode2() {
         
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'none');
     map.setLayoutProperty('isoLayer', 'visibility', 'none');
+    map.setLayoutProperty('Zentrale Orte', 'visibility', 'visible');
     map.setLayoutProperty('Einwohnerdichte', 'visibility', 'visible');
-    
-    if (map.getLayer('ZO-layer')) {
-        map.setLayoutProperty('ZO-layer', 'visibility', 'visible');
-    }   
 
     if (map.getLayer('route')) {
         map.setLayoutProperty('route', 'visibility', 'none')
     }
+
 }
 
 function departure_view() {
