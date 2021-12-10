@@ -583,6 +583,11 @@ function Mode1() {
     if (document.getElementsByClassName('mapboxgl-popup mapboxgl-popup-anchor-bottom')[0] != undefined) {
         document.getElementsByClassName('mapboxgl-popup mapboxgl-popup-anchor-bottom')[0].style.display = 'inline';
     }
+    if (document.getElementsByClassName('mapboxgl-popup')[0] != undefined) {
+        document.getElementsByClassName('mapboxgl-popup')[0].style.display = 'none';
+    }
+
+
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'visible');
     map.setLayoutProperty('isoLayer', 'visibility', 'visible');
     map.setLayoutProperty('Einwohnerdichte', 'visibility', 'none');
@@ -609,6 +614,9 @@ function Mode2() {
     }
     if (document.getElementsByClassName('mapboxgl-popup mapboxgl-popup-anchor-bottom')[0] != undefined) {
         document.getElementsByClassName('mapboxgl-popup mapboxgl-popup-anchor-bottom')[0].style.display = 'none';
+    }
+    if (document.getElementsByClassName('mapboxgl-popup')[0] != undefined) {
+        document.getElementsByClassName('mapboxgl-popup')[0].style.display = 'inline';
     }
         
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'none');
