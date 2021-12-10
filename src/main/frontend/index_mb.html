@@ -221,17 +221,35 @@ map.on('load', () => {
     });
     
     map.addLayer({
-        'id': 'Zentrale Orte',
+        'id': 'Oberzentren',
         'type': 'fill',
         'source': 'ZO',
         'layout':{
             'visibility':'none'
         },
+        'filter': ['in', 'ZORT', 'Oberzentrum', 'oberzentraler Städteverbund'],
+        // 'filter': ['==', 'ZORT', 'oberzentraler Städteverbund'],
         'paint': {
-            'fill-color':'#0080ff',
+            'fill-color':'#ff1b00',
             'fill-opacity':0.5
         }
     });
+
+    map.addLayer({
+        'id': 'Mittelzentren',
+        'type': 'fill',
+        'source': 'ZO',
+        'layout':{
+            'visibility':'none'
+        },
+        'filter': ['in', 'ZORT', 'Mittelzentrum', 'mittelzentraler SV Silberberg', 'mittelzentraler SV Sachsenring', 'mittelzentraler SV Göltzschta'],
+
+        'paint': {
+            'fill-color':'#ff9b00',
+            'fill-opacity':0.5
+        }
+    });
+
 // All stops in Saxony with respective EVA-No
     map.addSource('haltestellen', {
         'type': 'geojson',
@@ -280,7 +298,6 @@ map.on('load', () => {
 
 });
 
-
 map.on('dblclick', function(click) {
     // get html collection of 'all' current markers
     let marker_div = document.getElementsByClassName('mapboxgl-marker mapboxgl-marker-anchor-center');
@@ -310,13 +327,13 @@ map.on('dblclick', function(click) {
 // After the last frame rendered before the map enters an "idle" state.
 map.on('idle', () => {
 // If these two layers were not added to the map, abort
-if (!map.getLayer('Zentrale Orte') || !map.getLayer('Einwohnerdichte')) {
+if (!map.getLayer('Oberzentren') || !map.getLayer('Mittelzentren')|| !map.getLayer('Einwohnerdichte')) {
 return;
 }
 
 
 // Enumerate ids of the layers.
-const toggleableLayerIds = ['Zentrale Orte', 'Einwohnerdichte'];
+const toggleableLayerIds = ['Oberzentren', 'Mittelzentren', 'Einwohnerdichte'];
  
 // Set up the corresponding toggle button for each layer.
 for (const id of toggleableLayerIds) {
@@ -342,6 +359,8 @@ const visibility = map.getLayoutProperty(
 clickedLayer,
 'visibility'
 );
+
+
  
 // Toggle layer visibility by changing the layout object's visibility property.
 if (visibility === 'visible') {
@@ -389,6 +408,48 @@ map.on('click', (event) => {
         .addEventListener('click', function(){
             get_time_table(feature.properties.EVA_NR, feature.properties.NAME);
         });
+});
+
+// When a click event occurs on a feature in the states layer,
+// open a popup at the location of the click, with description
+// HTML from the click event's properties.
+map.on('click', 'Oberzentren', (e) => {
+new mapboxgl.Popup()
+.setLngLat(e.lngLat)
+.setHTML(e.features[0].properties.NAME)
+.setMaxWidth('50')
+.addTo(map);
+});
+ 
+// Change the cursor to a pointer when
+// the mouse is over the states layer.
+map.on('mouseenter', 'Oberzentren', () => {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change the cursor back to a pointer
+// when it leaves the states layer.
+map.on('mouseleave', 'Oberzentren', () => {
+map.getCanvas().style.cursor = '';
+});
+
+map.on('click', 'Mittelzentren', (e) => {
+new mapboxgl.Popup()
+.setLngLat(e.lngLat)
+.setHTML(e.features[0].properties.NAME)
+.addTo(map);
+});
+ 
+// Change the cursor to a pointer when
+// the mouse is over the states layer.
+map.on('mouseenter', 'Mittelzentren', () => {
+map.getCanvas().style.cursor = 'pointer';
+});
+ 
+// Change the cursor back to a pointer
+// when it leaves the states layer.
+map.on('mouseleave', 'Mittelzentren', () => {
+map.getCanvas().style.cursor = '';
 });
 
 
@@ -525,7 +586,8 @@ function Mode1() {
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'visible');
     map.setLayoutProperty('isoLayer', 'visibility', 'visible');
     map.setLayoutProperty('Einwohnerdichte', 'visibility', 'none');
-    map.setLayoutProperty('Zentrale Orte', 'visibility', 'none');
+    map.setLayoutProperty('Oberzentren', 'visibility', 'none');
+    map.setLayoutProperty('Mittelzentren', 'visibility', 'none');
 
     if (map.getLayer('route')) {
         map.setLayoutProperty('route', 'visibility', 'visible')
@@ -551,7 +613,8 @@ function Mode2() {
         
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'none');
     map.setLayoutProperty('isoLayer', 'visibility', 'none');
-    map.setLayoutProperty('Zentrale Orte', 'visibility', 'visible');
+    map.setLayoutProperty('Oberzentren', 'visibility', 'visible');
+    map.setLayoutProperty('Mittelzentren', 'visibility', 'visible');
     map.setLayoutProperty('Einwohnerdichte', 'visibility', 'visible');
 
     if (map.getLayer('route')) {
