@@ -11,6 +11,7 @@
     <link href='https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.min.css' rel='stylesheet' />
     <link href='mapstyle.css' rel='stylesheet' type='text/css' />
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js'></script>
     <script src='https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.js'></script>
@@ -128,17 +129,23 @@
                 <div class="col-md-4">
                     <div id = 'departure_route_div' class='absolute fl my15 mx15 py15 px15 bg-white-faint round'>
                         <ul class="nav nav-tabs" id="nav_departure_route">
-                            <li class="nav-item" onclick='departure_view()' >
-                            <a class="nav-link">Abfahrten</a>
+                            <li class="nav-item" onclick='departure_view()'  >
+                            <a class="nav-link active" id='nav_dep_link'>Abfahrten</a>
                             </li>
-                            <li class="nav-item" onclick='route_view()'>
-                            <a class="nav-link">Route</a>
+                            <li class="nav-item" onclick='route_view()' >
+                            <a class="nav-link" id='nav_route_link'>Route</a>
                             </li>
                                 
                         </ul>
                         <div id='dep_time_slider_div'>
-                            <b>Abfahrt: </b>
-                            <input id="departure_time_slider" type="range" min="0" max="10" value="0" step="1">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p id='departure_time_text'>Abfahrt: Jetzt </p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input id="departure_time_slider" type="range" min="0" max="10" value="0" step="1">
+                                </div>
+                            </div>
                         </div>
                         <div class = 'table-wrapper-scroll-y my-custom-scrollbar' id = 'tablediv'>
 
@@ -561,6 +568,7 @@ slider.addEventListener('change', (event) => {
         get_time_table(last_eva, last_name)
         console.log(slider.value);
     }
+    document.getElementById('departure_time_text').innerText = 'Abfahrt in:  ' + slider.value + '  Stunden'
 });
 
 function onDragEnd() {
@@ -633,14 +641,20 @@ function Mode2() {
 
 function departure_view() {
     document.getElementById('departure_table').style.display = 'table';
+    document.getElementById('tablediv').style.height = '60%';
     document.getElementById('navig_steps_listgroup').style.display = 'none';
-    document.getElementById('dep_time_slider_div').style.display = 'inline';
+    document.getElementById('dep_time_slider_div').style.display = 'block';
+    document.getElementById('nav_dep_link').className = 'nav-link active';
+    document.getElementById('nav_route_link').classList.remove('active');
 }
 
 function route_view() {
     document.getElementById('departure_table').style.display = 'none';
+    document.getElementById('tablediv').style.height = '75%';
     document.getElementById('navig_steps_listgroup').style.display = 'inline';
     document.getElementById('dep_time_slider_div').style.display = 'none';
+    document.getElementById('nav_dep_link').classList.remove('active');
+    document.getElementById('nav_route_link').className = 'nav-link active';
 }
 
 function infoText() {
@@ -655,6 +669,8 @@ function infoText() {
     }
     
 }
+
+
 
 
 </script>

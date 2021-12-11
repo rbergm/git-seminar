@@ -25,9 +25,10 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
     }
 
     for (let index = 0; index < steps.length -1; index++) {
+        let numbering = index + 1;
         let li = document.createElement('li');
         li.className = 'list-group-item';
-        li.appendChild(document.createTextNode(steps[index].maneuver.instruction));
+        li.appendChild(document.createTextNode(numbering.toString() + '. ' + steps[index].maneuver.instruction));
         instructions.appendChild(li);
     }
 
@@ -38,23 +39,37 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         let li_start = document.createElement('li');
         li_start.className = 'list-group-item';
         let start_station = train_route.route.startStation.name;
-        let instruction_start_station = 'Sie haben den Bahnhof ' + start_station + ' erreicht.';
-        li_start.appendChild(document.createTextNode(instruction_start_station));
+        let instruction_start_station = '  Sie haben den Bahnhof ' + start_station + ' erreicht.';
+        let textnode = document.createTextNode(instruction_start_station);
+        let train_icon = document.createElement('i');
+        train_icon.className = "fa fa-train";
+        train_icon.style = "font-size:18px";
+        li_start.appendChild(train_icon);
+        li_start.appendChild(textnode);
         instructions.appendChild(li_start);
 
         let li_line = document.createElement('li');
         li_line.className = 'list-group-item';
         let start_line = train_route.route.changes[0].targetLine.name;
-        let instruction_line = 'Steigen Sie in die Linie ' + start_line + ' ein.';
+        let instruction_line = '  Steigen Sie in die Linie ' + start_line + ' ein.';
+        let entry_icon = document.createElement('i');
+        entry_icon.className = "fa fa-sign-in";
+        entry_icon.style = "font-size:18px";
+        li_line.appendChild(entry_icon)
         li_line.appendChild(document.createTextNode(instruction_line));
         instructions.appendChild(li_line);
 
+        
         for (const change of train_route.route.effectiveChanges) {
             let li_change = document.createElement('li');
             li_change.className = 'list-group-item';
             let change_station = change.station.name;
             let change_line = change.targetLine.name;
-            let instruction_change = 'Steigen Sie in ' + change_station + ' in die Linie ' + change_line + ' um.';
+            let instruction_change = '  Steigen Sie in ' + change_station + ' in die Linie ' + change_line + ' um.';
+            let change_icon = document.createElement('i');
+            change_icon.className = "fa fa-retweet";
+            change_icon.style = "font-size:18px";
+            li_change.appendChild(change_icon)
             li_change.appendChild(document.createTextNode(instruction_change));
             instructions.appendChild(li_change);
         }
@@ -62,7 +77,11 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         let li_target = document.createElement('li');
         li_target.className = 'list-group-item';
         let target_station = train_route.route.finalStop.name;
-        let instruction_target = 'Sie haben das Oberzentrum ' + target_station + ' erreicht.';
+        let instruction_target = '  Sie haben das Oberzentrum ' + target_station + ' erreicht.';
+        let flag_icon = document.createElement('i');
+        flag_icon.className = "fa fa-flag";
+        flag_icon.style = "font-size:18px";
+        li_target.appendChild(flag_icon);
         li_target.appendChild(document.createTextNode(instruction_target));
         instructions.appendChild(li_target);
 

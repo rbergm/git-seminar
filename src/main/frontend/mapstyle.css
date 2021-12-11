@@ -145,13 +145,19 @@ body {
 } 
 
 #dep_time_slider_div {
-  margin-left: 20px;
+  padding-left: 20px;
+  width: 90%;
+}
+
+#departure_time_text {
+  padding-top: 13px;
+  margin-bottom: 0px;
 }
 
 #departure_time_slider {
   /* padding-top: 15px; */
   margin-top: 13px;
-  margin-right: 50px;
+  margin-right: 0px;
 }
 
 #departure_route_div {
@@ -171,8 +177,8 @@ body {
 
 #tablediv {
   width: 95%;
-  height: 60%;
   position: relative;
+  height: 60%;
   top: 10px;
   background-color: #fff;
   margin-left: 10px;
