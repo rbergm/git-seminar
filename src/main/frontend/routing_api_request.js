@@ -33,7 +33,6 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
     }
 
     train_route = await getRouteFromProcessingService(station_name);
-    console.log(train_route);
     if (train_route.status == 'ok') {
         
         let li_start = document.createElement('li');
@@ -86,6 +85,18 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         instructions.appendChild(li_target);
 
 
+    } else {
+        let li_start = document.createElement('li');
+        li_start.className = 'list-group-item';
+        let instruction_start_station = '  Sie haben den Bahnhof ' + station_name + ' erreicht.';
+        let textnode = document.createTextNode(instruction_start_station);
+        let train_icon = document.createElement('i');
+        train_icon.className = "fa fa-train";
+        train_icon.style = "font-size:18px";
+        li_start.appendChild(train_icon);
+        li_start.appendChild(textnode);
+        instructions.appendChild(li_start);
+        
     }
 
 

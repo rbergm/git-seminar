@@ -47,45 +47,39 @@
             <div class="row justify-content-center" id="row2">
                 <div class="col-md-2">
                     <div id = 'next_station_div'>  
-                        <div id = 'params_div' class='absolute fl my15 mx15 py15 px15 bg-white-faint round'>
-                            
-                            <form id='params'>
-                                <h4 class='txt-m txt-bold mb6'>Verkehrsmittel:</h4>
-                                <div class='mb12 mr12 toggle-group align-center'>
-                                    <label class='toggle-container'>
-                                        <input name='profile' type='radio' value='walking' />
-                                        <div class='toggle toggle--active-null toggle--null'>zu Fuß</div>
-                                    </label>
-                                    <label class='toggle-container'>
-                                        <input name='profile' type='radio' value='cycling' checked />
-                                        <div class='toggle toggle--active-null toggle--null'>Fahrrad</div>
-                                    </label>
-                                    <label class='toggle-container'>
-                                        <input name='profile' type='radio' value='driving' />
-                                        <div class='toggle toggle--active-null toggle--null'>PKW</div>
-                                    </label>
-                                </div>
-                                <h4 class='txt-m txt-bold mb6'>Maximale Dauer:</h4>
-                                <div class='mb12 mr12 toggle-group align-center'>
-                                    <label class='toggle-container'>
-                                        <input name='duration' type='radio' value='10' checked />
-                                        <div class='toggle toggle--active-null toggle--null'>10 min</div>
-                                    </label>
-                                    <label class='toggle-container'>
-                                        <input name='duration' type='radio' value='20' />
-                                        <div class='toggle toggle--active-null toggle--null'>20 min</div>
-                                    </label>
-                                    <label class='toggle-container'>
-                                        <input name='duration' type='radio' value='30' />
-                                        <div class='toggle toggle--active-null toggle--null'>30 min</div>
-                                    </label>
-                                </div>
-                            </form>
+                        <div class="row" id="param_row">
+                            <div id = 'params_div' class='absolute fl my15 mx15 py15 px15 bg-white-faint round'>
+                                
+                                <form id='params'>
+                                    <div class='mb12 mr12 toggle-group align-center'>
+                                        <label class='toggle-container'>
+                                            <input name='profile' type='radio' value='walking' />
+                                            <div class='toggle toggle--active-null toggle--null'>
+                                                <i class="fa fa-male" aria-hidden="true"></i>
+                                            </div>
+                                        </label>
+                                        <label class='toggle-container'>
+                                            <input name='profile' type='radio' value='cycling' checked />
+                                            <div class='toggle toggle--active-null toggle--null'>
+                                                <i class="fa fa-bicycle" aria-hidden="true"></i>
+                                            </div>
+                                        </label>
+                                        <label class='toggle-container'>
+                                            <input name='profile' type='radio' value='driving' />
+                                            <div class='toggle toggle--active-null toggle--null'>
+                                                <i class="fa fa-car" aria-hidden="true"></i>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <hr id = 'section_line'>
-                        <b id = 'next_stations_title'>Die nächstgelegenen Bahnhöfe:</b>
-        
-                      <ul class='list-group' id='station_listgroup'></ul>
+                        <div class="row" id="station_title_row">
+                            <h5 id = 'next_stations_title'>Die nächstgelegenen Bahnhöfe:</h5>
+                        </div>
+                        <div class="row" id="listgroup_row">
+                            <ul class='list-group' id='station_listgroup'></ul>
+                        </div>
                     </div>
 
                     <div id = 'raster_calc_div'>
@@ -139,24 +133,22 @@
                         </ul>
                         <div id='dep_time_slider_div'>
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-5">
+                                    <p id="dep_station"> </p>
+                                </div>
+                                <div class="col-lg-4">
                                     <p id='departure_time_text'>Abfahrt: Jetzt </p>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
                                     <input id="departure_time_slider" type="range" min="0" max="10" value="0" step="1">
                                 </div>
                             </div>
                         </div>
                         <div class = 'table-wrapper-scroll-y my-custom-scrollbar' id = 'tablediv'>
 
-                            <table class='table table-striped' id = 'departure_table'>
-                                <thead>
-                                    <tr>
-                                    <th id='departure_table_head'></th>
-                                    </tr>
-                                </thead>
-                            <tbody></tbody>
-                            <ul class='list-group' id='navig_steps_listgroup'></ul>
+                            <ul class='list-group' id = 'departure_listgroup'></ul>
+
+                            <ul class='list-group' id = 'navig_steps_listgroup'></ul>
                         </div>
                     </div>
                 </div>
@@ -180,7 +172,6 @@ const urlBase = 'https://api.mapbox.com/isochrone/v1/mapbox/';
 
 marker_list = [];
 let profile = 'cycling';
-let minutes = 10;
 
 
 timetables = null;
@@ -475,7 +466,7 @@ async function getIso() {
     let lat = lngLat.lat;
 
     let query = await fetch(
-    `${urlBase}${profile}/${lng},${lat}?contours_minutes=${minutes}&polygons=true&access_token=${mapboxgl.accessToken}`,
+    `${urlBase}${profile}/${lng},${lat}?contours_minutes=10%2C20%2C30&polygons=true&access_token=${mapboxgl.accessToken}`,
     { method: 'GET' }
     );
 
@@ -531,12 +522,15 @@ async function getIso() {
         let element = query_stations[station];
         let name = element.properties.NAME;
         let eva = element.properties.EVA_NR;
+        let dist = element.properties.distance.toFixed(2).toString(); 
+        console.log(name.length);
         
         // to prevent doubling trainstation bug
         if (double_check.indexOf(eva) == -1) {
+            
             let li = document.createElement('li');
             li.className = 'list-group-item';
-            li.appendChild(document.createTextNode(name));
+            li.appendChild(document.createTextNode(name + '    ' + dist + ' km'));
             li.onclick = function (){
                 get_time_table(eva, name);
                 let marker_location = marker_list[0].getLngLat()
@@ -553,8 +547,7 @@ async function getIso() {
 params.addEventListener('change', (event) => {
     if (event.target.name === 'profile') {
         profile = event.target.value;
-    } else if (event.target.name === 'duration') {
-        minutes = event.target.value;
+
     }
     getIso();
 });
@@ -568,7 +561,7 @@ slider.addEventListener('change', (event) => {
         get_time_table(last_eva, last_name)
         console.log(slider.value);
     }
-    document.getElementById('departure_time_text').innerText = 'Abfahrt in:  ' + slider.value + '  Stunden'
+    document.getElementById('departure_time_text').innerText = 'Abfahrt in:  ' + slider.value + '  h'
 });
 
 function onDragEnd() {
@@ -581,7 +574,7 @@ function Mode1() {
     document.getElementById('raster_calc_div').style.display = 'none';
     document.getElementById('menu').style.display = 'none';
     document.getElementById('myPopup').style.visibility = 'hidden';
-    
+    document.getElementById('departure_route_div').style.display = 'block';
     if (document.getElementById('tablediv') != undefined) {
         document.getElementById('tablediv').style.display = 'block';
     }
@@ -613,6 +606,7 @@ function Mode2() {
     document.getElementById('raster_calc_div').style.display = 'block';
     document.getElementById('menu').style.display = 'block';
     document.getElementById('myPopup').style.visibility = 'hidden';
+    document.getElementById('departure_route_div').style.display = 'none';
     
     if (document.getElementById('tablediv') != undefined) {
         document.getElementById('tablediv').style.display = 'none';
@@ -640,7 +634,7 @@ function Mode2() {
 }
 
 function departure_view() {
-    document.getElementById('departure_table').style.display = 'table';
+    document.getElementById('departure_listgroup').style.display = 'table';
     document.getElementById('tablediv').style.height = '60%';
     document.getElementById('navig_steps_listgroup').style.display = 'none';
     document.getElementById('dep_time_slider_div').style.display = 'block';
@@ -649,7 +643,7 @@ function departure_view() {
 }
 
 function route_view() {
-    document.getElementById('departure_table').style.display = 'none';
+    document.getElementById('departure_listgroup').style.display = 'none';
     document.getElementById('tablediv').style.height = '75%';
     document.getElementById('navig_steps_listgroup').style.display = 'inline';
     document.getElementById('dep_time_slider_div').style.display = 'none';

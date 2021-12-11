@@ -2,8 +2,8 @@ async function get_time_table(eva, name) {
 
   let slider = document.getElementById("departure_time_slider");
   let plus_x_hours = parseInt(slider.value);
-  document.getElementById('departure_table_head').innerHTML = 'Abfahrten von ' + name;
 
+  document.getElementById('dep_station').innerHTML = name;
   map.setPaintProperty('haltestellen-layer', 'circle-stroke-opacity', ['match', ['get', 'EVA_NR'], eva, 1, 0]);
   map.setPaintProperty('haltestellen-layer', 'circle-opacity', ['match', ['get', 'EVA_NR'], eva, 1, 0.6]);
   map.setPaintProperty('haltestellen-layer', 'circle-color', ['match', ['get', 'EVA_NR'], eva, 'darkred', 'red']);
@@ -59,9 +59,9 @@ await fetch(url, {
   })
   .then(function(timetables) { 
     
-    let table = document.getElementsByTagName("tbody")[0];
-    while(table.hasChildNodes()){
-      table.removeChild(table.firstChild);
+    let dep_list = document.getElementById('departure_listgroup');
+    while(dep_list.hasChildNodes()){
+      dep_list.removeChild(dep_list.firstChild);
     }
     
     timetables.sort((a, b) => {
@@ -74,6 +74,15 @@ await fetch(url, {
       return 0;
     });
 
+  //   for (let index = 0; index < steps.length -1; index++) {
+  //     let numbering = index + 1;
+  //     let li = document.createElement('li');
+  //     li.className = 'list-group-item';
+  //     li.appendChild(document.createTextNode(numbering.toString() + '. ' + steps[index].maneuver.instruction));
+  //     instructions.appendChild(li);
+  // }
+
+
     for (let index = 0; index < timetables.length; index++) {
 
 
@@ -81,33 +90,38 @@ await fetch(url, {
       let traintype = timetables[index][0];
       let datetime  = timetables[index][1];
       let platform  = timetables[index][2];
-      let route     = timetables[index][3]
+      let route     = timetables[index][3];
+      route = route.replaceAll('|', '  |  ')
       
       let formatted_date = datetime.substring(4,6) + '.' + datetime.substring(2,4) + '.' + datetime.substring(0,2);
       let formatted_time = datetime.substring(6,8) + ':' + datetime.substring(8);
 
       let tr_text= traintype + " auf Gleis " + platform + ' am ' + formatted_date + " um " + formatted_time + " Richtung " + (route.substring(route.lastIndexOf("|")+1));
 
-      let row = table.insertRow();
-      row.id = 'row_departure_table';
-      let hidden_row = table.insertRow();
-      hidden_row.style.display = 'none'
-      
-      let cell         = row.insertCell();
-      let hidden_cell  = hidden_row.insertCell();
-      let tr_textnode  = document.createTextNode(tr_text);
-      let hidden_route = document.createTextNode(route);
+ 
+      let li = document.createElement('li');
+      let li_hidden = document.createElement('li');
+      li.className = 'list-group-item';
+      li_hidden.className = 'list-group-item';
 
-      row.onclick = function() {
-        if (hidden_row.style.display == 'none') {
-          hidden_row.style.display = 'inline';
-        }else if (hidden_row.style.display == 'inline'){
-          hidden_row.style.display = 'none';
+      li.id = 'row_departure_listgroup';
+      li.appendChild(document.createTextNode(tr_text));
+
+      li_hidden.style.display = 'none';
+      li_hidden.style.backgroundColor = 'lightgrey';
+      li_hidden.appendChild(document.createTextNode(route));
+      
+
+      li.onclick = function() {
+        if (li_hidden.style.display == 'none') {
+          li_hidden.style.display = 'inline';
+        }else if (li_hidden.style.display == 'inline'){
+          li_hidden.style.display = 'none';
         }
       };
     
-      cell.appendChild(tr_textnode);
-      hidden_cell.appendChild(hidden_route);
+      dep_list.appendChild(li);
+      dep_list.appendChild(li_hidden);
 
     }
   

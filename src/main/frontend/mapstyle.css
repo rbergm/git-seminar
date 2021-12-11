@@ -24,7 +24,7 @@ body {
 }
 
 .mapboxgl-popup-content h2 {
-  font-size: 12pt;
+  font-size: 11pt;
   background: #007bff;
   color: #fff;
   margin: 0;
@@ -82,14 +82,10 @@ body {
 
 #params {
   /* display: none; */
-  position: relative;
-  top: 0%;
 }
 
 #section_line {
-  height: 2px;
-  position: relative;
-  top: 30%;
+
 }
 
 #params_div {
@@ -98,10 +94,9 @@ body {
 }
 
 #next_stations_title {
-  position: relative;
-  top: 30%;
-  margin-left: 10%;
+
   font-size: 10pt;
+  margin-left: 10px;
 
 }
 
@@ -120,29 +115,23 @@ body {
   z-index: 2;
 }
 
-#departure_table {
+#departure_listgroup {
   background-color: #fff;
   position: relative;
+  width: 100%;
   top: 0px;
   z-index: 2;
   max-height: 150px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-width: thin; 
 }
 
-#departure_table thead {
-  position: sticky;
-  top: 0; 
-  height: 41.6px;
-  z-index: 1;
-  background-color: #fff;
+#dep_station {
+  font-size: 10pt;
+  padding-top: 13px;
+  margin: 0px;
+  text-align: center;
 }
-
-
-
-#departure_table tbody{
-  position: relative;
-
-} 
 
 #dep_time_slider_div {
   padding-left: 20px;
@@ -152,12 +141,14 @@ body {
 #departure_time_text {
   padding-top: 13px;
   margin-bottom: 0px;
+  font-size: 10pt;
 }
 
 #departure_time_slider {
   /* padding-top: 15px; */
   margin-top: 13px;
   margin-right: 0px;
+  width: 100%;
 }
 
 #departure_route_div {
@@ -189,26 +180,28 @@ body {
 
 #station_listgroup {
   position: relative;
-  width: 90%;
-  height: 50%;
-  top: 33%;
-  margin-left: 4%;
-  max-height: 300px;
   margin-bottom: 10px;
-  overflow-y:scroll;
+  margin-right: 5px;
+  width: 100%;
+  max-height: 350px;
+  overflow-y:auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;  
   scrollbar-color: #9b9b9b rgb(212, 224, 224);
   z-index: 2;
 }
 
-li {
+.list-group li {
 cursor: pointer;
+height: auto;
+font-size: 9pt;
+}
+
+li {
+  cursor: pointer;
 }
 
 
-
-/* Popup container */
 
 .nav-item-popup {
   position: relative;
@@ -244,7 +237,7 @@ cursor: pointer;
 }
 
 
-#row_departure_table {
+#row_departure_listgroup {
 cursor: pointer;
 }
 
@@ -259,6 +252,7 @@ cursor: pointer;
 
 #navig_steps_listgroup {
 display: none;
+width: 100%;
 }
 
 #navbar {
@@ -328,4 +322,25 @@ background: #3074a4;
 .col-md-4 {
   padding-left: 0px !important;
   padding-right: 0px !important;
+}
+
+#param_row {
+  margin-top: 20px;
+  height: 15%;
+  width: 95%;
+  margin-left: 10px;
+}
+
+
+
+#station_title_row {
+  height: 5%;
+  width: 95%;
+  margin-left: 10px;
+}
+
+#listgroup_row {
+  height: 70%;
+  width: 95%;
+  margin-left: 10px;
 }
