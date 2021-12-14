@@ -16,15 +16,15 @@ import org.springframework.stereotype.Service;
 @Deprecated
 public class WFSFetchService {
 
-	private static final Logger log = LoggerFactory.getLogger(WFSFetchService.class);
+  private static final Logger log = LoggerFactory.getLogger(WFSFetchService.class);
 
-	@Value("${geoserver.root}")
-	private String geoserverRootPath;
+  @Value("${geoserver.root}")
+  private String geoserverRootPath;
 
-	public void loadWFS() {
-		log.debug("Trying to load WFS data from " + geoserverRootPath);
+  public void loadWFS() {
+    log.debug("Trying to load WFS data from " + geoserverRootPath);
 
-		log.debug("Done with loading");
-	}
+    log.debug("Done with loading");
+  }
 
 }

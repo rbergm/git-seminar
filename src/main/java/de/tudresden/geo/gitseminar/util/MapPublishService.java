@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MapPublishService {
 
-	public void publishShapefile(String destination) {
+  public void publishShapefile(String destination) {
 
-	}
+  }
 
 }

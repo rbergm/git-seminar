@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShapefileLoadService {
 
-	public Optional<DataStore> fromPath(String fPath) {
-		var dataFile = new File(fPath);
-		try {
-			var store = FileDataStoreFinder.getDataStore(dataFile);
-			return Optional.of(store);
-		} catch (IOException e) {
-			return Optional.empty();
-		}
-	}
+  public Optional<DataStore> fromPath(String fPath) {
+    var dataFile = new File(fPath);
+    try {
+      var store = FileDataStoreFinder.getDataStore(dataFile);
+      return Optional.of(store);
+    } catch (IOException e) {
+      return Optional.empty();
+    }
+  }
 
 }

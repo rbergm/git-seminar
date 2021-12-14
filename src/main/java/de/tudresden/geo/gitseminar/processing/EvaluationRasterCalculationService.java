@@ -37,6 +37,7 @@ public class EvaluationRasterCalculationService {
   private static double defaultWeight = 5.0;
 
   private CoverageReader coverageReader;
+  private CoverageWriter coverageWriter;
   private Resource stationEvalRasterResource;
   private Resource mittelzentrumRoutesRasterResource;
   private Resource oberzentrumRoutesRasterResource;
@@ -44,12 +45,14 @@ public class EvaluationRasterCalculationService {
   private Resource trainStationDistanceRasterResource;
 
   public EvaluationRasterCalculationService(CoverageReader coverageReader,
+      CoverageWriter coverageWriter,
       @Value("${raster.src.stationeval}") String stationEvalRasterPath,
       @Value("${raster.src.mzroutes}") String mittelzentrumRoutesRasterPath,
       @Value("${raster.src.ozroutes}") String oberzentrumRoutesRasterPath,
       @Value("${raster.src.population}") String populationRasterPath,
       @Value("${raster.src.distance}") String trainStationDistanceRasterPath) {
     this.coverageReader = coverageReader;
+    this.coverageWriter = coverageWriter;
 
     this.stationEvalRasterResource = new ClassPathResource(stationEvalRasterPath);
     this.mittelzentrumRoutesRasterResource = new ClassPathResource(mittelzentrumRoutesRasterPath);
@@ -107,6 +110,11 @@ public class EvaluationRasterCalculationService {
     WeightedSumOperator weightedSumOperator = operatorBuilder.build();
 
     return weightedSumOperator.calculate();
+  }
+
+  public void computeAndStore(Map<Rasters, Double> weights, String outName) throws IOException {
+    var raster = compute(weights);
+    coverageWriter.storeCoverage(raster, outName);
   }
 
 }

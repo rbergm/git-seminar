@@ -1,49 +1,53 @@
 package de.tudresden.geo.gitseminar.geoserver;
 
-import org.geotools.coverage.grid.GridCoverage2D;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MimeType;
 import org.springframework.web.client.RestTemplate;
-import de.tudresden.geo.gitseminar.geoserver.DataStores.DataStore.DataStoreEntry;
+import de.tudresden.geo.gitseminar.geoserver.CoverageStores.CoverageStoreEntry;
 
 @Service
 public class GeoServer {
 
   private final RestTemplate restTemplate;
-  private final String geoserverBaseUrl;
-  private String geoserverWorkspace;
+  private final GeoServerURLBuilder urlBuilder;
 
   public GeoServer(RestTemplate restTemplate, @Value("${geoserver.root}") String geoserverBaseUrl,
       @Value("${geoserver.workspace}") String geoserverWorkspace) {
     this.restTemplate = restTemplate;
-    this.geoserverBaseUrl = geoserverBaseUrl;
-    this.geoserverWorkspace = geoserverWorkspace;
+    this.urlBuilder = GeoServerURLBuilder.forInstance(geoserverBaseUrl, geoserverWorkspace);
   }
 
-  public boolean hasDatastore(String datastoreName) {
-    var datastoreUrl =
-        GeoServerURLBuilder.forInstance(geoserverBaseUrl, geoserverWorkspace).datastores();
-    var datastores = restTemplate.getForObject(datastoreUrl, DataStores.class);
-    boolean datastoreExists = datastores.flatten().stream().map(DataStoreEntry::getName)
-        .anyMatch(n -> n.equals(datastoreName));
-    return datastoreExists;
+  public boolean hasCoverageStore(String storeName) {
+    var coverageStoreUrl = urlBuilder.coverageStores();
+    var coverageStores = restTemplate.getForObject(coverageStoreUrl, CoverageStores.class);
+    boolean coverageStoreExists = coverageStores.getCoverageStores().getCoverageStore().stream()
+        .map(CoverageStoreEntry::getName).anyMatch(n -> n.equals(storeName));
+    return coverageStoreExists;
   }
 
-  public void createDatastore(String datastoreName) {
+  public void uploadToCoverageStore(String storeName, String rasterFile) throws IOException {
+    File raster = new File(rasterFile);
+    var uploadUrl = urlBuilder.coverageStoreFile(storeName, ".geotiff");
 
+    try (var rasterData = new FileInputStream(raster)) {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.asMediaType(MimeType.valueOf("image/tif")));
+      HttpEntity<byte[]> requestEntity = new HttpEntity<>(IOUtils.toByteArray(rasterData), headers);
+      restTemplate.exchange(uploadUrl, HttpMethod.PUT, requestEntity, String.class);
+    }
   }
 
-  public void uploadToDatastore(String datastoreName, GridCoverage2D raster) {
-    uploadToDatastore(datastoreName, raster, true);
-  }
-
-  public void uploadToDatastore(String datastoreName, GridCoverage2D raster,
-      boolean createIfNecessary) {
-
-  }
-
-  public String getWCSForDatastore(String datastoreName) {
-    return "";
+  public String getWCSForCoverageStore(String storeName) {
+    return storeName;
   }
 
 }

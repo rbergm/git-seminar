@@ -25,7 +25,8 @@ public class RoutingRequestController {
   }
 
   @PostMapping("/routing/calculate")
-  public ResponseEntity<RoutingResponse> calculateRoute(@RequestBody RoutingRequestData routingData) {
+  public ResponseEntity<RoutingResponse> calculateRoute(
+      @RequestBody RoutingRequestData routingData) {
 
     var start = networkSupplier.getTrainStation(routingData.getStartStation());
     TargetSpecification target = null;

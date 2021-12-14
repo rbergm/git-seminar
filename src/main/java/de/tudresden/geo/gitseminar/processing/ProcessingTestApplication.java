@@ -43,7 +43,7 @@ public class ProcessingTestApplication {
     var resultCoverage = (GridCoverage2D) ops.add(weightedCoverage, gridCoverage);
 
     File outputRaster = new File("src/main/resources/out.tif");
-    format.getWriter(outputRaster).write(resultCoverage, null);
+    format.getWriter(outputRaster).write(resultCoverage);
 
     System.out.println("Done");
   }

@@ -62,8 +62,8 @@ public class StaticRoutingDataGenerator {
     try (var printer = new CSVPrinter(out,
         CSVFormat.Builder.create().setHeader("station", "target", "changes", "stops").build())) {
       for (var routingRecord : records) {
-        printer.printRecord(routingRecord.trainStation, routingRecord.targetStation, routingRecord.numberOfChanges,
-            routingRecord.numberOfIntermediateStops);
+        printer.printRecord(routingRecord.trainStation, routingRecord.targetStation,
+            routingRecord.numberOfChanges, routingRecord.numberOfIntermediateStops);
       }
     }
   }

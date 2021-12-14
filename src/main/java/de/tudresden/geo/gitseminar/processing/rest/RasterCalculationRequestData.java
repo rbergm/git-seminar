@@ -10,6 +10,8 @@ public class RasterCalculationRequestData {
   private double stationDistanceWeight;
   private double populationDataWeight;
 
+  public RasterCalculationRequestData() {}
+
   public RasterCalculationRequestData(double departureFrequencyWeight,
       double mittelzentrumDistanceWeight, double oberzentrumDistanceWeight,
       double stationDistanceWeight, double populationDataWeight) {

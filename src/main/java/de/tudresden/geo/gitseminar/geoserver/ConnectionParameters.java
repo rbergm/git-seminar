@@ -7,53 +7,53 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConnectionParameters {
 
-	private List<ConnectionParameterEntry> entry;
+  private List<ConnectionParameterEntry> entry;
 
-	public ConnectionParameters() {}
+  public ConnectionParameters() {}
 
-	public List<ConnectionParameterEntry> getEntry() {
-		return entry;
-	}
+  public List<ConnectionParameterEntry> getEntry() {
+    return entry;
+  }
 
-	public void setEntry(List<ConnectionParameterEntry> entry) {
-		this.entry = entry;
-	}
+  public void setEntry(List<ConnectionParameterEntry> entry) {
+    this.entry = entry;
+  }
 
-	@Override
-	public String toString() {
-		return "ConnectionParameters [entry=" + entry + "]";
-	}
+  @Override
+  public String toString() {
+    return "ConnectionParameters [entry=" + entry + "]";
+  }
 
-	@JsonIgnoreProperties(ignoreUnknown = true)
-	public static class ConnectionParameterEntry {
-		@JsonAlias("@key")
-		private String key;
+  @JsonIgnoreProperties(ignoreUnknown = true)
+  public static class ConnectionParameterEntry {
+    @JsonAlias("@key")
+    private String key;
 
-		@JsonAlias("$")
-		private String value;
+    @JsonAlias("$")
+    private String value;
 
-		public ConnectionParameterEntry() {}
+    public ConnectionParameterEntry() {}
 
-		public String getKey() {
-			return key;
-		}
+    public String getKey() {
+      return key;
+    }
 
-		public void setKey(String key) {
-			this.key = key;
-		}
+    public void setKey(String key) {
+      this.key = key;
+    }
 
-		public String getValue() {
-			return value;
-		}
+    public String getValue() {
+      return value;
+    }
 
-		public void setValue(String value) {
-			this.value = value;
-		}
+    public void setValue(String value) {
+      this.value = value;
+    }
 
-		@Override
-		public String toString() {
-			return "ConnectionParameterEntry [key=" + key + ", value=" + value + "]";
-		}
-	}
+    @Override
+    public String toString() {
+      return "ConnectionParameterEntry [key=" + key + ", value=" + value + "]";
+    }
+  }
 
 }

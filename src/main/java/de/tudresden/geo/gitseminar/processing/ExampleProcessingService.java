@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ExampleProcessingService {
 
-	public void doSomething() {
+  public void doSomething() {
 
-	}
+  }
 
 }

@@ -26,15 +26,14 @@ public class RasterCalculationController {
     this.geoserver = geoserver;
   }
 
-
   @PostMapping("/raster/calculate")
   public ResponseEntity<RasterCalculationResponse> calculateResultRaster(
       @RequestBody RasterCalculationRequestData requestData) throws IOException {
 
     String id = requestIdentifier.toIdentifier(requestData);
 
-    if (geoserver.hasDatastore(id)) {
-      String wcsPath = geoserver.getWCSForDatastore(id);
+    if (geoserver.hasCoverageStore(id)) {
+      String wcsPath = geoserver.getWCSForCoverageStore(id);
       return ResponseEntity.status(HttpStatus.OK).body(RasterCalculationResponse.cached(wcsPath));
     } else {
       Map<Rasters, Double> weightMap = new EnumMap<>(Rasters.class);
@@ -44,11 +43,10 @@ public class RasterCalculationController {
       weightMap.put(Rasters.TrainStationDistance, requestData.getStationDistanceWeight());
       weightMap.put(Rasters.Population, requestData.getPopulationDataWeight());
 
-      var resultingRaster = calculationService.compute(weightMap);
-      geoserver.createDatastore(id);
-      geoserver.uploadToDatastore(id, resultingRaster);
+      calculationService.computeAndStore(weightMap, id + ".geotiff");
+      geoserver.uploadToCoverageStore(id, id + ".geotiff");
 
-      String wcsPath = geoserver.getWCSForDatastore(id);
+      String wcsPath = geoserver.getWCSForCoverageStore(id);
       return ResponseEntity.status(HttpStatus.OK).body(RasterCalculationResponse.created(wcsPath));
     }
   }
