@@ -55,8 +55,11 @@ async function raster_calc() {
 
     map.addSource('weighted-raster-source', {
         'type': 'raster', 
-        'tiles': ['http://localhost:8080/geoserver/V-GDI/wms?service=WMS&version=1.1.0&request=GetMap&layers=raster_depf4.0_mzdist6.0_ozdist10.0_statdist10.0_pop10.0&bbox={bbox-epsg-25833}&width=768&height=571&srs=EPSG:25833&styles=&transparent=true&format=image/png'],
-        'tileSize': 256
+        'tiles': [
+            'http://localhost:8080/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=V-GDI:raster_depf5.0_mzdist7.0_ozdist9.0_statdist3.0_pop8.0&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=image/png&TILECOL={x}&TILEROW={y}'
+        ],
+        'minZoom': 0,
+        'maxZoom': 14
     })
     console.log(map.getSource('weighted-raster-source'));
 
