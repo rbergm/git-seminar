@@ -74,14 +74,6 @@ await fetch(url, {
       return 0;
     });
 
-  //   for (let index = 0; index < steps.length -1; index++) {
-  //     let numbering = index + 1;
-  //     let li = document.createElement('li');
-  //     li.className = 'list-group-item';
-  //     li.appendChild(document.createTextNode(numbering.toString() + '. ' + steps[index].maneuver.instruction));
-  //     instructions.appendChild(li);
-  // }
-
 
     for (let index = 0; index < timetables.length; index++) {
 

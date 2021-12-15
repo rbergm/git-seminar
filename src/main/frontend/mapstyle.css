@@ -59,7 +59,7 @@ body {
   background-color: #fff;
   position: relative;
   top: 10px;
-  height: 60%;
+  height: 68%;
   width: 55%;
   border: 2px solid rgb(255, 255, 255);
   border-radius: 10px;
@@ -80,13 +80,6 @@ body {
   font-size: 8pt;
 }
 
-#params {
-  /* display: none; */
-}
-
-#section_line {
-
-}
 
 #params_div {
   margin-left: 10%;

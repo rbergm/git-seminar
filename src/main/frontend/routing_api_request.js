@@ -156,38 +156,3 @@ async function getRouteFromProcessingService(stationName) {
 
     return route;
 }
-
-// structure of the processing service response
-const exampleRoute = {
-    status: "ok",
-    route: {
-        // normal route info
-        startStation: {
-            name: "Freiberg(Sachs)",
-            eva: "",
-            mittelzentrum: true,
-            oberzentrum: false
-        },
-        finalStop: {
-            name: "Chemnitz(Hbf)",
-            eva: "",
-            mittelzentrum: false,
-            oberzentrum: true
-        },
-        changes: [
-            {
-                station: {
-                    name: "Freiberg(Sachs)",
-                    eva: "",
-                    mittelzentrum: true,
-                    oberzentrum: false
-                },
-                targetLine: {
-                    name: "3"
-                },
-                trainEntry: true
-            }
-        ],
-        effectiveChanges: []
-    }
-}

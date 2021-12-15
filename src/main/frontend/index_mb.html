@@ -85,22 +85,27 @@
                     <div id = 'raster_calc_div'>
                         <div id='slider_div'>
                             <p>
-                                <b>Nähe zum Bahnhof</b> 
+                                <b>Taktung</b> 
                                 <br>
                                 <input type="range" min='0' max='10' value='10' step='1'>
                             </p>
                             <p>
-                                <b>Anzahl Umstiege</b>
+                                <b>Entfernung Oberzentrum</b>
                                 <br>
                                 <input type="range" min='0' max='10' value='10' step='1'>
                             </p>
                             <p>
-                                <b>Fahrtdauer</b> 
+                                <b>Entfernung Mittelzentrum</b>
                                 <br>
                                 <input type="range" min='0' max='10' value='10' step='1'>
                             </p>
                             <p>
-                                <b>Anzahl Bewohner</b> 
+                                <b>Entfernung Bahnhof</b> 
+                                <br>
+                                <input type="range" min='0' max='10' value='10' step='1'>
+                            </p>
+                            <p>
+                                <b>Bevölkerungsdichte</b> 
                                 <br>
                                 <input type="range" min='0' max='10' value='10' step='1'>
                             </p>
@@ -187,29 +192,29 @@ doubleClickZoom: false
 
 
 map.on('load', () => {
-    map.addSource('raster-source', {
-        'type': 'image',
+    // map.addSource('raster-source', {
+    //     'type': 'image',
         
-        'url': 'data/dist_raster_gif.gif',
-        'coordinates': [
-            [11.7909799230130741, 51.7068931722358016],
-            [15.0453037544106447,51.7068931722358016],
-            [15.0453037544106447, 50.1560044713354003],
-            [11.7909799230130741,50.1560044713354003]
-        ]
-    });
+    //     'url': 'data/dist_raster_gif.gif',
+    //     'coordinates': [
+    //         [11.7909799230130741, 51.7068931722358016],
+    //         [15.0453037544106447,51.7068931722358016],
+    //         [15.0453037544106447, 50.1560044713354003],
+    //         [11.7909799230130741,50.1560044713354003]
+    //     ]
+    // });
 
-    map.addLayer({
-        'id': 'Einwohnerdichte',
-        'type': 'raster',
-        'source': 'raster-source',
-        'layout': {
-            'visibility': 'none'
-        },
-        'paint': {
-                'raster-fade-duration': 0
-        }
-    });
+    // map.addLayer({
+    //     'id': 'Einwohnerdichte',
+    //     'type': 'raster',
+    //     'source': 'raster-source',
+    //     'layout': {
+    //         'visibility': 'none'
+    //     },
+    //     'paint': {
+    //             'raster-fade-duration': 0
+    //     }
+    // });
 
     map.addSource('ZO', {
         'type': 'geojson',
@@ -325,13 +330,17 @@ map.on('dblclick', function(click) {
 // After the last frame rendered before the map enters an "idle" state.
 map.on('idle', () => {
 // If these two layers were not added to the map, abort
-if (!map.getLayer('Oberzentren') || !map.getLayer('Mittelzentren')|| !map.getLayer('Einwohnerdichte')) {
+
+// if (!map.getLayer('Oberzentren') || !map.getLayer('Mittelzentren')|| !map.getLayer('Einwohnerdichte')) {
+// return;
+// }
+if (!map.getLayer('Oberzentren') || !map.getLayer('Mittelzentren')) {
 return;
 }
 
-
 // Enumerate ids of the layers.
-const toggleableLayerIds = ['Oberzentren', 'Mittelzentren', 'Einwohnerdichte'];
+const toggleableLayerIds = ['Oberzentren', 'Mittelzentren'];
+// const toggleableLayerIds = ['Oberzentren', 'Mittelzentren', 'Einwohnerdichte'];
  
 // Set up the corresponding toggle button for each layer.
 for (const id of toggleableLayerIds) {
@@ -591,7 +600,7 @@ function Mode1() {
 
     map.setLayoutProperty('haltestellen-layer', 'visibility', 'visible');
     map.setLayoutProperty('isoLayer', 'visibility', 'visible');
-    map.setLayoutProperty('Einwohnerdichte', 'visibility', 'none');
+    // map.setLayoutProperty('Einwohnerdichte', 'visibility', 'none');
     map.setLayoutProperty('Oberzentren', 'visibility', 'none');
     map.setLayoutProperty('Mittelzentren', 'visibility', 'none');
 
@@ -625,7 +634,7 @@ function Mode2() {
     map.setLayoutProperty('isoLayer', 'visibility', 'none');
     map.setLayoutProperty('Oberzentren', 'visibility', 'visible');
     map.setLayoutProperty('Mittelzentren', 'visibility', 'visible');
-    map.setLayoutProperty('Einwohnerdichte', 'visibility', 'visible');
+    // map.setLayoutProperty('Einwohnerdichte', 'visibility', 'visible');
 
     if (map.getLayer('route')) {
         map.setLayoutProperty('route', 'visibility', 'none')
