@@ -15,8 +15,7 @@ async function raster_calc() {
             populationDataWeight: count_citizens
     }
 
-    console.log(reqData);
-
+    
     let init = {
         method: "POST",
         headers: { "Content-type": "application/json" },
@@ -29,73 +28,37 @@ async function raster_calc() {
         if (!response.ok) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
+        console.log(response);
         return response.json();
     });
     console.log(layer);
-    url_end = layer.geoserverUrl;
+    let url= layer.geoserverUrl;
+    // if (map.getSource('weighted-raster-source')) {
+    //     console.log( map.getSource('weighted-raster-source'));
+    //     // console.log( map.getLayer('weighted-raster-layer'));
+    //     // map.removeLayer('weighted-raster-layer');
+    //     map.removeSource('weighted-raster-source');    
+    //     console.log( map.getSource('weighted-raster-source'));
+    //     // console.log( map.getLayer('weighted-raster-layer'));
+    // }
+    // map.addSource('weighted-raster-source', {
+    //     'type': 'raster', 
+    //     'tiles': [
+    //         `http://localhost:8080/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=V-GDI:${url}&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=image/png&TILECOL={x}&TILEROW={y}`
+    //     ],
+    //     'minZoom': 0,
+    //     'maxZoom': 14
+    // })
+    // console.log( map.getSource('weighted-raster-source'));
+
+    //     // map.addLayer({
+    //     //     'id': 'weighted-raster-layer',
+    //     //     'type': 'raster',
+    //     //     'source': 'weighted-raster-source',
+    //     // 
+    //     // });
     
-    // structure of response
+
     
-    if (map.getSource('weighted-raster-source')) {
-        map.removeSource('weighted-raster-source');
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    console.log('vor add source');
-
-    map.addSource('weighted-raster-source', {
-        'type': 'raster', 
-        'tiles': [
-            'http://localhost:8080/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=V-GDI:raster_depf5.0_mzdist7.0_ozdist9.0_statdist3.0_pop8.0&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=image/png&TILECOL={x}&TILEROW={y}'
-        ],
-        'minZoom': 0,
-        'maxZoom': 14
-    })
-    console.log(map.getSource('weighted-raster-source'));
-
-    map.addLayer({
-        'id': 'weighted-raster-layer',
-        'type': 'raster',
-        'source': 'weighted-raster-source',
-
-        'paint': {
-        }
-    });
-
-    console.log('nach add layer');
-
-
-    // map.addSource("wms-test-source", {
-    //     "type": 'image',
-
-    //     "url": "http://localhost:8080/geoserver/V-GDI/wms?service=WMS&version=1.1.0&request=GetMap&layers=V-GDI%3Araster_depf5.0_mzdist7.0_ozdist9.0_statdist3.0_pop8.0&bbox=278075.5482%2C5560939.7909%2C503075.5482%2C5728439.7909&width=768&height=571&transparent=true&srs=EPSG%3A25833&styles=&format=image%2Fpng",
-    //             'coordinates': [
-    //         [11.7909799230130741, 51.7068931722358016],
-    //         [15.0453037544106447,51.7068931722358016],
-    //         [15.0453037544106447, 50.1560044713354003],
-    //         [11.7909799230130741,50.1560044713354003]
-    //     ]
-
-        
-    // }); 
-
-//     map.addLayer(
-//         {
-//             "id": 'wms-test-layer',
-//             "type": 'raster',
-//             "source": 'wms-test-source',
-//             "paint": {
-//             }
-//         }                
-//     );
 }
+
