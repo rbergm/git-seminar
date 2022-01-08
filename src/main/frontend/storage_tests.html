@@ -1,0 +1,26 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Web Storage API Tests</title>
+    </head>
+    <body>
+        <p id="state">[Hier wird der aktuelle Zustand angezeigt]</p>
+        <button type="button" id="btn-reset-state">Zustand zurücksetzen</button>
+        <script>
+            const stateContainer = document.getElementById("state");
+            const stateReset = document.getElementById("btn-reset-state");
+
+            stateReset.addEventListener("click", () => localStorage.removeItem("was-loaded"));
+
+            const wasLoaded = localStorage.getItem("was-loaded");
+            if (wasLoaded) {
+                stateContainer.textContent = "Seite wurde bereits geladen";
+            } else {
+                stateContainer.textContent = "Erster Seitenaufruf";
+                localStorage.setItem("was-loaded", true);
+            }
+        </script>
+    </body>
+</html>
