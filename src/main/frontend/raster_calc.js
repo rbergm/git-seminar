@@ -1,5 +1,6 @@
 async function raster_calc() {
     let sliders = document.getElementById('slider_div').getElementsByTagName('input');
+    console.log(sliders);
 
     let frequency  = parseInt(sliders[0].value),
     prox_oz  = parseInt(sliders[1].value),
@@ -33,31 +34,29 @@ async function raster_calc() {
     });
     console.log(layer);
     let url= layer.geoserverUrl;
-    // if (map.getSource('weighted-raster-source')) {
-    //     console.log( map.getSource('weighted-raster-source'));
-    //     // console.log( map.getLayer('weighted-raster-layer'));
-    //     // map.removeLayer('weighted-raster-layer');
-    //     map.removeSource('weighted-raster-source');    
-    //     console.log( map.getSource('weighted-raster-source'));
-    //     // console.log( map.getLayer('weighted-raster-layer'));
-    // }
-    // map.addSource('weighted-raster-source', {
-    //     'type': 'raster', 
-    //     'tiles': [
-    //         `http://localhost:8080/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=V-GDI:${url}&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=image/png&TILECOL={x}&TILEROW={y}`
-    //     ],
-    //     'minZoom': 0,
-    //     'maxZoom': 14
-    // })
-    // console.log( map.getSource('weighted-raster-source'));
+    if (map.getSource('weighted-raster-source')) {
+        console.log( map.getSource('weighted-raster-source'));
+        map.removeLayer('weighted-raster-layer');
+        map.removeSource('weighted-raster-source');    
+        console.log( map.getSource('weighted-raster-source'));
+    }
+    map.addSource('weighted-raster-source', {
+        'type': 'raster', 
+        'tiles': [
+            `http://localhost:8080/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=V-GDI:${url}&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=image/png&TILECOL={x}&TILEROW={y}`
+        ],
+        'minZoom': 0,
+        'maxZoom': 14
+    })
+    console.log( map.getSource('weighted-raster-source'));
 
-    //     // map.addLayer({
-    //     //     'id': 'weighted-raster-layer',
-    //     //     'type': 'raster',
-    //     //     'source': 'weighted-raster-source',
-    //     // 
-    //     // });
+    map.addLayer({
+        'id': 'weighted-raster-layer',
+        'type': 'raster',
+        'source': 'weighted-raster-source',
     
+    });
+
 
     
 }

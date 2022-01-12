@@ -11,7 +11,9 @@ async function get_time_table(eva, name) {
   let DateTime = new Date(); // current DateTime
   DateTime.setHours(DateTime.getHours() + plus_x_hours);  // Adding user input "in how many hours do you want to depart?"
   let Day = (DateTime.getDate() < 10 ? '0' : '') + (DateTime.getDate().toString()); // add leading 0 to numbers < 10
-  let Month = DateTime.getMonth() + 1; // jan = 0
+ 
+  let Month = ((DateTime.getMonth() + 1) < 10 ? '0' : '') + ((DateTime.getMonth() + 1).toString()); // jan = 0
+  
   Month = Month.toString();
   let Year = DateTime.getFullYear().toString().substring(2); // 2 digits representation of year
   let time = (DateTime.getHours() < 10 ? '0' : '') + (DateTime.getHours().toString()); // add leading 0 to numbers < 10
