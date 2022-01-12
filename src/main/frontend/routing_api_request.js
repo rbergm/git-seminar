@@ -19,22 +19,22 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         }
     };
 
-
     while (instructions.hasChildNodes()) {
         instructions.removeChild(instructions.firstChild);
     }
 
-    for (let index = 0; index < steps.length -1; index++) {
-        let numbering = index + 1;
-        let li = document.createElement('li');
-        li.className = 'list-group-item';
-        li.appendChild(document.createTextNode(numbering.toString() + '. ' + steps[index].maneuver.instruction));
-        instructions.appendChild(li);
-    }
-
     train_route = await getRouteFromProcessingService(station_name);
+    console.log(train_route);
     if (train_route.status == 'ok') {
-        
+
+        for (let index = 0; index < steps.length -1; index++) {
+            let numbering = index + 1;
+            let li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.appendChild(document.createTextNode(numbering.toString() + '. ' + steps[index].maneuver.instruction));
+            instructions.appendChild(li);
+        }
+
         let li_start = document.createElement('li');
         li_start.className = 'list-group-item';
         let start_station = train_route.route.startStation.name;
@@ -58,7 +58,7 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         li_line.appendChild(document.createTextNode(instruction_line));
         instructions.appendChild(li_line);
 
-        
+
         for (const change of train_route.route.effectiveChanges) {
             let li_change = document.createElement('li');
             li_change.className = 'list-group-item';
@@ -85,10 +85,10 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         instructions.appendChild(li_target);
 
 
-    } else {
+    } else if (train_route.status == "start-matches-target") {
         let li_start = document.createElement('li');
         li_start.className = 'list-group-item';
-        let instruction_start_station = '  Sie haben den Bahnhof ' + station_name + ' erreicht.';
+        let instruction_start_station = "   Bahnhof ist bereits ein Oberzentrum";
         let textnode = document.createTextNode(instruction_start_station);
         let train_icon = document.createElement('i');
         train_icon.className = "fa fa-train";
@@ -96,12 +96,40 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         li_start.appendChild(train_icon);
         li_start.appendChild(textnode);
         instructions.appendChild(li_start);
-        
+    } else if (train_route.status == "no-route") {
+        let li_start = document.createElement('li');
+        li_start.className = 'list-group-item';
+        let instruction_start_station = "   Keine Route gefunden";
+        let textnode = document.createTextNode(instruction_start_station);
+        let train_icon = document.createElement('i');
+        train_icon.className = "fa fa-times";
+        train_icon.style = "font-size:18px";
+        li_start.appendChild(train_icon);
+        li_start.appendChild(textnode);
+        instructions.appendChild(li_start);
+    }  else if (train_route.status == "station-not-found") {
+        let li_start = document.createElement('li');
+        li_start.className = 'list-group-item';
+        let instruction_start_station = "   Haltepunkt wurde in der Datenbank nicht gefunden";
+        let textnode = document.createTextNode(instruction_start_station);
+        let train_icon = document.createElement('i');
+        train_icon.className = "fa fa-times";
+        train_icon.style = "font-size:18px";
+        li_start.appendChild(train_icon);
+        li_start.appendChild(textnode);
+        instructions.appendChild(li_start);
+    }  else {
+        let li_start = document.createElement('li');
+        li_start.className = 'list-group-item';
+        let instruction_start_station = "   Ein unbekannter Fehler ist aufgetreten";
+        let textnode = document.createTextNode(instruction_start_station);
+        let train_icon = document.createElement('i');
+        train_icon.className = "fa fa-times";
+        train_icon.style = "font-size:18px";
+        li_start.appendChild(train_icon);
+        li_start.appendChild(textnode);
+        instructions.appendChild(li_start);
     }
-
-
-
-
 
     // if the route already exists on the map, we'll reset it using setData
     if (map.getSource('route')) {
@@ -149,7 +177,7 @@ async function getRouteFromProcessingService(stationName) {
 
     const route = await fetch(req, init).then((response) => {
         if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+            console.log(`Error loading route: ${response.status} - ${response.statusText}`);
         }
         return response.json();
     });

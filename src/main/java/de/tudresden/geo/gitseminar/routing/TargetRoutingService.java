@@ -17,6 +17,10 @@ public class TargetRoutingService {
 
   public Optional<Route> findTarget(Graph<TrainStation, StationConnection> trainlineNetwork,
       TrainStation start, TargetSpecification target) {
+    if (start == null) {
+      throw new IllegalArgumentException("start station may not be null");
+    }
+
     if (target.isSatisfiedBy(start)) {
       throw new StartStationMatchesTargetSpecificationException();
     }

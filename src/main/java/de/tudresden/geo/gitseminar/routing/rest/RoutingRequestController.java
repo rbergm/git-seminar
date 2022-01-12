@@ -29,6 +29,10 @@ public class RoutingRequestController {
       @RequestBody RoutingRequestData routingData) {
 
     var start = networkSupplier.getTrainStation(routingData.getStartStation());
+    if (start == null) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(RoutingResponse.stationNotFound());
+    }
+
     TargetSpecification target = null;
     if (routingData.getTarget().equalsIgnoreCase("mittelzentrum")) {
       target = new MittelzentrumTargetSpecification();
@@ -38,8 +42,6 @@ public class RoutingRequestController {
       throw new IllegalArgumentException(
           "Unknown target specification: " + routingData.getTarget());
     }
-
-    // TODO: handle IArgE if the vertex does not exist
 
     RoutingResponse response;
     HttpStatus responseStatus;

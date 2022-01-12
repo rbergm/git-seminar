@@ -6,7 +6,8 @@ import de.tudresden.geo.gitseminar.routing.Route;
 public class RoutingResponse {
 
   public enum RoutingResponseType {
-    OK("ok"), NoRoute("no-route"), StartMatchesTarget("start-matches-target");
+    OK("ok"), NoRoute("no-route"), StartMatchesTarget("start-matches-target"), StationNotFound(
+        "station-not-found");
 
     private String type;
 
@@ -29,6 +30,10 @@ public class RoutingResponse {
 
   public static RoutingResponse startMatchesTarget() {
     return new RoutingResponse(RoutingResponseType.StartMatchesTarget.getType(), null);
+  }
+
+  public static RoutingResponse stationNotFound() {
+    return new RoutingResponse(RoutingResponseType.StationNotFound.getType(), null);
   }
 
   private final String status;
