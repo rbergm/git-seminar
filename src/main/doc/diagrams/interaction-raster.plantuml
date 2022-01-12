@@ -1,0 +1,26 @@
+@startuml
+actor Nutzer
+participant ui as "Web UI"
+participant calc as "Raster Calculation Service"
+participant loading as "Dateisystem-Interface"
+participant geoserver as "GeoServer"
+
+Nutzer -> ui : Raster-Gewichtung einstellen
+Nutzer -> ui : Raster abfragen
+
+ui -> calc : Gewichte senden
+calc -> geoserver : [REST] existierende Raster abfragen
+
+alt Raster existiert
+  calc -> ui : Name des WMTS-Layers
+
+else neue Parametrisierung
+  calc -> loading : Raster-Datensätze laden
+  loading --> calc : Datensätze
+  calc -> calc : Ergebnisraster berechnen
+  calc -> geoserver : Raster hochladen
+  calc -> ui : Name des WMTS-Layers
+end
+
+ui -> geoserver : WMTS-Layer anfragen
+@enduml

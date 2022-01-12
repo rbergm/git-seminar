@@ -1,0 +1,18 @@
+@startuml
+actor Nutzer
+participant ui as "Web UI"
+participant routing as "Routing Service"
+participant network as "Network Provider"
+
+Nutzer -> ui : Route zum nächsten\nzentralen Ort abfragen
+ui -> ui : Bahnhof identifizieren
+ui -> routing : Route anfragen
+
+routing -> network : Verbindungsnetz abfragen
+network --> routing : Netzwerk
+
+routing -> routing : Breitensuche starten
+routing --> ui : Route
+
+ui -> ui : Fahrplan anzeigen
+@enduml
