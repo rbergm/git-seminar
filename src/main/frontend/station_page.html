@@ -27,7 +27,7 @@
 
                     <nav class='navbar navbar-expand-lg navbar-dark bg-primary' id='navbar'>
                         <div class='container-fluid'> <button class='navbar-toggler navbar-toggler-right border-0 p-0' type='button' data-toggle='collapse' data-target='#navbar20' id = 'navbar-toggle'>
-                                <p class='navbar-brand text-white mb-0'> <i class='fa d-inline fa-lg fa-stop-circle'></i> Haltestellen-Informationssystem </p>
+                                <p class='navbar-brand text-white mb-0'></i> Haltestellen-Informationssystem </p>
                             </button>
                             <div class='collapse navbar-collapse' id='navbar20'>
                                 <ul class='navbar-nav mr-auto'>
@@ -35,7 +35,7 @@
                                     <li class='nav-item'> <a class='nav-link' href='raster_page.html'>Rasterübersicht</a> </li>
                                     <li class='nav-item-popup' onclick='infoText()'> <a class='nav-link' href='#'>Über</a> <span class='popuptext' id='myPopup'> Mein nächster Bahnhof:<br>Dieser Modus dient zum Finden der nächstgelegenen Haltestellen um einen gewählten Standort und der nächsten Abfahrten von einem gewählen Bahnhof. Auswählbar ist die gewünschte Fortbewegungsmöglichkeit und die maximale Dauer zum nächsten Bahnhof. <br> Der Standort kann durch Doppelklick auf der Karte gesetzt werden und anschließend mit der Maus verschoben werden. <br><br> Rasterübersicht:<br> Diese Übersicht dient der Veranschaulichung der Erreichbarkeiten in Sachsen auf Grundlage der Anzahl der BewohnerInnen.<br></span></li>
                                 </ul>
-                                <p class='d-none d-md-block lead mb-0 text-white'> <i class='fa d-inline fa-lg fa-stop-circle'></i> <b> Haltestellen-Informationssystem</b> </p>
+                                <p class='d-none d-md-block lead mb-0 text-white'><b> Haltestellen-Informationssystem</b> </p>
                                 <ul class='navbar-nav ml-auto'>
                                     <li class='nav-item mx-1'> <a class='nav-link' href='https://github.com/rbergm/git-seminar' target='_blank'> GitHub</a> </li>
                                 </ul>
@@ -100,7 +100,10 @@
                             <a class="nav-link active" id='nav_dep_link'>Abfahrten</a>
                             </li>
                             <li class="nav-item" onclick='route_view()' >
-                            <a class="nav-link" id='nav_route_link'>Route</a>
+                            <a class="nav-link" id='nav_route_link'>Route zum Oberzentrum</a>
+                            </li>
+                            <li class="nav-item" onclick='route_view2()' >
+                                <a class="nav-link" id='nav_route_link_mitte'>Route zum Mittelzentrum</a>
                             </li>
                                 
                         </ul>
@@ -574,6 +577,7 @@ function departure_view() {
     document.getElementById('dep_time_slider_div').style.display = 'block';
     document.getElementById('nav_dep_link').className = 'nav-link active';
     document.getElementById('nav_route_link').classList.remove('active');
+    document.getElementById('nav_route_link_mitte').classList.remove('active');
 }
 
 function route_view() {
@@ -582,7 +586,18 @@ function route_view() {
     document.getElementById('navig_steps_listgroup').style.display = 'inline';
     document.getElementById('dep_time_slider_div').style.display = 'none';
     document.getElementById('nav_dep_link').classList.remove('active');
+    document.getElementById('nav_route_link_mitte').classList.remove('active');
     document.getElementById('nav_route_link').className = 'nav-link active';
+}
+
+function route_view2() {
+    document.getElementById('departure_listgroup').style.display = 'none';
+    document.getElementById('tablediv').style.height = '75%';
+    document.getElementById('navig_steps_listgroup').style.display = 'inline';
+    document.getElementById('dep_time_slider_div').style.display = 'none';
+    document.getElementById('nav_dep_link').classList.remove('active');
+    document.getElementById('nav_route_link').classList.remove('active');
+    document.getElementById('nav_route_link_mitte').className = 'nav-link active';
 }
 
 function infoText() {
