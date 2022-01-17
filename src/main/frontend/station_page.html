@@ -155,7 +155,7 @@ const url_params = new URLSearchParams(window.location.search);
 
 console.log();
 
-
+let origin_analysis_link = false; // set to true if analysis button was clicked on station_page.html
 let center_coordinates = [13, 51];
 let zoom = 7;
 
@@ -169,6 +169,7 @@ if (url_params.values().next().value != undefined) {
     }
     console.log(center_coordinates);
     zoom = 11;
+    origin_analysis_link = true;
     
 }
 
@@ -182,30 +183,8 @@ doubleClickZoom: false
 
 
 
-map.on('load', () => {
-    // map.addSource('raster-source', {
-    //     'type': 'image',
-        
-    //     'url': 'data/dist_raster_gif.gif',
-    //     'coordinates': [
-    //         [11.7909799230130741, 51.7068931722358016],
-    //         [15.0453037544106447,51.7068931722358016],
-    //         [15.0453037544106447, 50.1560044713354003],
-    //         [11.7909799230130741,50.1560044713354003]
-    //     ]
-    // });
 
-    // map.addLayer({
-    //     'id': 'Einwohnerdichte',
-    //     'type': 'raster',
-    //     'source': 'raster-source',
-    //     'layout': {
-    //         'visibility': 'none'
-    //     },
-    //     'paint': {
-    //             'raster-fade-duration': 0
-    //     }
-    // });
+map.on('load', () => {
 
     map.addSource('ZO', {
         'type': 'geojson',
@@ -287,6 +266,20 @@ map.on('load', () => {
         
         }
     });
+
+    if (origin_analysis_link == true) {
+    let marker = new mapboxgl.Marker({
+        draggable : true,
+        'color': '#314ccd'
+    });
+    marker.setLngLat(center_coordinates);
+    marker.addTo(map);
+    marker.on('dragend', onDragEnd);
+
+    marker_list.push(marker);
+
+    getIso()
+}
 
 
 
@@ -519,7 +512,7 @@ async function getIso() {
     double_check = []
     for (let station = 0; station < query_stations.length; station++) {
         
-        let element = query_stations[station];
+        let element = query_stations[station]; 
         let name = element.properties.NAME;
         let eva = element.properties.EVA_NR;
         let dist = element.properties.distance.toFixed(2).toString(); 
@@ -534,7 +527,7 @@ async function getIso() {
             li.onclick = function (){
                 get_time_table(eva, name);
                 let marker_location = marker_list[0].getLngLat()
-                getRoute(marker_location.lng, marker_location.lat, element.properties.Laenge, element.properties.Breite, profile, NAME);
+                getRoute(marker_location.lng, marker_location.lat, element.properties.Laenge, element.properties.Breite, profile, name);
             };
 
             listgroup.appendChild(li);
