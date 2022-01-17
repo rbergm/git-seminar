@@ -32,14 +32,14 @@ public class WeightedSumOperator {
   }
 
   public GridCoverage2D calculate() {
+    if (inputs.size() == 1) {
+      return (GridCoverage2D) inputs.keySet().toArray()[0];
+    }
+
     List<Coverage> weightedRasters = new ArrayList<>(inputs.size());
     for (var inputRaster : inputs.entrySet()) {
       double[] weight = {inputRaster.getValue()};
-      weightedRasters.add(operations.add(inputRaster.getKey(), weight));
-    }
-
-    if (weightedRasters.size() == 1) {
-      return (GridCoverage2D) weightedRasters.get(0);
+      weightedRasters.add(operations.multiply(inputRaster.getKey(), weight));
     }
 
     Coverage intermediateSum = weightedRasters.get(0);
