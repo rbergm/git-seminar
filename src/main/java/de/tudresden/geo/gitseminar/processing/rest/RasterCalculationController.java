@@ -50,8 +50,8 @@ public class RasterCalculationController {
       weightMap.put(Rasters.TrainStationDistance, requestData.getStationDistanceWeight());
       weightMap.put(Rasters.Population, requestData.getPopulationDataWeight());
 
-      calculationService.computeAndStore(weightMap, id + ".geotiff");
-      geoserver.uploadToCoverageStore(id, id + ".geotiff");
+      calculationService.computeAndStore(weightMap, id + ".tif");
+      geoserver.uploadToCoverageStore(id, id + ".tif");
 
       String wcsPath = geoserver.getWCSForCoverageStore(id);
       return ResponseEntity.status(HttpStatus.OK)
