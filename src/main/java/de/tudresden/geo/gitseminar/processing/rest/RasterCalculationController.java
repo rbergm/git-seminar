@@ -34,7 +34,8 @@ public class RasterCalculationController {
 
     if (geoserver.hasCoverageStore(id)) {
       String wcsPath = geoserver.getWCSForCoverageStore(id);
-      return ResponseEntity.status(HttpStatus.OK).body(RasterCalculationResponse.cached(wcsPath));
+      return ResponseEntity.status(HttpStatus.OK)
+          .body(RasterCalculationResponse.cached(wcsPath, geoserver.getWorkspace()));
     } else {
       Map<Rasters, Double> weightMap = new EnumMap<>(Rasters.class);
       weightMap.put(Rasters.StationEvaluation, requestData.getDepartureFrequencyWeight());
@@ -47,7 +48,8 @@ public class RasterCalculationController {
       geoserver.uploadToCoverageStore(id, id + ".geotiff");
 
       String wcsPath = geoserver.getWCSForCoverageStore(id);
-      return ResponseEntity.status(HttpStatus.OK).body(RasterCalculationResponse.created(wcsPath));
+      return ResponseEntity.status(HttpStatus.OK)
+          .body(RasterCalculationResponse.created(wcsPath, geoserver.getWorkspace()));
     }
   }
 

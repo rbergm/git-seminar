@@ -16,15 +16,15 @@ async function raster_calc() {
             populationDataWeight: count_citizens
     }
 
-    
+
     let init = {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(reqData)
     };
-    
+
     let req = new Request("http://localhost:8000/raster/calculate");
-    
+
     const layer = await fetch(req, init).then((response) => {
         if (!response.ok) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);
@@ -34,16 +34,17 @@ async function raster_calc() {
     });
     console.log(layer);
     let url= layer.geoserverUrl;
+    const workspace = layer.workspace;
     if (map.getSource('weighted-raster-source')) {
         console.log( map.getSource('weighted-raster-source'));
         map.removeLayer('weighted-raster-layer');
-        map.removeSource('weighted-raster-source');    
+        map.removeSource('weighted-raster-source');
         console.log( map.getSource('weighted-raster-source'));
     }
     map.addSource('weighted-raster-source', {
-        'type': 'raster', 
+        'type': 'raster',
         'tiles': [
-            `http://localhost:8080/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=V-GDI:${url}&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=image/png&TILECOL={x}&TILEROW={y}`
+            `http://localhost:8080/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=${workspace}:${url}&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=image/png&TILECOL={x}&TILEROW={y}`
         ],
         'minZoom': 0,
         'maxZoom': 14
@@ -54,10 +55,9 @@ async function raster_calc() {
         'id': 'weighted-raster-layer',
         'type': 'raster',
         'source': 'weighted-raster-source',
-    
+
     });
 
 
-    
-}
 
+}

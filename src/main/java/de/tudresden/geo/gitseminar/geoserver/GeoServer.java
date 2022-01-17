@@ -19,11 +19,13 @@ public class GeoServer {
 
   private final RestTemplate restTemplate;
   private final GeoServerURLBuilder urlBuilder;
+  private final String workspace;
 
   public GeoServer(RestTemplate restTemplate, @Value("${geoserver.root}") String geoserverBaseUrl,
       @Value("${geoserver.workspace}") String geoserverWorkspace) {
     this.restTemplate = restTemplate;
     this.urlBuilder = GeoServerURLBuilder.forInstance(geoserverBaseUrl, geoserverWorkspace);
+    this.workspace = geoserverWorkspace;
   }
 
   public boolean hasCoverageStore(String storeName) {
@@ -48,6 +50,10 @@ public class GeoServer {
 
   public String getWCSForCoverageStore(String storeName) {
     return storeName;
+  }
+
+  public String getWorkspace() {
+    return workspace;
   }
 
 }

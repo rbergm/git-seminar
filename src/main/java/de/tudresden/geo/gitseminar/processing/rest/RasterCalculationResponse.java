@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class RasterCalculationResponse {
 
-  public static RasterCalculationResponse cached(String geoserverUrl) {
-    return new RasterCalculationResponse(STATUS_CACHED, geoserverUrl);
+  public static RasterCalculationResponse cached(String geoserverUrl, String workspace) {
+    return new RasterCalculationResponse(STATUS_CACHED, geoserverUrl, workspace);
   }
 
-  public static RasterCalculationResponse created(String geoserverUrl) {
-    return new RasterCalculationResponse(STATUS_CREATED, geoserverUrl);
+  public static RasterCalculationResponse created(String geoserverUrl, String workspace) {
+    return new RasterCalculationResponse(STATUS_CREATED, geoserverUrl, workspace);
   }
 
   private static final String STATUS_CACHED = "cached";
@@ -17,10 +17,12 @@ public class RasterCalculationResponse {
 
   private final String status;
   private final String geoserverUrl;
+  private final String workspace;
 
-  private RasterCalculationResponse(String status, String geoserverUrl) {
+  private RasterCalculationResponse(String status, String geoserverUrl, String workspace) {
     this.status = status;
     this.geoserverUrl = geoserverUrl;
+    this.workspace = workspace;
   }
 
   public String getStatus() {
@@ -29,6 +31,10 @@ public class RasterCalculationResponse {
 
   public String getGeoserverUrl() {
     return geoserverUrl;
+  }
+
+  public String getWorkspace() {
+    return workspace;
   }
 
   public boolean created() {
@@ -41,7 +47,7 @@ public class RasterCalculationResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoserverUrl, status);
+    return Objects.hash(geoserverUrl, status, workspace);
   }
 
   @Override
@@ -53,12 +59,14 @@ public class RasterCalculationResponse {
     if (getClass() != obj.getClass())
       return false;
     RasterCalculationResponse other = (RasterCalculationResponse) obj;
-    return Objects.equals(geoserverUrl, other.geoserverUrl) && Objects.equals(status, other.status);
+    return Objects.equals(geoserverUrl, other.geoserverUrl) && Objects.equals(status, other.status)
+        && Objects.equals(workspace, other.workspace);
   }
 
   @Override
   public String toString() {
-    return "RasterCalculationResponse [status=" + status + ", geoserverUrl=" + geoserverUrl + "]";
+    return "RasterCalculationResponse [status=" + status + ", geoserverUrl=" + geoserverUrl
+        + ", workspace=" + workspace + "]";
   }
 
 }
