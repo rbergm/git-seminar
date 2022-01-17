@@ -1,6 +1,7 @@
 package de.tudresden.geo.gitseminar.processing;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.slf4j.Logger;
@@ -36,6 +37,18 @@ public class EvaluationRasterCalculationService {
     defaultWeight = newDefault;
   }
 
+  public static Map<Rasters, Double> generateWeights(double stationEvaluationWeight,
+      double mittelzentrumRoutesWeight, double oberzentrumRoutesWeight, double populationWeight,
+      double stationDistanceWeight) {
+    Map<Rasters, Double> weights = new HashMap<>();
+    weights.put(Rasters.StationEvaluation, stationEvaluationWeight);
+    weights.put(Rasters.MittelzentrumRoutes, mittelzentrumRoutesWeight);
+    weights.put(Rasters.OberzentrumRoutes, oberzentrumRoutesWeight);
+    weights.put(Rasters.Population, populationWeight);
+    weights.put(Rasters.TrainStationDistance, stationDistanceWeight);
+    return weights;
+  }
+
   private static final Logger log =
       LoggerFactory.getLogger(EvaluationRasterCalculationService.class);
 
@@ -43,11 +56,11 @@ public class EvaluationRasterCalculationService {
 
   private CoverageReader coverageReader;
   private CoverageWriter coverageWriter;
-  private Resource stationEvalRasterResource;
-  private Resource mittelzentrumRoutesRasterResource;
-  private Resource oberzentrumRoutesRasterResource;
-  private Resource populationRasterResource;
-  private Resource trainStationDistanceRasterResource;
+  Resource stationEvalRasterResource;
+  Resource mittelzentrumRoutesRasterResource;
+  Resource oberzentrumRoutesRasterResource;
+  Resource populationRasterResource;
+  Resource trainStationDistanceRasterResource;
 
   public EvaluationRasterCalculationService(CoverageReader coverageReader,
       CoverageWriter coverageWriter,
@@ -58,6 +71,10 @@ public class EvaluationRasterCalculationService {
       @Value("${raster.src.distance}") String trainStationDistanceRasterPath) {
     this.coverageReader = coverageReader;
     this.coverageWriter = coverageWriter;
+
+    log.debug("Setup with raster sources stationEval={}, mzRoutes={}, ozRoutes={}, pop={}, dist={}",
+        stationEvalRasterPath, mittelzentrumRoutesRasterPath, oberzentrumRoutesRasterPath,
+        populationRasterPath, trainStationDistanceRasterPath);
 
     this.stationEvalRasterResource = new ClassPathResource(stationEvalRasterPath);
     this.mittelzentrumRoutesRasterResource = new ClassPathResource(mittelzentrumRoutesRasterPath);
