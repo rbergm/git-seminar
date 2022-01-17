@@ -37,4 +37,5 @@ build/
 
 ### Misc files ###
 auth.json
+*.geotiff
 

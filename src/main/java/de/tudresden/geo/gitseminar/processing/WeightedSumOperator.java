@@ -1,6 +1,7 @@
 package de.tudresden.geo.gitseminar.processing;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,10 @@ public class WeightedSumOperator {
     }
 
     return (GridCoverage2D) intermediateSum;
+  }
+
+  public Collection<Double> getWeights() {
+    return this.inputs.values();
   }
 
   private Map<GridCoverage2D, Double> normalizeWeights(Map<GridCoverage2D, Double> inputs) {

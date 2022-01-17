@@ -3,6 +3,8 @@ package de.tudresden.geo.gitseminar.processing;
 import java.io.IOException;
 import java.util.Map;
 import org.geotools.coverage.grid.GridCoverage2D;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -33,6 +35,9 @@ public class EvaluationRasterCalculationService {
   public static void setDefaultWeight(double newDefault) {
     defaultWeight = newDefault;
   }
+
+  private static final Logger log =
+      LoggerFactory.getLogger(EvaluationRasterCalculationService.class);
 
   private static double defaultWeight = 5.0;
 
@@ -108,6 +113,7 @@ public class EvaluationRasterCalculationService {
     operatorBuilder.normalizeWeights();
 
     WeightedSumOperator weightedSumOperator = operatorBuilder.build();
+    log.debug("Weights: {}", weightedSumOperator.getWeights());
 
     return weightedSumOperator.calculate();
   }
