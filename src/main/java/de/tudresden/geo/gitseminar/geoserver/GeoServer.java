@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +18,8 @@ import de.tudresden.geo.gitseminar.geoserver.CoverageStores.CoverageStoreEntry;
 
 @Service
 public class GeoServer {
+
+  private static final Logger log = LoggerFactory.getLogger(GeoServer.class);
 
   private final RestTemplate restTemplate;
   private final GeoServerURLBuilder urlBuilder;
@@ -30,7 +34,9 @@ public class GeoServer {
 
   public boolean hasCoverageStore(String storeName) {
     var coverageStoreUrl = urlBuilder.coverageStores();
+    log.debug("Querying GeoServer instance for coverage store {}", storeName);
     var coverageStores = restTemplate.getForObject(coverageStoreUrl, CoverageStores.class);
+    log.debug("GeoServer provided store details {}", coverageStores);
     boolean coverageStoreExists = coverageStores.getCoverageStores().getCoverageStore().stream()
         .map(CoverageStoreEntry::getName).anyMatch(n -> n.equals(storeName));
     return coverageStoreExists;
