@@ -35,11 +35,15 @@ public class GeoServer {
   public boolean hasCoverageStore(String storeName) {
     var coverageStoreUrl = urlBuilder.coverageStores();
     log.debug("Querying GeoServer instance for coverage store {}", storeName);
-    var coverageStores = restTemplate.getForObject(coverageStoreUrl, CoverageStores.class);
-    log.debug("GeoServer provided store details {}", coverageStores);
-    boolean coverageStoreExists = coverageStores.getCoverageStores().getCoverageStore().stream()
-        .map(CoverageStoreEntry::getName).anyMatch(n -> n.equals(storeName));
-    return coverageStoreExists;
+    try {
+      var coverageStores = restTemplate.getForObject(coverageStoreUrl, CoverageStores.class);
+      log.debug("GeoServer provided store details {}", coverageStores);
+      boolean coverageStoreExists = coverageStores.getCoverageStores().getCoverageStore().stream()
+          .map(CoverageStoreEntry::getName).anyMatch(n -> n.equals(storeName));
+      return coverageStoreExists;
+    } catch (Exception e) {
+      return false;
+    }
   }
 
   public void uploadToCoverageStore(String storeName, String rasterFile) throws IOException {
