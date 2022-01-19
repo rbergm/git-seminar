@@ -39,10 +39,12 @@ public class RasterCalculationController {
     String id = requestIdentifier.toIdentifier(requestData);
 
     if (geoserver.hasCoverageStore(id)) {
+      log.debug("Coverage with ID {} exists, reusing", id);
       String wcsPath = geoserver.getWCSForCoverageStore(id);
       return ResponseEntity.status(HttpStatus.OK)
           .body(RasterCalculationResponse.cached(wcsPath, geoserver.getWorkspace()));
     } else {
+      log.debug("No coverage with ID {} exists, creating", id);
       Map<Rasters, Double> weightMap = new EnumMap<>(Rasters.class);
       weightMap.put(Rasters.StationEvaluation, requestData.getDepartureFrequencyWeight());
       weightMap.put(Rasters.MittelzentrumRoutes, requestData.getMittelzentrumDistanceWeight());

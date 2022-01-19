@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GeoServer REST Tests</title>
+        <style>
+            input {
+                width: 20%;
+                display: block;
+                margin-bottom: 0.2em;
+            }
+            button {
+                display: block;
+            }
+            div {
+                margin-bottom: 3em;
+                padding-bottom: 0.5em;
+                border-bottom: 1px solid grey;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>GeoServer REST Tests</h1>
+        <div>
+            <h2>Allgemeine Angaben</h2>
+            <label for="geoserver-address">Adresse des GeoServer</label>
+            <input tpye="text" id="geoserver-address" value="http://localhost:8080/geoserver/rest">
+            <label for="workspace-name">Workspace Name</label>
+            <input type="text" id="workspace-name" placeholder="Name des Workspaces">
+        </div>
+        <div id="coverage-stores">
+            <h2>CoverageStores Übersicht</h2>
+            <button type="button" id="fetch-coverage-stores">Verfügbare CovergeStores laden</button>
+            <pre id="coverage-stores-content"></pre>
+        </div>
+        <div id="coverage-store-details">
+            <h2>CoverageStore Details</h2>
+            <input type="text" id="coverage-store-name" placeholder="Name des Stores">
+            <button type="button" id="fetch-coverage-store-details">Details für Store laden</button>
+            <pre id="coverage-store-details-content"></pre>
+        </div>
+        <script src="geoserver-rest-tests.js"></script>
+    </body>
+</html>
