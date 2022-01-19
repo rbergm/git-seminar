@@ -5,40 +5,48 @@
         <meta charset="utf-8">
         <title>GeoServer REST Tests</title>
         <style>
-            input {
+            input.control {
                 width: 20%;
                 display: block;
                 margin-bottom: 0.2em;
             }
-            button {
+
+            button.control {
                 display: block;
             }
-            div {
+
+            .box {
                 margin-bottom: 3em;
                 padding-bottom: 0.5em;
                 border-bottom: 1px solid grey;
+            }
+
+            .json-content {
+                background-color: lightgrey;
+                padding: 0.8em;
+                border-radius: 10px;
             }
         </style>
     </head>
     <body>
         <h1>GeoServer REST Tests</h1>
-        <div>
+        <div class="box">
             <h2>Allgemeine Angaben</h2>
             <label for="geoserver-address">Adresse des GeoServer</label>
-            <input tpye="text" id="geoserver-address" value="http://localhost:8080/geoserver/rest">
+            <input type="text" id="geoserver-address" value="http://localhost:8080/geoserver/rest" class="control">
             <label for="workspace-name">Workspace Name</label>
-            <input type="text" id="workspace-name" placeholder="Name des Workspaces">
+            <input type="text" id="workspace-name" placeholder="Name des Workspaces" class="control">
         </div>
-        <div id="coverage-stores">
+        <div id="coverage-stores" class="box">
             <h2>CoverageStores Übersicht</h2>
-            <button type="button" id="fetch-coverage-stores">Verfügbare CovergeStores laden</button>
-            <pre id="coverage-stores-content"></pre>
+            <button type="button" id="fetch-coverage-stores" class="control">Verfügbare CovergeStores laden</button>
+            <pre class="json-content" id="coverage-stores-content"></pre>
         </div>
-        <div id="coverage-store-details">
+        <div id="coverage-store-details" class="box">
             <h2>CoverageStore Details</h2>
-            <input type="text" id="coverage-store-name" placeholder="Name des Stores">
-            <button type="button" id="fetch-coverage-store-details">Details für Store laden</button>
-            <pre id="coverage-store-details-content"></pre>
+            <input type="text" id="coverage-store-name" placeholder="Name des Stores" class="control">
+            <button type="button" id="fetch-coverage-store-details" class="control">Details für Store laden</button>
+            <pre class="json-content" id="coverage-store-details-content"></pre>
         </div>
         <script src="geoserver-rest-tests.js"></script>
     </body>
