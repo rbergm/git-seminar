@@ -18,9 +18,10 @@ body {
 }
 
 .mapboxgl-popup-content {
-  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-  padding: 0;
-  width: 180px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 5px;
+  font-weight: bold;
+
 }
 
 .mapboxgl-popup-content h2 {
@@ -46,7 +47,7 @@ body {
   top: 10px;
   height: 100%;
   width: 100%;
-  border: 2px solid rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   margin-top: 5px;
   margin-left: 10px;
@@ -61,13 +62,12 @@ body {
   top: 10px;
   height: 68%;
   width: 55%;
-  border: 2px solid rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   margin-top: 5px;
   margin-left: 10px;
   margin-bottom: 5px;
   z-index: 2;
-
 }
 
 #calc_button {
@@ -83,6 +83,7 @@ body {
 #params_div {
   margin-left: 10%;
   margin-top: 5%;
+
 }
 
 #next_stations_title {
@@ -149,7 +150,7 @@ body {
   bottom: 0px;
   height: 280px;
   width: 100%;
-  border: 2px solid rgb(255, 255, 255);
+  
   border-radius: 10px;
   margin-top: 5px;
   margin-left: 10px;
@@ -247,6 +248,11 @@ display: none;
 width: 100%;
 }
 
+#navig_steps_listgroup_mz {
+  display: none;
+  width: 100%;
+}
+
 #navbar {
   z-index: 2;
 }
@@ -255,13 +261,13 @@ width: 100%;
   background: #fff;
   position: absolute;
   z-index: 2;
-  top: 60px;
-  right: 20px;
-  border-radius: 3px;
+  top: 10px;
+  right: 25px;
+  border-radius: 10px;
   width: 120px;
   border: 1px solid rgba(0, 0, 0, 0.4);
   font-family: 'Open Sans', sans-serif;
-  display: none;
+  display: inline;
 }
 
 #menu a {
@@ -335,4 +341,50 @@ background: #3074a4;
   height: 70%;
   width: 95%;
   margin-left: 10px;
+}
+
+#legende-isochrone{
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  bottom: 50px;
+  z-index: 2;
+  padding: 10px;
+}
+#legende-raster{
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  bottom: 15px;
+  z-index: 2;
+  padding: 10px;
+  
+}
+
+.dot1 {
+  height: 20px;
+  width: 20px;
+  background-color: #8f7ed2;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot2 {
+  height: 20px;
+  width: 20px;
+  background-color: #a699d9;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot3 {
+  height: 20px;
+  width: 20px;
+  background-color: #c7bfe4;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#ramp {
+  background-image: linear-gradient(green , yellow, red);
 }
