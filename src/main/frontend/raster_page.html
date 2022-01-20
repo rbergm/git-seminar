@@ -24,6 +24,12 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js'></script>
     <script src='https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.js'></script>
 
+    <style>
+        button.btn.btn-link:hover {
+            background-color: unset;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -32,90 +38,88 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title" style="color:#030303f5 ;font-size:43px;"> Willkommen bei PUERTO, dem Hafen
-                        für Sachsens PlanerInnen</h1>
+                    <h1 class="modal-title"> Willkommen bei PUERTO!</h1>
                 </div>
                 <div class="modal-body">
-                    <img
+                    <img class="img mb-2"
                         src="https://assets.kpmg/is/image/kpmg/high-speed-train-cologne-central-station:cq5dam.web.1200.630">
                     <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><button type="button" data-toggle="collapse" data-target="#puerto-goals"
+                                        class="btn btn-link btn-block text-left">Ziele von PUERTO</button></h2>
+                            </div>
+                            <div id="puerto-goals" class="collapse show">
+                                <p class="card-body">Diese Applikation zeigt zum Einstieg eine
+                                    Rasterübersichtskarte, welche angibt wie gut oder schlecht die Erreichbarkeit von
+                                    Mittel- und Oberzentren in Sachsen ist. Diese Übersicht lässt sich individuell
+                                    anpassen, je nachdem worauf Schwerpunkte gelegt werden (zum Beispiel; Entfernung zum
+                                    Bahnhof, Mittel und/oder Oberzentrum ..). Das soll PlanerInnen einen ersten
+                                    Überblick über die Erreichbarkeit von Bahnhöfen in Sachsens geben und so als eine
+                                    Hilfestellung fungieren, im Kontext der Erreichbarkeit von Daseinsvorsorgegütern.
+                                    Wurden Gebiete als schlecht erreichbar identifiziert, kann durch einen Wechsel der
+                                    Ansicht im Kopf der Applikation, das Informationssystem – Mein nächster Bahnhof -
+                                    weitere Informationen liefern. Hier können die Beobachtungen verifiziert
+                                    beziehungsweise das genaue Problem identifiziert werden. Dabei kann gesehen werden,
+                                    was die genaue Verbindung von einem gewählten Ort zu dem nächst gelegen Oberzentrum
+                                    ist. Hierfür kann ausgewählt werden welches individuelle Verkehrsmittel genutzt
+                                    werden soll, um eine Bahnhof Station erreichen zu können. Außerdem kann auch die
+                                    Zeit eingestellt werden, da manche Daseinsorsorgeinrichtungen in Mittel- ud
+                                    Oberzentren auch zeitlich gebunden sind.
+                                </p>
+                            </div>
                         </div>
-                        <p style="color:#007bfff5 ;font-size:25px;"> Ziele von PUERTO</p>
-                        <p style="color:black ;font-size: 20px;">Diese Applikation zeigt zum Einstieg eine
-                            Rasterübersichtskarte, welche angibt wie gut oder schlecht die Erreichbarkeit von Mittel-und
-                            Oberzentren in Sachsen ist.
-                            Diese Übersicht lässt sich individuell anpassen, je nachdem worauf Schwerpunkte gelegt
-                            werden (zum Beispiel; Entfernung zum Bahnhof, Mittel und/oder Oberzentrum ..).
-                            Das soll PlanerInnen einen ersten Überblick über die Erreichbarkeit von Bahnhöfen in
-                            Sachsens geben und so als eine Hilfestellung fungieren, im Kontext der Erreichbarkeit von
-                            Daseinsvorsorgegütern.
-                            Wurden Gebiete als schlecht erreichbar identifiziert, kann durch einen Wechsel der Ansicht
-                            im Kopf der Applikation, das Informationssystem – Mein nächster Bahnhof - weitere
-                            Informationen liefern.
-                            Hier können die Beobachtungen verifiziert beziehungsweise das genaue Problem identifiziert
-                            werden. Dabei kann gesehen werden, was die genaue Verbindung von einem gewählten Ort zu dem
-                            nächst gelegen Oberzentrum ist.
-                            Hierfür kann ausgewählt werden welches individuelle Verkehrsmittel genutzt werden soll, um
-                            eine Bahnhof Station erreichen zu können. Außerdem kann auch die Zeit eingestellt werden, da
-                            manche Daseinsorsorgeinrichtungen in Mittel- ud Oberzentren auch zeitlich gebunden sind.
-                        </p>
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed" type="button"
-                                        style="color:#007bfff5 ;font-size:25px;" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                        aria-controls="flush-collapseOne">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>
+                                    <button type="button" data-toggle="collapse" data-target="#puerto-daseinsvorsorge"
+                                        class="btn btn-link btn-block text-left collapsed">
                                         Warum geht es in PUERTO um Daseinsvorsorge?
                                     </button>
                                 </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                    style="color:black ;font-size: 20px;" aria-labelledby="flush-headingOne"
-                                    data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body"> Daseinsvorsorge hat die Aufgabe, Güter und Leistungen
-                                        bereitzustellen, die für ein menschliches Dasein notwendig sind.
-                                        Sachsen ist geprägt durch eine Vielzahl von unterschiedlichen Gebieten, auf der
-                                        einen Seite städische Gebiete auf der anderen Seiten aber auch viele ländliche
-                                        Gebiete mit Orten und Kleinstädten.
-                                        Jeder dieser Orte, bietet unterschiedlich Versorgungsmöglichkeiten an, so gibt
-                                        es Orte mit mit Schulen, Krankenhäusern und Theatern und andere in denen diese
-                                        Institutionen nicht vorhanden sind (diese werden abhängig von den vorhandenen
-                                        Gütern oder Leistunden als Unter oder Miteelzentrum klassifizierzt).
-                                        Es ist das Ziel der Daseinsvorsorge, nicht vorhanden Güter oder Leistungen für
-                                        jeden Menschen aus Unter- oder Mittelzentrum, erreichbar zu machen indem eine
-                                        Verbindung in ein Oberzentrum möglich gemacht wird. Das bestehende Schienennetz
-                                        in Sachsen bildet daher eine der wichtigsten Grundlagen wenn es um die
-                                        Erreichbarkeit von Orte/Oberzentren geht.
-                                    </div>
+
+                            </div>
+                            <div id="puerto-daseinsvorsorge" class="collapse">
+                                <div class="card-body"> Daseinsvorsorge hat die Aufgabe, Güter und Leistungen
+                                    bereitzustellen, die für ein menschliches Dasein notwendig sind.
+                                    Sachsen ist geprägt durch eine Vielzahl von unterschiedlichen Gebieten, auf der
+                                    einen Seite städische Gebiete auf der anderen Seiten aber auch viele ländliche
+                                    Gebiete mit Orten und Kleinstädten.
+                                    Jeder dieser Orte, bietet unterschiedlich Versorgungsmöglichkeiten an, so gibt
+                                    es Orte mit mit Schulen, Krankenhäusern und Theatern und andere in denen diese
+                                    Institutionen nicht vorhanden sind (diese werden abhängig von den vorhandenen
+                                    Gütern oder Leistunden als Unter oder Miteelzentrum klassifizierzt).
+                                    Es ist das Ziel der Daseinsvorsorge, nicht vorhanden Güter oder Leistungen für
+                                    jeden Menschen aus Unter- oder Mittelzentrum, erreichbar zu machen indem eine
+                                    Verbindung in ein Oberzentrum möglich gemacht wird. Das bestehende Schienennetz
+                                    in Sachsen bildet daher eine der wichtigsten Grundlagen wenn es um die
+                                    Erreichbarkeit von Orte/Oberzentren geht.
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingTwo">
-                                    <button class="accordion-button collapsed" type="button"
-                                        style="color:#007bfff5 ;font-size:25px;" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                        aria-controls="flush-collapseTwo">
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>
+                                    <button type="button" data-toggle="collapse" data-target="#daseinsvorsorge"
+                                        class="btn btn-link btn-block text-left collapsed">
                                         Hintergrund
                                     </button>
                                 </h2>
-                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                    style="color:black ;font-size: 20px;" aria-labelledby="flush-headingTwo"
-                                    data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body"> PUERTO = Abkürzung für "PlanUngtool für ERreichbarkeit
-                                        zenTralerOrte", gleichzeitig auch die spanische Übersetzung für Hafen, welche
-                                        als Einladung für PlanerInnen verstanden werden kann,
-                                        diese Applikation "anzusteuern" und zu nutzen bei Fragen der Daseinsvorsorge und
-                                        der Erreichbarkeit von Zentralen Orten. Die Anwendung ist demnach an
-                                        PlannerInnen adressiert, diese kann aber natürlich auch von interessierten
-                                        NutzerInnen verwendet werden,
-                                        um das sächsische Schienennetz und die Erreichbarkeit von Orten besser verstehen
-                                        zu können. Das Projekt ist im Rahmen des Kurses
-                                        Geoinformationsdienste/Daseinvorsorge-Atlas 2021/22 an der TU Dresden
-                                        entstanden.
-                                        Ein Projekt von Julius Toth, Pauline Hecker, Rico Bergmann & Raphaela Edler.
-                                        Betreuung: Stephan Mäs, Falko Krügel & Manfred Klaus. </p>
-                                    </div>
+                            </div>
+                            <div id="daseinsvorsorge" class="collapse">
+                                <div class="card-body"> PUERTO = Abkürzung für "PlanUngtool für ERreichbarkeit
+                                    zenTralerOrte", gleichzeitig auch die spanische Übersetzung für Hafen, welche
+                                    als Einladung für PlanerInnen verstanden werden kann,
+                                    diese Applikation "anzusteuern" und zu nutzen bei Fragen der Daseinsvorsorge und
+                                    der Erreichbarkeit von Zentralen Orten. Die Anwendung ist demnach an
+                                    PlannerInnen adressiert, diese kann aber natürlich auch von interessierten
+                                    NutzerInnen verwendet werden,
+                                    um das sächsische Schienennetz und die Erreichbarkeit von Orten besser verstehen
+                                    zu können. Das Projekt ist im Rahmen des Kurses
+                                    Geoinformationsdienste/Daseinvorsorge-Atlas 2021/22 an der TU Dresden
+                                    entstanden.
+                                    Ein Projekt von Julius Toth, Pauline Hecker, Rico Bergmann & Raphaela Edler.
+                                    Betreuung: Stephan Mäs, Falko Krügel & Manfred Klaus. </p>
                                 </div>
                             </div>
                         </div>

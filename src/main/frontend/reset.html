@@ -1,0 +1,26 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Web-Speicher Kontrolle</title>
+    </head>
+    <body>
+        <h1>Web-Speicher Kontrolle</h1>
+        <p>Über die untere Schaltfläche lässt sich der Web-Speicher für die gesamte Anwendung zurücksetzen.</p>
+        <div>
+            <button type="button" id="reset-storage">Jetzt zurücksetzen</button>
+        </div>
+        <p id="web-storage-state"></p>
+        <script>
+            function resetStorage(stateContainer) {
+                localStorage.removeItem('was-loaded');
+                stateContainer.textContent = "Speicher wurde zurückgesetzt."
+            }
+
+            const resetBtn = document.getElementById('reset-storage');
+            const stateContainer = document.getElementById('web-storage-state');
+            resetBtn.addEventListener('click', (ev) => resetStorage(stateContainer));
+        </script>
+    </body>
+</html>
