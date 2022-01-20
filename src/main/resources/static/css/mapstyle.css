@@ -1,0 +1,338 @@
+body {
+  margin: 0;
+  padding: 0;
+  }
+
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+  padding: 0;
+  width: 180px;
+}
+
+.mapboxgl-popup-content h2 {
+  font-size: 11pt;
+  background: #007bff;
+  color: #fff;
+  margin: 0;
+  padding: 10px;
+  border-radius: 3px 3px 0 0;
+  font-weight: 700;
+  margin-top: -15px;
+}
+
+.mapboxgl-popup-content button {
+  margin: 0;
+  padding: 10px;
+  font-weight: 400;
+}
+
+#next_station_div {
+  background-color: #fff;
+  position: relative;
+  top: 10px;
+  height: 100%;
+  width: 100%;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  z-index: 2;
+
+}
+
+#raster_calc_div {
+  background-color: #fff;
+  position: relative;
+  top: 10px;
+  height: 68%;
+  width: 55%;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  z-index: 2;
+
+}
+
+#calc_button {
+  margin-left: 10%;
+}
+
+#slider_div {
+  margin: 10px;
+  font-size: 8pt;
+}
+
+
+#params_div {
+  margin-left: 10%;
+  margin-top: 5%;
+}
+
+#next_stations_title {
+
+  font-size: 10pt;
+  margin-left: 10px;
+
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  overflow-y: auto;
+  scrollbar-width: thin;  
+  scrollbar-color: #9b9b9b rgb(212, 224, 224);
+  z-index: 2;
+
+}
+.table-wrapper-scroll-y {
+  display: block;
+  position: relative;
+  bottom: 0;
+  z-index: 2;
+}
+
+#departure_listgroup {
+  background-color: #fff;
+  position: relative;
+  width: 100%;
+  top: 0px;
+  z-index: 2;
+  max-height: 150px;
+  overflow-y: auto;
+  scrollbar-width: thin; 
+}
+
+#dep_station {
+  font-size: 10pt;
+  padding-top: 13px;
+  margin: 0px;
+  text-align: center;
+}
+
+#dep_time_slider_div {
+  padding-left: 20px;
+  width: 90%;
+}
+
+#departure_time_text {
+  padding-top: 13px;
+  margin-bottom: 0px;
+  font-size: 10pt;
+}
+
+#departure_time_slider {
+  /* padding-top: 15px; */
+  margin-top: 13px;
+  margin-right: 0px;
+  width: 100%;
+}
+
+#departure_route_div {
+  background-color: #fff;
+  position: relative;
+  bottom: 0px;
+  height: 280px;
+  width: 100%;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  z-index: 2;
+
+}
+
+#tablediv {
+  width: 95%;
+  position: relative;
+  height: 60%;
+  top: 10px;
+  background-color: #fff;
+  margin-left: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  z-index: 2;
+}
+
+#station_listgroup {
+  position: relative;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  width: 100%;
+  max-height: 350px;
+  overflow-y:auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;  
+  scrollbar-color: #9b9b9b rgb(212, 224, 224);
+  z-index: 2;
+}
+
+.list-group li {
+cursor: pointer;
+height: auto;
+font-size: 9pt;
+}
+
+li {
+  cursor: pointer;
+}
+
+
+
+.nav-item-popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on bottom) */
+.nav-item-popup .popuptext {
+  visibility: hidden;
+  width: 600px;
+  background-color: #007bff;
+  color: #fff;
+  text-align: start;
+  border-radius: 6px;
+  padding: 8px ;
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.nav-item-popup .popuptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 13.5%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+
+#row_departure_listgroup {
+cursor: pointer;
+}
+
+#nav_departure_route {
+  width: 100%;
+  position: sticky; 
+  top: 0;
+  z-index: 3;
+  background-color: #fff;
+  
+}
+
+#navig_steps_listgroup {
+display: none;
+width: 100%;
+}
+
+#navbar {
+  z-index: 2;
+}
+
+#menu {
+  background: #fff;
+  position: absolute;
+  z-index: 2;
+  top: 60px;
+  right: 20px;
+  border-radius: 3px;
+  width: 120px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  font-family: 'Open Sans', sans-serif;
+  display: none;
+}
+
+#menu a {
+  font-size: 13px;
+  color: #404040;
+  display: block;
+  margin: 0;
+  padding: 0;
+  padding: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+  
+#menu a:last-child {
+  border: none;
+}
+  
+#menu a:hover {
+  background-color: #f8f8f8;
+  color: #404040;
+}
+  
+#menu a.active {
+  background-color: #007bff;
+  color: #ffffff;
+}
+  
+#menu a.active:hover {
+background: #3074a4;
+}
+
+#main-container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#row2 {
+  height: 500px;
+}
+
+#row3 {
+  position: absolute;
+  bottom: 16px;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.col-md-4 {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+#param_row {
+  margin-top: 20px;
+  height: 15%;
+  width: 95%;
+  margin-left: 10px;
+}
+
+
+
+#station_title_row {
+  height: 5%;
+  width: 95%;
+  margin-left: 10px;
+}
+
+#listgroup_row {
+  height: 70%;
+  width: 95%;
+  margin-left: 10px;
+}

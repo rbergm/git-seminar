@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Geoinformationsdienste: DB-Haltestellen</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel='shortcut icon' href='#'> <!-- wegen favicon.ico error. ggf. entfernen-->
+    <link href='https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.min.css' rel='stylesheet' />
+    <link href='css/mapstyle.css' rel='stylesheet' type='text/css' />
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+        integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js'></script>
+    <script src='https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.js'></script>
+
+    <style>
+        button.btn.btn-link:hover {
+            background-color: unset;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="modal" id="intro-dialog" tabindex="-1" style="background-color: rgba(225, 230, 235, 0.788)">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title"> Willkommen bei PUERTO!</h1>
+                </div>
+                <div class="modal-body">
+                    <img class="img mb-2"
+                        src="https://assets.kpmg/is/image/kpmg/high-speed-train-cologne-central-station:cq5dam.web.1200.630">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2><button type="button" data-toggle="collapse" data-target="#puerto-goals"
+                                        class="btn btn-link btn-block text-left">Ziele von PUERTO</button></h2>
+                            </div>
+                            <div id="puerto-goals" class="collapse show">
+                                <p class="card-body">Diese Applikation zeigt zum Einstieg eine
+                                    Rasterübersichtskarte, welche angibt wie gut oder schlecht die Erreichbarkeit von
+                                    Mittel- und Oberzentren in Sachsen ist. Diese Übersicht lässt sich individuell
+                                    anpassen, je nachdem worauf Schwerpunkte gelegt werden (zum Beispiel; Entfernung zum
+                                    Bahnhof, Mittel und/oder Oberzentrum ..). Das soll PlanerInnen einen ersten
+                                    Überblick über die Erreichbarkeit von Bahnhöfen in Sachsens geben und so als eine
+                                    Hilfestellung fungieren, im Kontext der Erreichbarkeit von Daseinsvorsorgegütern.
+                                    Wurden Gebiete als schlecht erreichbar identifiziert, kann durch einen Wechsel der
+                                    Ansicht im Kopf der Applikation, das Informationssystem – Mein nächster Bahnhof -
+                                    weitere Informationen liefern. Hier können die Beobachtungen verifiziert
+                                    beziehungsweise das genaue Problem identifiziert werden. Dabei kann gesehen werden,
+                                    was die genaue Verbindung von einem gewählten Ort zu dem nächst gelegen Oberzentrum
+                                    ist. Hierfür kann ausgewählt werden welches individuelle Verkehrsmittel genutzt
+                                    werden soll, um eine Bahnhof Station erreichen zu können. Außerdem kann auch die
+                                    Zeit eingestellt werden, da manche Daseinsorsorgeinrichtungen in Mittel- ud
+                                    Oberzentren auch zeitlich gebunden sind.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>
+                                    <button type="button" data-toggle="collapse" data-target="#puerto-daseinsvorsorge"
+                                        class="btn btn-link btn-block text-left collapsed">
+                                        Warum geht es in PUERTO um Daseinsvorsorge?
+                                    </button>
+                                </h2>
+
+                            </div>
+                            <div id="puerto-daseinsvorsorge" class="collapse">
+                                <div class="card-body"> Daseinsvorsorge hat die Aufgabe, Güter und Leistungen
+                                    bereitzustellen, die für ein menschliches Dasein notwendig sind.
+                                    Sachsen ist geprägt durch eine Vielzahl von unterschiedlichen Gebieten, auf der
+                                    einen Seite städische Gebiete auf der anderen Seiten aber auch viele ländliche
+                                    Gebiete mit Orten und Kleinstädten.
+                                    Jeder dieser Orte, bietet unterschiedlich Versorgungsmöglichkeiten an, so gibt
+                                    es Orte mit mit Schulen, Krankenhäusern und Theatern und andere in denen diese
+                                    Institutionen nicht vorhanden sind (diese werden abhängig von den vorhandenen
+                                    Gütern oder Leistunden als Unter oder Miteelzentrum klassifizierzt).
+                                    Es ist das Ziel der Daseinsvorsorge, nicht vorhanden Güter oder Leistungen für
+                                    jeden Menschen aus Unter- oder Mittelzentrum, erreichbar zu machen indem eine
+                                    Verbindung in ein Oberzentrum möglich gemacht wird. Das bestehende Schienennetz
+                                    in Sachsen bildet daher eine der wichtigsten Grundlagen wenn es um die
+                                    Erreichbarkeit von Orte/Oberzentren geht.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>
+                                    <button type="button" data-toggle="collapse" data-target="#daseinsvorsorge"
+                                        class="btn btn-link btn-block text-left collapsed">
+                                        Hintergrund
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="daseinsvorsorge" class="collapse">
+                                <div class="card-body"> PUERTO = Abkürzung für "PlanUngtool für ERreichbarkeit
+                                    zenTralerOrte", gleichzeitig auch die spanische Übersetzung für Hafen, welche
+                                    als Einladung für PlanerInnen verstanden werden kann,
+                                    diese Applikation "anzusteuern" und zu nutzen bei Fragen der Daseinsvorsorge und
+                                    der Erreichbarkeit von Zentralen Orten. Die Anwendung ist demnach an
+                                    PlannerInnen adressiert, diese kann aber natürlich auch von interessierten
+                                    NutzerInnen verwendet werden,
+                                    um das sächsische Schienennetz und die Erreichbarkeit von Orten besser verstehen
+                                    zu können. Das Projekt ist im Rahmen des Kurses
+                                    Geoinformationsdienste/Daseinvorsorge-Atlas 2021/22 an der TU Dresden
+                                    entstanden.
+                                    Ein Projekt von Julius Toth, Pauline Hecker, Rico Bergmann & Raphaela Edler.
+                                    Betreuung: Stephan Mäs, Falko Krügel & Manfred Klaus. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <ul>
+                        <button type="button" id="dismiss-intro-dialog" class="btn btn-primary">Hier geht's zum
+                            Projekt</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" id='main-container'>
+        <div id='map'></div>
+        <div class="row">
+            <div class="col-lg-12">
+                <nav id="menu"></nav>
+
+                <nav class='navbar navbar-expand-lg navbar-dark bg-primary' id='navbar'>
+                    <div class='container-fluid'> <button class='navbar-toggler navbar-toggler-right border-0 p-0'
+                            type='button' data-toggle='collapse' data-target='#navbar20' id='navbar-toggle'>
+                            <p class='navbar-brand text-white mb-0'></i> Haltestellen-Informationssystem </p>
+                        </button>
+                        <div class='collapse navbar-collapse' id='navbar20'>
+                            <ul class='navbar-nav mr-auto'>
+                                <li class='nav-item'> <a class='nav-link' href='station_page.html'>Mein nächster
+                                        Bahnhof</a> </li>
+                                <li class='nav-item'> <a class='nav-link' href='raster_page.html'>Rasterübersicht</a>
+                                </li>
+                                <li class='nav-item-popup' onclick='infoText()'> <a class='nav-link' href='#'>Über</a>
+                                    <span class='popuptext' id='myPopup'> Mein nächster Bahnhof:<br>Dieser Modus dient
+                                        zum Finden der nächstgelegenen Haltestellen um einen gewählten Standort und der
+                                        nächsten Abfahrten von einem gewählen Bahnhof. Auswählbar ist die gewünschte
+                                        Fortbewegungsmöglichkeit und die maximale Dauer zum nächsten Bahnhof. <br> Der
+                                        Standort kann durch Doppelklick auf der Karte gesetzt werden und anschließend
+                                        mit der Maus verschoben werden. <br><br> Rasterübersicht:<br> Diese Übersicht
+                                        dient der Veranschaulichung der Erreichbarkeiten in Sachsen auf Grundlage der
+                                        Anzahl der BewohnerInnen.<br></span>
+                                </li>
+                            </ul>
+                            <p class='d-none d-md-block lead mb-0 text-white'> <b> Haltestellen-Informationssystem</b>
+                            </p>
+                            <ul class='navbar-nav ml-auto'>
+                                <li class='nav-item mx-1'> <a class='nav-link'
+                                        href='https://github.com/rbergm/git-seminar' target='_blank'> GitHub</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="row justify-content-center" id="row2">
+            <div class="col-md-2">
+
+                <div id='raster_calc_div'>
+                    <div id='slider_div'>
+                        <p>
+                            <b>Taktung</b>
+                            <br>
+                            <input type="range" min='0' max='10' value='10' step='1'>
+                        </p>
+                        <p>
+                            <b>Entfernung Oberzentrum</b>
+                            <br>
+                            <input type="range" min='0' max='10' value='10' step='1'>
+                        </p>
+                        <p>
+                            <b>Entfernung Mittelzentrum</b>
+                            <br>
+                            <input type="range" min='0' max='10' value='10' step='1'>
+                        </p>
+                        <p>
+                            <b>Entfernung Bahnhof</b>
+                            <br>
+                            <input type="range" min='0' max='10' value='10' step='1'>
+                        </p>
+                        <p>
+                            <b>Bevölkerungsdichte</b>
+                            <br>
+                            <input type="range" min='0' max='10' value='10' step='1'>
+                        </p>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" id='calc_button'>Berechne Raster</button>
+                </div>
+
+            </div>
+            <div class="col-md-7">
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+        <div class="row" id="row3">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+
+    <script src='/js/timetable_api_request.js' type='text/javascript'></script>
+    <script src='/js/routing_api_request.js' type='text/javascript'></script>
+    <script src='/js/raster_calc.js' type='text/javascript'></script>
+    <script>
+        // Display the intro dialog if this is the first site load, or loaded=false is specified in the address
+        const wasPreviouslyLoaded = localStorage.getItem('was-loaded') == 'true';
+        const urlParams = new URLSearchParams(window.location.search);
+        if (!wasPreviouslyLoaded || urlParams.get('loaded') === 'false') {
+            localStorage.setItem('was-loaded', true);
+            const introDialog = $('#intro-dialog');
+            introDialog.modal('show');
+            const dismissIntroDialog = document.getElementById('dismiss-intro-dialog');
+            dismissIntroDialog.addEventListener('click', () => introDialog.modal('hide'));
+        }
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoianV0bzQ4M2MiLCJhIjoiY2t1em0xbnZuMjk4ZTJvbzB1NTRqbjE3NCJ9._WokI9DVRVeKtbgVJVKo-A';
+
+        const urlBase = 'https://api.mapbox.com/isochrone/v1/mapbox/';
+
+        timetables = null;
+
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/light-v10',
+            center: [13, 51],
+            zoom: 7,
+            doubleClickZoom: false
+        });
+
+        map.on('load', () => {
+            map.addSource('ZO', {
+                'type': 'geojson',
+
+                'data': '/data/ZO_wgs84.geojson'
+
+            });
+
+            map.addLayer({
+                'id': 'Oberzentren',
+                'type': 'fill',
+                'source': 'ZO',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'filter': ['in', 'ZORT', 'Oberzentrum', 'oberzentraler Städteverbund'],
+                // 'filter': ['==', 'ZORT', 'oberzentraler Städteverbund'],
+                'paint': {
+                    'fill-color': '#ff1b00',
+                    'fill-opacity': 0.5
+                }
+            });
+
+            map.addLayer({
+                'id': 'Mittelzentren',
+                'type': 'fill',
+                'source': 'ZO',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'filter': ['in', 'ZORT', 'Mittelzentrum', 'mittelzentraler SV Silberberg', 'mittelzentraler SV Sachsenring', 'mittelzentraler SV Göltzschta'],
+
+                'paint': {
+                    'fill-color': '#ff9b00',
+                    'fill-opacity': 0.5
+                }
+            });
+
+            // All stops in Saxony with respective EVA-No
+            map.addSource('haltestellen', {
+                'type': 'geojson',
+
+                'data': '/data/haltestellen_wgs84.geojson',
+
+            });
+
+            map.addLayer({
+                'id': 'haltestellen-layer',
+                'type': 'circle',
+                'source': 'haltestellen',
+                'paint': {
+                    'circle-opacity': 0.6,
+                    'circle-radius': 2.5,
+                    'circle-color': 'red',
+                    'circle-stroke-width': 4,
+                    'circle-stroke-opacity': 0,
+                    'circle-stroke-color': 'red'
+                }
+            });
+
+            // Add empty Source. Container for Isochrone polygon. Gets reset with every getIso()- call
+            map.addSource('iso', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': []
+                }
+            });
+
+            map.addLayer(
+                {
+                    'id': 'isoLayer',
+                    'type': 'fill',
+                    'source': 'iso',
+                    'layout': {},
+                    'paint': {
+                        'fill-color': '#5a3fc0',
+                        'fill-opacity': 0.3
+
+                    }
+                });
+
+
+
+        });
+
+        // After the last frame rendered before the map enters an "idle" state.
+        map.on('idle', () => {
+            // If these two layers were not added to the map, abort
+
+            // if (!map.getLayer('Oberzentren') || !map.getLayer('Mittelzentren')|| !map.getLayer('Einwohnerdichte')) {
+            // return;
+            // }
+            if (!map.getLayer('Oberzentren') || !map.getLayer('Mittelzentren')) {
+                return;
+            }
+
+            // Enumerate ids of the layers.
+            const toggleableLayerIds = ['Oberzentren', 'Mittelzentren'];
+            // const toggleableLayerIds = ['Oberzentren', 'Mittelzentren', 'Einwohnerdichte'];
+
+            // Set up the corresponding toggle button for each layer.
+            for (const id of toggleableLayerIds) {
+                // Skip layers that already have a button set up.
+                if (document.getElementById(id)) {
+                    continue;
+                }
+
+                // Create a link.
+                const link = document.createElement('a');
+                link.id = id;
+                link.href = '#';
+                link.textContent = id;
+                link.className = 'active';
+
+                // Show or hide layer when the toggle is clicked.
+                link.onclick = function (e) {
+                    const clickedLayer = this.textContent;
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const visibility = map.getLayoutProperty(
+                        clickedLayer,
+                        'visibility'
+                    );
+
+
+
+                    // Toggle layer visibility by changing the layout object's visibility property.
+                    if (visibility === 'visible') {
+                        map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                        this.className = '';
+                    } else {
+                        this.className = 'active';
+                        map.setLayoutProperty(
+                            clickedLayer,
+                            'visibility',
+                            'visible'
+                        );
+                    }
+                };
+
+                const layers = document.getElementById('menu');
+                layers.appendChild(link);
+            }
+        });
+
+
+        // query clicked trainstation feature and display name and api button in a popup
+        map.on('dblclick', function (click) {
+            let coordinates = click.lngLat;
+            let coordinate_string_list = [click.lngLat.lng.toString(), click.lngLat.lat.toString()];
+            let coordinate_string = coordinate_string_list.join(",")
+            console.log(coordinate_string);
+            let popup = new mapboxgl.Popup({ offset: [0, -15] })
+                .setLngLat(click.lngLat)
+                .setHTML(
+                    `<button id='btn-analyze'>Analysieren</button>`
+                )
+                .addTo(map);
+
+            document.getElementById('btn-analyze')
+                .addEventListener('click', function () {
+                    window.location.href = "station_page.html?LngLat=" + coordinate_string;
+                });
+        });
+
+        // When a click event occurs on a feature in the states layer,
+        // open a popup at the location of the click, with description
+        // HTML from the click event's properties.
+        map.on('click', 'Oberzentren', (e) => {
+            new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML(e.features[0].properties.NAME)
+                .setMaxWidth('50')
+                .addTo(map);
+        });
+
+        // Change the cursor to a pointer when
+        // the mouse is over the states layer.
+        map.on('mouseenter', 'Oberzentren', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change the cursor back to a pointer
+        // when it leaves the states layer.
+        map.on('mouseleave', 'Oberzentren', () => {
+            map.getCanvas().style.cursor = '';
+        });
+
+        map.on('click', 'Mittelzentren', (e) => {
+            new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML(e.features[0].properties.NAME)
+                .addTo(map);
+        });
+
+        // Change the cursor to a pointer when
+        // the mouse is over the states layer.
+        map.on('mouseenter', 'Mittelzentren', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change the cursor back to a pointer
+        // when it leaves the states layer.
+        map.on('mouseleave', 'Mittelzentren', () => {
+            map.getCanvas().style.cursor = '';
+        });
+
+        let calc_button = document.getElementById('calc_button');
+
+        calc_button.addEventListener('click', (event) => {
+            console.log('befor prevent');
+            event.preventDefault();
+            console.log('after prevent');
+            raster_calc()
+        });
+
+        function infoText() {
+            let popup = document.getElementById('myPopup');
+
+            if (popup.style.visibility == 'visible') {
+
+                popup.style.visibility = 'hidden';
+            } else {
+                popup.style.visibility = 'visible';
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

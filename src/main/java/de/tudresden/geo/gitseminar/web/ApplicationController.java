@@ -16,4 +16,19 @@ public class ApplicationController {
     return "routing_test";
   }
 
+  @GetMapping(value = {"/", "/index", "/raster_page", "/raster_page.html"})
+  public String rasterPage() {
+    return "raster_page";
+  }
+
+  @GetMapping(value = {"/station_page", "/station_page.html"})
+  public String stationPage() {
+    return "station_page";
+  }
+
+  @GetMapping(value = {"/reset", "/reset.html"})
+  public String resetWebStorage() {
+    return "reset";
+  }
+
 }
