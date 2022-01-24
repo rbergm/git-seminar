@@ -136,6 +136,10 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
 
     //same functions for Mittelzentren route
 
+    while (instructions_mz.hasChildNodes()) {
+        instructions_mz.removeChild(instructions_mz.firstChild);
+    }
+
     if (train_route_mz.status == 'ok') {
 
         for (let index = 0; index < steps.length -1; index++) {
