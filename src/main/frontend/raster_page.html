@@ -139,12 +139,12 @@
         <div id='map'></div>
         <div class="row">
             <div class="col-lg-12">
-                <nav id="menu"></nav>
+                
 
                 <nav class='navbar navbar-expand-lg navbar-dark bg-primary' id='navbar'>
                     <div class='container-fluid'> <button class='navbar-toggler navbar-toggler-right border-0 p-0'
                             type='button' data-toggle='collapse' data-target='#navbar20' id='navbar-toggle'>
-                            <p class='navbar-brand text-white mb-0'></i> Haltestellen-Informationssystem </p>
+                            <p class='navbar-brand text-white mb-0'></i> PUERTO-Daseinsvorsorge </p>
                         </button>
                         <div class='collapse navbar-collapse' id='navbar20'>
                             <ul class='navbar-nav mr-auto'>
@@ -163,7 +163,7 @@
                                         Anzahl der BewohnerInnen.<br></span>
                                 </li>
                             </ul>
-                            <p class='d-none d-md-block lead mb-0 text-white'> <b> Haltestellen-Informationssystem</b>
+                            <p class='d-none d-md-block lead mb-0 text-white'> <b> PUERTO-Daseinsvorsorge</b>
                             </p>
                             <ul class='navbar-nav ml-auto'>
                                 <li class='nav-item mx-1'> <a class='nav-link'
@@ -212,11 +212,27 @@
             <div class="col-md-7">
             </div>
             <div class="col-md-3">
-
+                    <nav id="menu" >
+                        <a  id = "weighted-raster" href="#" onclick="layerOnClick('weighted-raster', 'weighted-raster-layer')">Berechnetes Raster</a>
+                        <a  id = "Oberzentren" href="#" onclick="layerOnClick('Oberzentren', 'Oberzentren')">Oberzentren</a>
+                        <a  id = "Mittelzentren" href="#" onclick="layerOnClick('Mittelzentren', 'Mittelzentren')">Mittelzentren</a>
+                    </nav>
             </div>
         </div>
         <div class="row" id="row3">
             <div class="col-md-2">
+                    <div id = 'legende-raster' class='absolute fl my15 mx15 py15 px15 bg-white-faint round'>
+                        <u>Bewertung</u>
+                        <div id ="ramp" class="col-md-2">
+                            <div class="col-md-10">
+                                <a> gut </a>
+                                <br>
+                                <a> mittel </a>
+                                <br>
+                                <a> schlecht </a>
+                            </div>
+                        </div>
+                    </div>																											
             </div>
             <div class="col-md-6">
             </div>
@@ -271,9 +287,8 @@
                     'visibility': 'none'
                 },
                 'filter': ['in', 'ZORT', 'Oberzentrum', 'oberzentraler Städteverbund'],
-                // 'filter': ['==', 'ZORT', 'oberzentraler Städteverbund'],
                 'paint': {
-                    'fill-color': '#ff1b00',
+                    'fill-color': '#007bff',
                     'fill-opacity': 0.5
                 }
             });
@@ -288,7 +303,7 @@
                 'filter': ['in', 'ZORT', 'Mittelzentrum', 'mittelzentraler SV Silberberg', 'mittelzentraler SV Sachsenring', 'mittelzentraler SV Göltzschta'],
 
                 'paint': {
-                    'fill-color': '#ff9b00',
+                    'fill-color': '#003bff',
                     'fill-opacity': 0.5
                 }
             });
@@ -340,67 +355,30 @@
 
 
         });
+		
+function layerOnClick (id, layerId) {
+							  
+																   
 
-        // After the last frame rendered before the map enters an "idle" state.
-        map.on('idle', () => {
-            // If these two layers were not added to the map, abort
-
-            // if (!map.getLayer('Oberzentren') || !map.getLayer('Mittelzentren')|| !map.getLayer('Einwohnerdichte')) {
-            // return;
-            // }
-            if (!map.getLayer('Oberzentren') || !map.getLayer('Mittelzentren')) {
-                return;
-            }
-
-            // Enumerate ids of the layers.
-            const toggleableLayerIds = ['Oberzentren', 'Mittelzentren'];
-            // const toggleableLayerIds = ['Oberzentren', 'Mittelzentren', 'Einwohnerdichte'];
-
-            // Set up the corresponding toggle button for each layer.
-            for (const id of toggleableLayerIds) {
-                // Skip layers that already have a button set up.
-                if (document.getElementById(id)) {
-                    continue;
-                }
-
-                // Create a link.
-                const link = document.createElement('a');
-                link.id = id;
-                link.href = '#';
-                link.textContent = id;
-                link.className = 'active';
-
-                // Show or hide layer when the toggle is clicked.
-                link.onclick = function (e) {
-                    const clickedLayer = this.textContent;
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    const visibility = map.getLayoutProperty(
-                        clickedLayer,
-                        'visibility'
-                    );
-
-
-
-                    // Toggle layer visibility by changing the layout object's visibility property.
-                    if (visibility === 'visible') {
-                        map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-                        this.className = '';
-                    } else {
-                        this.className = 'active';
-                        map.setLayoutProperty(
-                            clickedLayer,
-                            'visibility',
-                            'visible'
-                        );
-                    }
-                };
-
-                const layers = document.getElementById('menu');
-                layers.appendChild(link);
-            }
-        });
+    if (map.getLayer(layerId)) {
+        const clickedLayer = document.getElementById(id);
+        if (clickedLayer.className == 'active') {
+            clickedLayer.classList.remove('active');
+            map.setLayoutProperty(layerId, 'visibility', 'none');
+            let popup = document.getElementsByClassName('mapboxgl-popup-content')[0];
+            console.log(popup);
+            popup.parentNode.removeChild(popup);
+        }else {
+            clickedLayer.className = 'active';
+            map.setLayoutProperty(layerId, 'visibility', 'visible');
+																	 
+												  
+																 
+												  
+							 
+        }
+    }
+}
 
 
         // query clicked trainstation feature and display name and api button in a popup
