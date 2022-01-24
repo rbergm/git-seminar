@@ -9,6 +9,7 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
     const data = json.routes[0];
     const route = data.geometry.coordinates;
     const instructions = document.getElementById('navig_steps_listgroup');
+    const instructions_mz = document.getElementById('navig_steps_listgroup_mz');
     const steps = data.legs[0].steps;
     const geojson = {
         type: 'Feature',
@@ -142,7 +143,7 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
             let li = document.createElement('li');
             li.className = 'list-group-item';
             li.appendChild(document.createTextNode(numbering.toString() + '. ' + steps[index].maneuver.instruction));
-            instructions.appendChild(li);
+            instructions_mz.appendChild(li);
         }
 
         let li_start = document.createElement('li');
@@ -155,7 +156,7 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         train_icon.style = "font-size:18px";
         li_start.appendChild(train_icon);
         li_start.appendChild(textnode);
-        instructions.appendChild(li_start);
+        instructions_mz.appendChild(li_start);
 
         let li_line = document.createElement('li');
         li_line.className = 'list-group-item';
@@ -166,7 +167,7 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         entry_icon.style = "font-size:18px";
         li_line.appendChild(entry_icon)
         li_line.appendChild(document.createTextNode(instruction_line));
-        instructions.appendChild(li_line);
+        instructions_mz.appendChild(li_line);
 
 
         for (const change of train_route_mz.route.effectiveChanges) {
@@ -180,7 +181,7 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
             change_icon.style = "font-size:18px";
             li_change.appendChild(change_icon)
             li_change.appendChild(document.createTextNode(instruction_change));
-            instructions.appendChild(li_change);
+            instructions_mz.appendChild(li_change);
         }
 
         let li_target = document.createElement('li');
@@ -192,20 +193,20 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         flag_icon.style = "font-size:18px";
         li_target.appendChild(flag_icon);
         li_target.appendChild(document.createTextNode(instruction_target));
-        instructions.appendChild(li_target);
+        instructions_mz.appendChild(li_target);
 
 
     } else if (train_route_mz.status == "start-matches-target") {
         let li_start = document.createElement('li');
         li_start.className = 'list-group-item';
-        let instruction_start_station = "   Bahnhof ist bereits ein Oberzentrum";
+        let instruction_start_station = "   Bahnhof ist bereits ein Mittelzentrum";
         let textnode = document.createTextNode(instruction_start_station);
         let train_icon = document.createElement('i');
         train_icon.className = "fa fa-train";
         train_icon.style = "font-size:18px";
         li_start.appendChild(train_icon);
         li_start.appendChild(textnode);
-        instructions.appendChild(li_start);
+        instructions_mz.appendChild(li_start);
     } else if (train_route_mz.status == "no-route") {
         let li_start = document.createElement('li');
         li_start.className = 'list-group-item';
@@ -216,7 +217,7 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         train_icon.style = "font-size:18px";
         li_start.appendChild(train_icon);
         li_start.appendChild(textnode);
-        instructions.appendChild(li_start);
+        instructions_mz.appendChild(li_start);
     }  else if (train_route_mz.status == "station-not-found") {
         let li_start = document.createElement('li');
         li_start.className = 'list-group-item';
@@ -227,7 +228,7 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         train_icon.style = "font-size:18px";
         li_start.appendChild(train_icon);
         li_start.appendChild(textnode);
-        instructions.appendChild(li_start);
+        instructions_mz.appendChild(li_start);
     }  else {
         let li_start = document.createElement('li');
         li_start.className = 'list-group-item';
@@ -238,7 +239,7 @@ async function getRoute(marker_lng, marker_lat, station_lng, station_lat, profil
         train_icon.style = "font-size:18px";
         li_start.appendChild(train_icon);
         li_start.appendChild(textnode);
-        instructions.appendChild(li_start);
+        instructions_mz.appendChild(li_start);
     }
 
     // if the route already exists on the map, we'll reset it using setData
